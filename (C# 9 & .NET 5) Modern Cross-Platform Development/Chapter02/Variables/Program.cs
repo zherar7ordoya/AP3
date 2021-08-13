@@ -13,10 +13,8 @@ namespace Variables
 
             Console.WriteLine($"{name} is {height} metres tall.");
 
-            //Console.WriteLine("Inicia");
             //int length1 = name.Length; // gives compile error!
             int length2 = ((string)name).Length; // tell compiler it is a string
-            //Console.WriteLine("Finaliza");
 
             Console.WriteLine($"{name} has {length2} characters.");
 
@@ -35,24 +33,36 @@ namespace Variables
             // have a property named Length
             int length = anotherName.Length;
 
-            var population = 66_000_000; // 66 million in UK 
-            var weight = 1.88; // in kilograms
-            var price = 4.99M; // in pounds sterling
-            var fruit = "Apples"; // strings use double-quotes 
-            var letter = 'Z'; // chars use single-quotes
-            var happy = true; // Booleans have value of true or false
+            int population = 66_000_000; // 66 million in UK 
+            double weight = 1.88; // in kilograms
+            decimal price = 4.99M; // in pounds sterling
+            string fruit = "Apples"; // strings use double-quotes 
+            char letter = 'Z'; // chars use single-quotes
+            bool happy = true; // Booleans have value of true or false
 
             // good use of var because it avoids the repeated type
             // as shown in the more verbose second statement
             var xml1 = new XmlDocument();
             XmlDocument xml2 = new XmlDocument();
+
+            // *---------------------------------------------* \\
             XmlDocument xml3 = new(); // target-typed new in C# 9
+            // *---------------------------------------------* \\
 
             // bad use of var because we cannot tell the type, so we 
             // should use a specific type declaration as shown in 
             // the second statement
-            var file1 = File.CreateText(@"C:\something.txt");
-            StreamWriter file2 = File.CreateText(@"C:\something.txt");
+            var file1 = File.CreateText(@"C:\tmp\clannad.txt");
+            file1.Close();
+            StreamWriter file2 = File.CreateText(@"C:\tmp\clannad.txt");
+            file2.Close();
+
+            Console.WriteLine(population);
+            Console.WriteLine(weight);
+            Console.WriteLine(price);
+            Console.WriteLine(fruit);
+            Console.WriteLine(letter);
+            Console.WriteLine(happy);
 
             Console.WriteLine($"default(int) = {default(int)}");
             Console.WriteLine($"default(bool) = {default(bool)}");
