@@ -23,6 +23,9 @@
         },
         {
             "path": "Variables"
+        },
+        {
+            "path": "ExploringConsole"
         }
     ],
     "settings": {}
