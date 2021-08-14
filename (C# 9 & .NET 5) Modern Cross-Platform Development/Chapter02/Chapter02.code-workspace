@@ -10,7 +10,7 @@
             "path": "Basics"
         },
         {
-            "path": "Exercise02"
+            "path": "ExploringConsole"
         },
         {
             "path": "Formatting"
@@ -25,7 +25,7 @@
             "path": "Variables"
         },
         {
-            "path": "ExploringConsole"
+            "path": "Exercise02"
         }
     ],
     "settings": {}

@@ -18,8 +18,7 @@ namespace SelectionStatements
       }
 
       // add and remove the "" to change the behavior
-      object o = 3;
-
+      object o = "3";
       int j = 4;
 
       if (o is int i)
@@ -57,7 +56,7 @@ namespace SelectionStatements
           break;
       } // end of switch statement
 
-      string path = "/Users/markjprice/Code/Chapter03";
+      string path = @"C:\Documents\AP3\(C# 9 & .NET 5) Modern Cross-Platform Development\Chapter03";
       // string path = @"C:\Code\Chapter03";
 
       Write("Press R for readonly or W for write: ");
@@ -106,16 +105,11 @@ namespace SelectionStatements
 
       message = s switch
       {
-        FileStream writeableFile when s.CanWrite
-          => "The stream is a file that I can write to.",
-        FileStream readOnlyFile
-          => "The stream is a read-only file.",
-        MemoryStream ms
-          => "The stream is a memory address.",
-        null
-          => "The stream is null.",
-        _
-          => "The stream is some other type."
+        FileStream writeableFile when s.CanWrite    =>  "Permite escritura",
+        FileStream readOnlyFile                     =>  "Es solo lectura",
+        MemoryStream ms                             =>  "Es una dirección de memoria",
+        null                                        =>  "Es null (nulo)",
+        _                                           =>  "El flujo es de algún otro tipo"
       };
 
       WriteLine(message);

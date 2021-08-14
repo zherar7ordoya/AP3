@@ -1,28 +1,28 @@
 {
 	"folders": [
 		{
-			"path": "Operators"
+			"path": "BitwiseAndShiftOperators"
 		},
 		{
 			"path": "BooleanOperators"
 		},
 		{
-			"path": "BitwiseAndShiftOperators"
-		},
-		{
-			"path": "SelectionStatements"
-		},
-		{
-			"path": "IterationStatements"
-		},
-		{
 			"path": "CastingConverting"
+		},
+		{
+			"path": "CheckingForOverflow"
 		},
 		{
 			"path": "HandlingExceptions"
 		},
 		{
-			"path": "CheckingForOverflow"
+			"path": "IterationStatements"
+		},
+		{
+			"path": "Operators"
+		},
+		{
+			"path": "SelectionStatements"
 		},
 		{
 			"path": "Exercise02"
