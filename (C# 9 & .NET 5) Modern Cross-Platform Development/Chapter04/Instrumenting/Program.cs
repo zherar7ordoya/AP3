@@ -16,8 +16,8 @@ namespace Instrumenting
       // Flush() on all listeners after writing
       Trace.AutoFlush = true;
 
-      Debug.WriteLine("Debug says, I am watching!");
-      Trace.WriteLine("Trace says, I am watching!");
+      Debug.WriteLine("Debug says: DEBUG!");
+      Trace.WriteLine("Trace says: TRACE!");
 
       var builder = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
