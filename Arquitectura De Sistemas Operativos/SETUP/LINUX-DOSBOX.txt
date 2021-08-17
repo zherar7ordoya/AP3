@@ -1,0 +1,15 @@
+DESDE EXPLORER: \\wsl$\Ubuntu\home\gtordoya\DEBUG
+
+
+DESDE DOSBOX: MOUNT C ~/DEBUG
+
+
+DOSBOX CONF:
+
+\\wsl$\Ubuntu\home\gtordoya\.dosbox
+
+EN EL ARCHIVO:
+
+KEYB SP
+MOUNT C ~/DEBUG
+C:
