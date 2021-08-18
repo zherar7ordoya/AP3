@@ -1,15 +1,12 @@
-DESDE EXPLORER: \\wsl$\Ubuntu\home\gtordoya\DEBUG
-
+DESDE EXPLORER: \\wsl$\Ubuntu\home\zherar7ordoya\DEBUG
 
 DESDE DOSBOX: MOUNT C ~/DEBUG
 
-
-DOSBOX CONF:
-
-\\wsl$\Ubuntu\home\gtordoya\.dosbox
+DOSBOX CONF: \\wsl$\Ubuntu\home\zherar7ordoya\.dosbox
 
 EN EL ARCHIVO:
 
+@ECHO OFF
 KEYB SP
 MOUNT C ~/DEBUG
 C:
