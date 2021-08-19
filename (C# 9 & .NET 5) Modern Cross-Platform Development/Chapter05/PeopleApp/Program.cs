@@ -4,213 +4,216 @@ using static System.Console;
 
 namespace PeopleApp
 {
-  class Program
-  {
-    static void Main(string[] args)
+    class Program
     {
-      // Setting and outputting field values
+        static void Main(string[] args)
+        {
+            // Setting and outputting field values
 
-      var bob = new Person();
-      bob.Name = "Bob Smith";
-      bob.DateOfBirth = new DateTime(1965, 12, 22);
+            var gerardo = new Person();
+            WriteLine(gerardo.ToString());
 
-      WriteLine(
-        format: "{0} was born on {1:dddd, d MMMM yyyy}",
-        arg0: bob.Name,
-        arg1: bob.DateOfBirth);
+            var bob = new Person();
+            bob.Name = "Bob Smith";
+            bob.DateOfBirth = new DateTime(1965, 12, 22);
 
-      var alice = new Person
-      {
-        Name = "Alice Jones",
-        DateOfBirth = new DateTime(1998, 3, 7)
-      };
+            WriteLine(
+              format: "{0} was born on {1:dddd, d MMMM yyyy}",
+              arg0: bob.Name,
+              arg1: bob.DateOfBirth);
 
-      WriteLine(
-        format: "{0} was born on {1:dd MMM yy}",
-        arg0: alice.Name,
-        arg1: alice.DateOfBirth);
+            var alice = new Person
+            {
+                Name = "Alice Jones",
+                DateOfBirth = new DateTime(1998, 3, 7)
+            };
 
-      // Storing a value using an enum type
+            WriteLine(
+              format: "{0} was born on {1:dd MMM yy}",
+              arg0: alice.Name,
+              arg1: alice.DateOfBirth);
 
-      bob.FavoriteAncientWonder = WondersOfTheAncientWorld.StatueOfZeusAtOlympia;
+            // Storing a value using an enum type
 
-      WriteLine(format:
-        "{0}'s favorite wonder is {1}. Its integer is {2}.",
-        arg0: bob.Name,
-        arg1: bob.FavoriteAncientWonder,
-        arg2: (int)bob.FavoriteAncientWonder);
+            bob.FavoriteAncientWonder = WondersOfTheAncientWorld.StatueOfZeusAtOlympia;
 
-      // Storing multiple values using an enum type
+            WriteLine(format:
+              "{0}'s favorite wonder is {1}. Its integer is {2}.",
+              arg0: bob.Name,
+              arg1: bob.FavoriteAncientWonder,
+              arg2: (int)bob.FavoriteAncientWonder);
 
-      bob.BucketList =
-        WondersOfTheAncientWorld.HangingGardensOfBabylon
-        | WondersOfTheAncientWorld.MausoleumAtHalicarnassus;
+            // Storing multiple values using an enum type
 
-      // bob.BucketList = (WondersOfTheAncientWorld)18; 
+            bob.BucketList =
+              WondersOfTheAncientWorld.HangingGardensOfBabylon
+              | WondersOfTheAncientWorld.MausoleumAtHalicarnassus;
 
-      WriteLine($"{bob.Name}'s bucket list is {bob.BucketList}");
+            // bob.BucketList = (WondersOfTheAncientWorld)18; 
 
-      // Storing multiple values using collections
+            WriteLine($"{bob.Name}'s bucket list is {bob.BucketList}");
 
-      bob.Children.Add(new Person { Name = "Alfred" });
-      bob.Children.Add(new Person { Name = "Zoe" });
+            // Storing multiple values using collections
 
-      WriteLine(
-        $"{bob.Name} has {bob.Children.Count} children:");
+            bob.Children.Add(new Person { Name = "Alfred" });
+            bob.Children.Add(new Person { Name = "Zoe" });
 
-      for (int child = 0; child < bob.Children.Count; child++)
-      {
-        WriteLine($"  {bob.Children[child].Name}");
-      }
+            WriteLine(
+              $"{bob.Name} has {bob.Children.Count} children:");
 
-      // Making a field static
+            for (int child = 0; child < bob.Children.Count; child++)
+            {
+                WriteLine($"  {bob.Children[child].Name}");
+            }
 
-      BankAccount.InterestRate = 0.012M; // store a shared value
+            // Making a field static
 
-      var jonesAccount = new BankAccount();
-      jonesAccount.AccountName = "Mrs. Jones";
-      jonesAccount.Balance = 2400;
+            BankAccount.InterestRate = 0.012M; // store a shared value
 
-      WriteLine(format: "{0} earned {1:C} interest.",
-        arg0: jonesAccount.AccountName,
-        arg1: jonesAccount.Balance * BankAccount.InterestRate);
+            var jonesAccount = new BankAccount();
+            jonesAccount.AccountName = "Mrs. Jones";
+            jonesAccount.Balance = 2400;
 
-      var gerrierAccount = new BankAccount();
-      gerrierAccount.AccountName = "Ms. Gerrier";
-      gerrierAccount.Balance = 98;
+            WriteLine(format: "{0} earned {1:C} interest.",
+              arg0: jonesAccount.AccountName,
+              arg1: jonesAccount.Balance * BankAccount.InterestRate);
 
-      WriteLine(format: "{0} earned {1:C} interest.",
-        arg0: gerrierAccount.AccountName,
-        arg1: gerrierAccount.Balance * BankAccount.InterestRate);
+            var gerrierAccount = new BankAccount();
+            gerrierAccount.AccountName = "Ms. Gerrier";
+            gerrierAccount.Balance = 98;
 
-      // Making a field constant
+            WriteLine(format: "{0} earned {1:C} interest.",
+              arg0: gerrierAccount.AccountName,
+              arg1: gerrierAccount.Balance * BankAccount.InterestRate);
 
-      WriteLine($"{bob.Name} is a {Person.Species}");
+            // Making a field constant
 
-      // Making a field read-only
+            WriteLine($"{bob.Name} is a {Person.Species}");
 
-      WriteLine($"{bob.Name} was born on {bob.HomePlanet}");
+            // Making a field read-only
 
-      // Initializing fields with constructors
+            WriteLine($"{bob.Name} was born on {bob.HomePlanet}");
 
-      var blankPerson = new Person();
+            // Initializing fields with constructors
 
-      WriteLine(format:
-        "{0} of {1} was created at {2:hh:mm:ss} on a {2:dddd}.",
-        arg0: blankPerson.Name,
-        arg1: blankPerson.HomePlanet,
-        arg2: blankPerson.Instantiated);
+            var blankPerson = new Person();
 
-      var gunny = new Person("Gunny", "Mars");
+            WriteLine(format:
+              "{0} of {1} was created at {2:hh:mm:ss} on a {2:dddd}.",
+              arg0: blankPerson.Name,
+              arg1: blankPerson.HomePlanet,
+              arg2: blankPerson.Instantiated);
 
-      WriteLine(format:
-        "{0} of {1} was created at {2:hh:mm:ss} on a {2:dddd}.",
-        arg0: gunny.Name,
-        arg1: gunny.HomePlanet,
-        arg2: gunny.Instantiated);
+            var gunny = new Person("Gunny", "Mars");
 
-      // Returning values from methods
+            WriteLine(format:
+              "{0} of {1} was created at {2:hh:mm:ss} on a {2:dddd}.",
+              arg0: gunny.Name,
+              arg1: gunny.HomePlanet,
+              arg2: gunny.Instantiated);
 
-      bob.WriteToConsole();
-      WriteLine(bob.GetOrigin());
+            // Returning values from methods
 
-      // Combining multiple returned values using tuples
+            bob.WriteToConsole();
+            WriteLine(bob.GetOrigin());
 
-      (string, int) fruit = bob.GetFruit();
-      WriteLine($"{fruit.Item1}, {fruit.Item2} there are.");
+            // Combining multiple returned values using tuples
 
-      // Naming the fields of a tuple
+            (string, int) fruit = bob.GetFruit();
+            WriteLine($"{fruit.Item1}, {fruit.Item2} there are.");
 
-      var fruitNamed = bob.GetNamedFruit();
-      WriteLine($"There are {fruitNamed.Number} {fruitNamed.Name}.");
+            // Naming the fields of a tuple
 
-      // Inferring tuple names
+            var fruitNamed = bob.GetNamedFruit();
+            WriteLine($"There are {fruitNamed.Number} {fruitNamed.Name}.");
 
-      var thing1 = ("Neville", 4);
-      WriteLine($"{thing1.Item1} has {thing1.Item2} children.");
+            // Inferring tuple names
 
-      var thing2 = (bob.Name, bob.Children.Count);
-      WriteLine($"{thing2.Name} has {thing2.Count} children.");
+            var thing1 = ("Neville", 4);
+            WriteLine($"{thing1.Item1} has {thing1.Item2} children.");
 
-      // Deconstructing tuples
+            var thing2 = (bob.Name, bob.Children.Count);
+            WriteLine($"{thing2.Name} has {thing2.Count} children.");
 
-      (string fruitName, int fruitNumber) = bob.GetFruit();
-      WriteLine($"Deconstructed: {fruitName}, {fruitNumber}");
+            // Deconstructing tuples
 
-      // Defining and passing parameters to methods
+            (string fruitName, int fruitNumber) = bob.GetFruit();
+            WriteLine($"Deconstructed: {fruitName}, {fruitNumber}");
 
-      WriteLine(bob.SayHello());
-      WriteLine(bob.SayHello("Emily"));
+            // Defining and passing parameters to methods
 
-      // Passing optional parameters and naming arguments
+            WriteLine(bob.SayHello());
+            WriteLine(bob.SayHello("Emily"));
 
-      WriteLine(bob.OptionalParameters());
+            // Passing optional parameters and naming arguments
 
-      WriteLine(bob.OptionalParameters("Jump!", 98.5));
+            WriteLine(bob.OptionalParameters());
 
-      WriteLine(bob.OptionalParameters(
-        number: 52.7, command: "Hide!"));
+            WriteLine(bob.OptionalParameters("Jump!", 98.5));
 
-      WriteLine(bob.OptionalParameters("Poke!", active: false));
+            WriteLine(bob.OptionalParameters(
+              number: 52.7, command: "Hide!"));
 
-      // Controlling how parameters are passed
+            WriteLine(bob.OptionalParameters("Poke!", active: false));
 
-      int a = 10;
-      int b = 20;
-      int c = 30;
+            // Controlling how parameters are passed
 
-      WriteLine($"Before: a = {a}, b = {b}, c = {c}");
+            int a = 10;
+            int b = 20;
+            int c = 30;
 
-      bob.PassingParameters(a, ref b, out c);
+            WriteLine($"Before: a = {a}, b = {b}, c = {c}");
 
-      WriteLine($"After: a = {a}, b = {b}, c = {c}");
+            bob.PassingParameters(a, ref b, out c);
 
-      int d = 10;
-      int e = 20;
+            WriteLine($"After: a = {a}, b = {b}, c = {c}");
 
-      WriteLine(
-        $"Before: d = {d}, e = {e}, f doesn't exist yet!");
+            int d = 10;
+            int e = 20;
 
-      // simplified C# 7 syntax for the out parameter
-      bob.PassingParameters(d, ref e, out int f);
+            WriteLine(
+              $"Before: d = {d}, e = {e}, f doesn't exist yet!");
 
-      WriteLine($"After: d = {d}, e = {e}, f = {f}");
+            // simplified C# 7 syntax for the out parameter
+            bob.PassingParameters(d, ref e, out int f);
 
-      // Defining read-only properties
+            WriteLine($"After: d = {d}, e = {e}, f = {f}");
 
-      var sam = new Person
-      {
-        Name = "Sam",
-        DateOfBirth = new DateTime(1972, 1, 27)
-      };
+            // Defining read-only properties
 
-      WriteLine(sam.Origin);
-      WriteLine(sam.Greeting);
-      WriteLine(sam.Age);
+            var sam = new Person
+            {
+                Name = "Sam",
+                DateOfBirth = new DateTime(1972, 1, 27)
+            };
 
-      // Defining settable properties
+            WriteLine(sam.Origin);
+            WriteLine(sam.Greeting);
+            WriteLine(sam.Age);
 
-      sam.FavoriteIceCream = "Chocolate Fudge";
+            // Defining settable properties
 
-      WriteLine($"Sam's favorite ice-cream flavor is {sam.FavoriteIceCream}.");
+            sam.FavoriteIceCream = "Chocolate Fudge";
 
-      sam.FavoritePrimaryColor = "Red";
+            WriteLine($"Sam's favorite ice-cream flavor is {sam.FavoriteIceCream}.");
 
-      WriteLine($"Sam's favorite primary color is {sam.FavoritePrimaryColor}.");
+            sam.FavoritePrimaryColor = "Red";
 
-      // Defining indexers
+            WriteLine($"Sam's favorite primary color is {sam.FavoritePrimaryColor}.");
 
-      sam.Children.Add(new Person { Name = "Charlie" });
-      sam.Children.Add(new Person { Name = "Ella" });
+            // Defining indexers
 
-      WriteLine($"Sam's first child is {sam.Children[0].Name}");
-      WriteLine($"Sam's second child is {sam.Children[1].Name}");
-      WriteLine($"Sam's first child is {sam[0].Name}");
-      WriteLine($"Sam's second child is {sam[1].Name}");
+            sam.Children.Add(new Person { Name = "Charlie" });
+            sam.Children.Add(new Person { Name = "Ella" });
 
-      // Exploring pattern matching
+            WriteLine($"Sam's first child is {sam.Children[0].Name}");
+            WriteLine($"Sam's second child is {sam.Children[1].Name}");
+            WriteLine($"Sam's first child is {sam[0].Name}");
+            WriteLine($"Sam's second child is {sam[1].Name}");
 
-      object[] passengers = {
+            // Exploring pattern matching
+
+            object[] passengers = {
         new FirstClassPassenger { AirMiles = 1_419 },
         new FirstClassPassenger { AirMiles = 16_562 },
         new BusinessClassPassenger(),
@@ -218,59 +221,59 @@ namespace PeopleApp
         new CoachClassPassenger { CarryOnKG = 0 },
       };
 
-      foreach (object passenger in passengers)
-      {
-        decimal flightCost = passenger switch
-        {
+            foreach (object passenger in passengers)
+            {
+                decimal flightCost = passenger switch
+                {
 
-          /* C# 8 syntax
-          FirstClassPassenger p when p.AirMiles > 35000 => 1500M,
-          FirstClassPassenger p when p.AirMiles > 15000 => 1750M,
-          FirstClassPassenger                           => 2000M, */
+                    /* C# 8 syntax
+                    FirstClassPassenger p when p.AirMiles > 35000 => 1500M,
+                    FirstClassPassenger p when p.AirMiles > 15000 => 1750M,
+                    FirstClassPassenger                           => 2000M, */
 
-          // C# 9 syntax
-          FirstClassPassenger p => p.AirMiles switch
-          {
-            > 35000 => 1500M,
-            > 15000 => 1750M,
-            _ => 2000M
-          },
+                    // C# 9 syntax
+                    FirstClassPassenger p => p.AirMiles switch
+                    {
+                        > 35000 => 1500M,
+                        > 15000 => 1750M,
+                        _ => 2000M
+                    },
 
-          BusinessClassPassenger => 1000M,
-          CoachClassPassenger p when p.CarryOnKG < 10.0 => 500M,
-          CoachClassPassenger => 650M,
-          _ => 800M
-        };
+                    BusinessClassPassenger => 1000M,
+                    CoachClassPassenger p when p.CarryOnKG < 10.0 => 500M,
+                    CoachClassPassenger => 650M,
+                    _ => 800M
+                };
 
-        WriteLine($"Flight costs {flightCost:C} for {passenger}");
-      }
+                WriteLine($"Flight costs {flightCost:C} for {passenger}");
+            }
 
-      // Working with records
+            // Working with records
 
-      var jeff = new ImmutablePerson
-      {
-        FirstName = "Jeff",
-        LastName = "Winger"
-      };
+            var jeff = new ImmutablePerson
+            {
+                FirstName = "Jeff",
+                LastName = "Winger"
+            };
 
-      // the following is not allowed with init properties
-      // jeff.FirstName = "Geoff";
+            // the following is not allowed with init properties
+            // jeff.FirstName = "Geoff";
 
-      var car = new ImmutableVehicle
-      {
-        Brand = "Mazda MX-5",
-        Color = "Metallic Soul Red",
-        Wheels = 4
-      };
+            var car = new ImmutableVehicle
+            {
+                Brand = "Mazda MX-5",
+                Color = "Metallic Soul Red",
+                Wheels = 4
+            };
 
-      var repaintedCar = car with { Color = "Polymetallic Grey" };
+            var repaintedCar = car with { Color = "Polymetallic Grey" };
 
-      WriteLine("Original color was {0}, new color is {1}.",
-        arg0: car.Color, arg1: repaintedCar.Color);
+            WriteLine("Original color was {0}, new color is {1}.",
+              arg0: car.Color, arg1: repaintedCar.Color);
 
-      var oscar = new ImmutableAnimal("Oscar", "Labrador");
-      var (who, what) = oscar; // calls Deconstruct method
-      WriteLine($"{who} is a {what}.");
+            var oscar = new ImmutableAnimal("Oscar", "Labrador");
+            var (who, what) = oscar; // calls Deconstruct method
+            WriteLine($"{who} is a {what}.");
+        }
     }
-  }
 }
