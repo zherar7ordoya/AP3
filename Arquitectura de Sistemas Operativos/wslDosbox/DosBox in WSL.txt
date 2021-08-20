@@ -1,0 +1,14 @@
+DESDE EXPLORER:
+	\\wsl$\Ubuntu\home\zherar7ordoya\
+
+DESDE DOSBOX:
+	MOUNT C ~/
+
+DOSBOX CONF:
+	\\wsl$\Ubuntu\home\zherar7ordoya\.dosbox
+
+EN EL ARCHIVO:
+	@ECHO OFF
+	KEYB SP		<- Innecesario en laptop.
+	MOUNT C ~/
+	C:
