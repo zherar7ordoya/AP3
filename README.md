@@ -1,11 +1,7 @@
 # UAI
 
-Universidad Abierta Interamericana
+Universidad Abierta Interamericana *(Facultad de Tecnología Informática)*
 
 ## Analista Programador
 
-*Facultad de Tecnología Informática*
-
-### 3er Semestre
-
-**2021**
+3er Semestre **(2021)**
