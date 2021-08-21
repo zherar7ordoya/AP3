@@ -2,8 +2,6 @@
 ## 3er Semestre 
 ### 2021
 
-*UAI*
-
-**Universidad Abierta Interamericana**
-
-***Facultad de Tecnología Informática***
+UAI
+Universidad Abierta Interamericana
+Facultad de Tecnología Informática
