@@ -1,7 +1,1 @@
-# Analista Programador
-## 3er Semestre 
-### 2021
-
-UAI (Universidad Abierta Interamericana)
-
-Facultad de Tecnología Informática
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
