@@ -1,1 +1,1 @@
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Gerardo Tordoya](https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png)
