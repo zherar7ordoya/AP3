@@ -1,9 +1,8 @@
 # 2021
 
-## Universidad Abierta Interamericana (UAI)
+- (UAI) Universidad Abierta Interamericana 
+- Facultad de Tecnología Informática
 
-### Facultad de Tecnología Informática
+## Carrera Analista Programador
 
-#### Carrera Analista Programador
-
-##### 3er Semestre
+- 3er Semestre
