@@ -1,10 +1,12 @@
+/**
+ * COMPILAR: gcc hello.c -o hello
+ * EJECUTAR: ./hello (Ubuntu) hello (Windows)
+*/
+
 #include <stdio.h>
+
 int main()
 {
-   printf("\n");
-   printf("\t\t\t+----------------+\n");
-   printf("\t\t\t| ¡Hola Gerardo! |\n");
-   printf("\t\t\t+----------------+\n");
-   printf("\n");
-   return 0;
+    printf("\n Hola Gerardo, comencemos... \n\n");
+    return 0;
 }
