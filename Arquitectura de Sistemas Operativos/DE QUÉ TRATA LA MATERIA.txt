@@ -1,4 +1,0 @@
-monoprocesamiento
-multiprogramación
-multiusuario
-fuertemente acoplado
