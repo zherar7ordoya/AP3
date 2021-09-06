@@ -82,23 +82,24 @@ namespace WritingFunctions
             */
 
             //var x when x > 0 && x < 4 =>
+
             decimal rate = twoLetterRegionCode switch
             {
-                "CH"                    => 0.08M,   // Switzerland
-                var x when x == "DK" ||             // Denmark
-                           x == "NO"    => 0.25M,   // Norway
-                var x when x == "GB" ||             // United Kingdom
-                           x == "FR"    => 0.2M,    // France   
-                "HU"                    => 0.27M,   // Hungary
-                var x when x == "OR" ||             // Oregon
-                           x == "AK" ||             // Alaska
-                           x == "MT"    => 0.0M,    // Montana
-                var x when x == "ND" ||             // North Dakota
-                           x == "WI" ||             // Wisconsin
-                           x == "ME" ||             // Maine
-                           x == "VA"    => 0.05M,   // Virginia
-                "CA"                    => 0.0825M, // California
-                _                       => 0.06M,   // most US states
+                                "CH" => 0.08M,   // Switzerland
+                var x when x == "DK" ||          // Denmark
+                           x == "NO" => 0.25M,   // Norway
+                var x when x == "GB" ||          // United Kingdom
+                           x == "FR" => 0.2M,    // France   
+                                "HU" => 0.27M,   // Hungary
+                var x when x == "OR" ||          // Oregon
+                           x == "AK" ||          // Alaska
+                           x == "MT" => 0.0M,    // Montana
+                var x when x == "ND" ||          // North Dakota
+                           x == "WI" ||          // Wisconsin
+                           x == "ME" ||          // Maine
+                           x == "VA" => 0.05M,   // Virginia
+                                "CA" => 0.0825M, // California
+                                _    => 0.06M,   // most US states
             };
 
             return amount * rate;
