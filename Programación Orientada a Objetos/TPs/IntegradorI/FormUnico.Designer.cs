@@ -47,6 +47,9 @@ namespace IntegradorI
             this.lblTotal = new System.Windows.Forms.Label();
             this.dgvDatosDeAuto = new System.Windows.Forms.DataGridView();
             this.DatosDeAuto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Patente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).BeginInit();
             this.gbxPersonas.SuspendLayout();
             this.gbxAutos.SuspendLayout();
@@ -60,7 +63,8 @@ namespace IntegradorI
             this.dgvPersonas.AllowUserToAddRows = false;
             this.dgvPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPersonas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Personas});
+            this.Personas,
+            this.DNI});
             this.dgvPersonas.Location = new System.Drawing.Point(12, 12);
             this.dgvPersonas.Name = "dgvPersonas";
             this.dgvPersonas.Size = new System.Drawing.Size(143, 286);
@@ -171,7 +175,8 @@ namespace IntegradorI
             this.dgvAutos.AllowUserToAddRows = false;
             this.dgvAutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Autos});
+            this.Autos,
+            this.Patente});
             this.dgvAutos.Location = new System.Drawing.Point(161, 12);
             this.dgvAutos.Name = "dgvAutos";
             this.dgvAutos.Size = new System.Drawing.Size(143, 286);
@@ -188,7 +193,8 @@ namespace IntegradorI
             this.dgvAutosDePersona.AllowUserToAddRows = false;
             this.dgvAutosDePersona.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAutosDePersona.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.AutosDePersona});
+            this.AutosDePersona,
+            this.Precio});
             this.dgvAutosDePersona.Location = new System.Drawing.Point(310, 12);
             this.dgvAutosDePersona.Name = "dgvAutosDePersona";
             this.dgvAutosDePersona.Size = new System.Drawing.Size(143, 286);
@@ -202,11 +208,13 @@ namespace IntegradorI
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(389, 304);
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(377, 304);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(64, 13);
+            this.lblTotal.Size = new System.Drawing.Size(76, 13);
             this.lblTotal.TabIndex = 8;
             this.lblTotal.Text = "Precio Total";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // dgvDatosDeAuto
             // 
@@ -223,6 +231,21 @@ namespace IntegradorI
             // 
             this.DatosDeAuto.HeaderText = "Datos de Auto";
             this.DatosDeAuto.Name = "DatosDeAuto";
+            // 
+            // DNI
+            // 
+            this.DNI.HeaderText = "DNI";
+            this.DNI.Name = "DNI";
+            // 
+            // Patente
+            // 
+            this.Patente.HeaderText = "Patente";
+            this.Patente.Name = "Patente";
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
             // 
             // FormUnico
             // 
@@ -272,6 +295,9 @@ namespace IntegradorI
         private System.Windows.Forms.DataGridViewTextBoxColumn Autos;
         private System.Windows.Forms.DataGridViewTextBoxColumn AutosDePersona;
         private System.Windows.Forms.DataGridViewTextBoxColumn DatosDeAuto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Patente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
     }
 }
 

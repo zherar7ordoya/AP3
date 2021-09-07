@@ -6,7 +6,7 @@ namespace IntegradorI
 {
     class Persona 
     {
-        private string DNI;
+        private string _dni;
         private string _nombre;
         private string _apellido;
         public string Nombre 
@@ -17,10 +17,14 @@ namespace IntegradorI
         {
             get { return _apellido; }
         }
+        public string DNI
+        {
+            get { return _dni; }
+        }
         public List<Auto> Autos;
         public Persona(string dni, string nombre, string apellido)
         {
-            DNI       = dni;
+            _dni      = dni;
             _nombre   = nombre;
             _apellido = apellido;
             Autos     = new List<Auto>();
