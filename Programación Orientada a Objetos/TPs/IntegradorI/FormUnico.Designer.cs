@@ -30,6 +30,7 @@ namespace IntegradorI
         private void InitializeComponent()
         {
             this.dgvPersonas = new System.Windows.Forms.DataGridView();
+            this.Personas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbxPersonas = new System.Windows.Forms.GroupBox();
             this.btnModificacionPersona = new System.Windows.Forms.Button();
             this.btnBajaPersona = new System.Windows.Forms.Button();
@@ -40,12 +41,11 @@ namespace IntegradorI
             this.btnBajaAuto = new System.Windows.Forms.Button();
             this.btnAltaAuto = new System.Windows.Forms.Button();
             this.dgvAutos = new System.Windows.Forms.DataGridView();
+            this.Autos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvAutosDePersona = new System.Windows.Forms.DataGridView();
+            this.AutosDePersona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTotal = new System.Windows.Forms.Label();
             this.dgvDatosDeAuto = new System.Windows.Forms.DataGridView();
-            this.Personas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Autos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AutosDePersona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DatosDeAuto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).BeginInit();
             this.gbxPersonas.SuspendLayout();
@@ -66,6 +66,11 @@ namespace IntegradorI
             this.dgvPersonas.Size = new System.Drawing.Size(143, 286);
             this.dgvPersonas.TabIndex = 0;
             this.dgvPersonas.SelectionChanged += new System.EventHandler(this.dgvPersonas_SelectionChanged);
+            // 
+            // Personas
+            // 
+            this.Personas.HeaderText = "Personas";
+            this.Personas.Name = "Personas";
             // 
             // gbxPersonas
             // 
@@ -173,6 +178,11 @@ namespace IntegradorI
             this.dgvAutos.TabIndex = 5;
             this.dgvAutos.SelectionChanged += new System.EventHandler(this.dgvAutos_SelectionChanged);
             // 
+            // Autos
+            // 
+            this.Autos.HeaderText = "Autos";
+            this.Autos.Name = "Autos";
+            // 
             // dgvAutosDePersona
             // 
             this.dgvAutosDePersona.AllowUserToAddRows = false;
@@ -183,6 +193,11 @@ namespace IntegradorI
             this.dgvAutosDePersona.Name = "dgvAutosDePersona";
             this.dgvAutosDePersona.Size = new System.Drawing.Size(143, 286);
             this.dgvAutosDePersona.TabIndex = 7;
+            // 
+            // AutosDePersona
+            // 
+            this.AutosDePersona.HeaderText = "Autos de Persona";
+            this.AutosDePersona.Name = "AutosDePersona";
             // 
             // lblTotal
             // 
@@ -204,21 +219,6 @@ namespace IntegradorI
             this.dgvDatosDeAuto.Size = new System.Drawing.Size(143, 286);
             this.dgvDatosDeAuto.TabIndex = 9;
             // 
-            // Personas
-            // 
-            this.Personas.HeaderText = "Personas";
-            this.Personas.Name = "Personas";
-            // 
-            // Autos
-            // 
-            this.Autos.HeaderText = "Autos";
-            this.Autos.Name = "Autos";
-            // 
-            // AutosDePersona
-            // 
-            this.AutosDePersona.HeaderText = "Autos de Persona";
-            this.AutosDePersona.Name = "AutosDePersona";
-            // 
             // DatosDeAuto
             // 
             this.DatosDeAuto.HeaderText = "Datos de Auto";
@@ -239,6 +239,7 @@ namespace IntegradorI
             this.Controls.Add(this.dgvPersonas);
             this.Name = "FormUnico";
             this.Text = "Integrador I";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormUnico_FormClosing);
             this.Load += new System.EventHandler(this.FormUnico_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).EndInit();
             this.gbxPersonas.ResumeLayout(false);

@@ -32,9 +32,11 @@ namespace IntegradorI
             dgvPersonas.ClearSelection();
             dgvPersonas.SelectionChanged += new EventHandler(this.dgvPersonas_SelectionChanged);
             */
+            /*
             Auto car = new Auto("MTR123", "Ford", "Sedán", "1984", 75000);
             car = null;
             GC.Collect();
+            */
         }
         #region PERSONAS
         private void btnAltaPersona_Click(object sender, EventArgs e)
@@ -47,6 +49,11 @@ namespace IntegradorI
                apellido != String.Empty)
             {
                 listadoPersonas.Add(new Persona(dni, nombre, apellido));
+                dgvPersonas.Rows.Clear();
+                foreach(var x in listadoPersonas)
+                {
+                    dgvPersonas.Rows.Add(x.Apellido + ", " + x.Nombre);
+                }
             }
             else { 
                 MessageBox.Show("Datos Incorrectos",
@@ -57,7 +64,8 @@ namespace IntegradorI
         }
         private void btnBajaPersona_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(dgvPersonas.CurrentCell.Value.ToString());
+            dgvPersonas.CurrentCell.Value = null;
         }
         private void btnModificacionPersona_Click(object sender, EventArgs e)
         {
@@ -65,7 +73,7 @@ namespace IntegradorI
         }
         private void dgvPersonas_SelectionChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Soy SelectionChanged de PERSONAS");
+            // MessageBox.Show("Soy SelectionChanged de PERSONAS");
         }
         #endregion
 
@@ -86,6 +94,11 @@ namespace IntegradorI
                     precio  != String.Empty)
                 {
                     listadoAutos.Add(new Auto(patente, marca, modelo, anio, Convert.ToDecimal(precio)));
+                    dgvAutos.Rows.Clear();
+                    foreach (var x in listadoAutos)
+                    {
+                        dgvAutos.Rows.Add(x.Modelo + ", " + x.Marca);
+                    }
                 }
                 else
                 {
@@ -100,7 +113,7 @@ namespace IntegradorI
         }
         private void btnBajaAuto_Click(object sender, EventArgs e)
         {
-
+            
         }
         private void btnModificacionAuto_Click(object sender, EventArgs e)
         {
@@ -108,7 +121,7 @@ namespace IntegradorI
         }
         private void dgvAutos_SelectionChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Soy SelectionChanged de AUTOS");
+            // MessageBox.Show("Soy SelectionChanged de AUTOS");
         }
         #endregion
 
@@ -118,5 +131,14 @@ namespace IntegradorI
 
         }
         #endregion
+
+        private void FormUnico_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Salir?\nAl cerrar, perderá todos los datos ingresados.",
+                                "Pregunta",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) == DialogResult.No)
+            { e.Cancel = true; }
+        }
     }
 }

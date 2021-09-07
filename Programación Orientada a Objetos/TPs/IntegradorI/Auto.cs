@@ -5,15 +5,23 @@ namespace IntegradorI
     class Auto
     {
         private string  Patente;
-        private string  Marca;
-        private string  Modelo;
+        private string  _marca;
+        private string  _modelo;
         private string  Anio;
         private decimal Precio;
+        public string Marca
+        {
+            get { return _marca; }
+        }
+        public string Modelo
+        {
+            get { return _modelo; }
+        }
         public Auto(string patente, string marca, string modelo, string anio, decimal precio)
         {
             Patente = patente;
-            Marca   = marca;
-            Modelo  = modelo;
+            _marca  = marca;
+            _modelo = modelo;
             Anio    = anio;
             Precio  = precio;
         }
