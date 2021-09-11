@@ -12,3 +12,5 @@ ENFOCARSE AHORA EN:
 
 PROCESOS (Capítulo 3)
 PLANIFICACIÓN DE CPU (Capítulo 5)
+
+PLANIFICACIÓN A CORTO PLAZO (Capítulo 5) [Diapositiva 15]
