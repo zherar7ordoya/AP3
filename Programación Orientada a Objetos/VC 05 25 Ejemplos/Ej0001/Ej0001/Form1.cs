@@ -41,7 +41,8 @@ namespace Ej0001
             get { return Vnombre; }
             set
             {
-                this.Vnombre = value; CambioEnNombre(this, null);
+                this.Vnombre = value; 
+                CambioEnNombre(this, null);
              }
         }
     }
