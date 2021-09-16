@@ -1,6 +1,8 @@
 /**
  * LLAMADA AL SISTEMA FORK()
  * Programa en C que soluciona factoriales.
+ * Uso: <nombre> <parámetro>
+ * Ej.: factorial 5
  */
 
 #include <stdio.h>
