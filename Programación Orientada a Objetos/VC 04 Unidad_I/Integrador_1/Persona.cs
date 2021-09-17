@@ -24,9 +24,25 @@ namespace Integrador_1
                                     pAuto.Dueno()
                                     ));
         }
+        public List<Auto> RetornaListaAutos()
+        {
+            List<Auto> _aux_listaAuto = new List<Auto>();
+            foreach(Auto _a in _listaAuto)
+            {
+                _aux_listaAuto.Add(new Auto(
+                    _a.Patente,
+                    _a.Marca,
+                    _a.Modelo,
+                    _a.Axo,
+                    _a.Precio
+                    ));
+            }
+            return _aux_listaAuto;
+        }
+
 
         // TODO borrar Auto de la lista
-        // TODO Retornar lista de  Autos 
+
 
         ~Persona()
         {

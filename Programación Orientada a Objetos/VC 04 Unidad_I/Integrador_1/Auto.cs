@@ -49,6 +49,8 @@ namespace Integrador_1
         public decimal Precio   { get; set; }
 
         // TODO: Retornar un clon del dueño
-        public Persona Dueno() { return _dueno; }
+        public Persona Dueno() {
+            return _dueno;
+        }
     }
 }
