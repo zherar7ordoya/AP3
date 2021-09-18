@@ -10,16 +10,13 @@ using System.Windows.Forms;
 
 namespace Integrador_1
 {
-    public partial class Form1 : Form
+    public partial class UI : Form
     {
-        public Form1()
+        Concesionario _c;
+        public UI()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            _c = new Concesionario();
         }
     }
 }
