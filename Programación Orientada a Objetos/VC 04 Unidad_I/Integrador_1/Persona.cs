@@ -35,7 +35,7 @@ namespace Integrador_1
                                     pAuto.Dueno()
                                     ));
         }
-        public List<Auto> RetornaListaAutos()
+        public List<Auto> RetornarListaAutos()
         {
             List<Auto> _aux_listaAuto = new List<Auto>();
             try

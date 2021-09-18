@@ -29,23 +29,24 @@ namespace Integrador_1
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPersonas = new System.Windows.Forms.DataGridView();
             this.btnAgregarPersona = new System.Windows.Forms.Button();
             this.btnBorrarPersona = new System.Windows.Forms.Button();
             this.btnModificarPersona = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvPersonas
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvPersonas.AllowUserToAddRows = false;
+            this.dgvPersonas.AllowUserToDeleteRows = false;
+            this.dgvPersonas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPersonas.Location = new System.Drawing.Point(12, 12);
+            this.dgvPersonas.Name = "dgvPersonas";
+            this.dgvPersonas.ReadOnly = true;
+            this.dgvPersonas.Size = new System.Drawing.Size(237, 150);
+            this.dgvPersonas.TabIndex = 0;
             // 
             // btnAgregarPersona
             // 
@@ -55,6 +56,7 @@ namespace Integrador_1
             this.btnAgregarPersona.TabIndex = 1;
             this.btnAgregarPersona.Text = "Agregar";
             this.btnAgregarPersona.UseVisualStyleBackColor = true;
+            this.btnAgregarPersona.Click += new System.EventHandler(this.btnAgregarPersona_Click);
             // 
             // btnBorrarPersona
             // 
@@ -64,6 +66,7 @@ namespace Integrador_1
             this.btnBorrarPersona.TabIndex = 2;
             this.btnBorrarPersona.Text = "Borrar";
             this.btnBorrarPersona.UseVisualStyleBackColor = true;
+            this.btnBorrarPersona.Click += new System.EventHandler(this.btnBorrarPersona_Click);
             // 
             // btnModificarPersona
             // 
@@ -73,27 +76,29 @@ namespace Integrador_1
             this.btnModificarPersona.TabIndex = 3;
             this.btnModificarPersona.Text = "Modificar";
             this.btnModificarPersona.UseVisualStyleBackColor = true;
+            this.btnModificarPersona.Click += new System.EventHandler(this.btnModificarPersona_Click);
             // 
-            // Form1
+            // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 463);
+            this.ClientSize = new System.Drawing.Size(466, 291);
             this.Controls.Add(this.btnModificarPersona);
             this.Controls.Add(this.btnBorrarPersona);
             this.Controls.Add(this.btnAgregarPersona);
-            this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Controls.Add(this.dgvPersonas);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "UI";
+            this.Text = "User Interface";
+            this.Load += new System.EventHandler(this.UI_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPersonas;
         private System.Windows.Forms.Button btnAgregarPersona;
         private System.Windows.Forms.Button btnBorrarPersona;
         private System.Windows.Forms.Button btnModificarPersona;
