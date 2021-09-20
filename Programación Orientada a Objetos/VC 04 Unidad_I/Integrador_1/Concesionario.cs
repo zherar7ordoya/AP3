@@ -33,7 +33,6 @@ namespace Integrador_1
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             return _aux_lp;
@@ -57,7 +56,6 @@ namespace Integrador_1
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

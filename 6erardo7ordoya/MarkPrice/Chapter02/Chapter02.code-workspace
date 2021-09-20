@@ -1,0 +1,32 @@
+{
+	"folders": [
+        {
+            "path": "Arguments"
+        },
+        {
+            "path": "Arrays"
+        },
+        {
+            "path": "Basics"
+        },
+        {
+            "path": "ExploringConsole"
+        },
+        {
+            "path": "Formatting"
+        },
+        {
+            "path": "NullHandling"
+        },
+        {
+            "path": "Numbers"
+        },
+        {
+            "path": "Variables"
+        },
+        {
+            "path": "Exercise02"
+        }
+    ],
+    "settings": {}
+}
