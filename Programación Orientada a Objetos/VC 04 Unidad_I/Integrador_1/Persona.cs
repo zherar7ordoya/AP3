@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Integrador_1
 {
-    class Persona 
+    class Persona
     {
         List<Auto> _listaAuto;
         public string DNI      { get; set; }
@@ -32,8 +32,7 @@ namespace Integrador_1
                                     pAuto.Modelo,
                                     pAuto.Axo,
                                     pAuto.Precio,
-                                    pAuto.Dueno()
-                                    ));
+                                    pAuto.Dueno()));
         }
         public List<Auto> RetornarListaAutos()
         {
