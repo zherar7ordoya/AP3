@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Integrador_1
 {
-    class Concesionario
+    class Concesionario : IConcesionario
     {
         List<Auto> _la;
         List<Persona> _lp;

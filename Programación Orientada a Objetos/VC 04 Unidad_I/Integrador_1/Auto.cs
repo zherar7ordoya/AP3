@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Integrador_1
 {
-    class Auto
+    class Auto : IAuto
     {
          public string Patente { get; set; }
         public string Marca { get; set; }
@@ -51,7 +51,6 @@ namespace Integrador_1
 
         // TODO: Retornar un clon del dueño
         public Persona Dueno() => _dueno;
-
     }
 }
 

@@ -49,6 +49,9 @@
   <ItemGroup>
     <Compile Include="Auto.cs" />
     <Compile Include="Concesionario.cs" />
+    <Compile Include="IAuto.cs" />
+    <Compile Include="IConcesionario.cs" />
+    <Compile Include="IPersona.cs" />
     <Compile Include="UI.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Integrador_1
 {
-    class Persona
+    class Persona : IPersona
     {
         List<Auto> _listaAuto;
         public string DNI      { get; set; }
@@ -81,4 +81,3 @@ namespace Integrador_1
         }
     }
 }
-
