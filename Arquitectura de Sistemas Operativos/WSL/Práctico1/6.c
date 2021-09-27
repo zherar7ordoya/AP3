@@ -20,14 +20,23 @@ int main()
     else if (pid == 0) // Proceso hijo.
     {
         printf("\nID del presente proceso (hijo): %d\n", getpid());
-        printf("El proceso hijo está durmiendo...\n");
-        sleep(5);
-        printf("\nID del padre del huérfano %d: %d\n", getpid(), getppid());
-        system("ps -l");
+        printf("\nPROCESO HIJO COMPLETADO\n");
     }
     else // Proceso padre.
     {
-        printf("\nPROCESO PADRE COMPLETADO\n");
+        printf("\nID del presente proceso (padre): %d\n", getpid());
+        sleep(5);
+        printf("\nEl proceso padre está ejecutándose...\n");
+        printf("\n[ Zombificación... ] \n");
+        int bandera = 1;
+        while (1) // Área zombie;
+        {
+            if (bandera == 1) {
+                system("ps -l");
+                bandera++;
+                printf("\nCTRL+C para volver al bash.\n");
+            }
+        }
     }
     return 0;
 }
