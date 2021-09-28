@@ -1,0 +1,155 @@
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000   761   682  0  80   0 -  2501 do_wai pts/1    00:00:00 bash
+0 S  1000  5653   761  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5654  5653  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5655  5653  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5656  5654  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5657  5653  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 D  1000  5658  5654  0  80   0 -   632 -      pts/1    00:00:00 13
+1 S  1000  5659  5655  0  80   0 -   623 do_wai pts/1    00:00:00 13
+0 S  1000  5660  5653  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5661  5655  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5662  5654  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+1 R  1000  5663  5658  0  80   0 -   632 -      pts/1    00:00:00 13
+1 R  1000  5664  5656  0  80   0 -   590 -      pts/1    00:00:00 13
+0 S  1000  5665  5656  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 R  1000  5666  5660  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 R  1000  5667  5661  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 S  1000  5668  5657  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5669  5659  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 R  1000  5670  5665  0  80   0 -  2635 -      pts/1    00:00:00 ps
+1 R  1000  5671  5668  0  80   0 -   653 -      pts/1    00:00:00 sh
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000   761   682  0  80   0 -  2501 do_wai pts/1    00:00:00 bash
+0 S  1000  5653   761  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5654  5653  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5655  5653  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5656  5654  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5657  5653  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 D  1000  5658  5654  0  80   0 -   632 -      pts/1    00:00:00 13
+1 S  1000  5659  5655  0  80   0 -   623 do_wai pts/1    00:00:00 13
+0 S  1000  5660  5653  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5661  5655  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5662  5654  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+1 R  1000  5663  5658  0  80   0 -   632 -      pts/1    00:00:00 13
+1 R  1000  5664  5656  0  80   0 -   590 -      pts/1    00:00:00 13
+0 S  1000  5665  5656  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 R  1000  5666  5660  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 R  1000  5667  5661  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 S  1000  5668  5657  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5669  5659  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 R  1000  5670  5665  0  80   0 -  2635 -      pts/1    00:00:00 ps
+1 R  1000  5671  5668  0  80   0 -   653 -      pts/1    00:00:00 sh
+
+LISTADO
+ID proceso padre:  761 
+ID proceso actual: 5653 
+ID proceso hijo:   0 
+
+LISTADO
+ID proceso padre:  5653 
+ID proceso actual: 5655 
+ID proceso hijo:   0 
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000   761   682  0  80   0 -  2501 do_wai pts/1    00:00:00 bash
+0 S  1000  5653   761  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5654  5653  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5655  5653  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5656  5654  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5657  5653  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 D  1000  5658  5654  0  80   0 -   632 -      pts/1    00:00:00 13
+1 S  1000  5659  5655  0  80   0 -   623 do_wai pts/1    00:00:00 13
+0 Z  1000  5660  5653  0  80   0 -     0 -      pts/1    00:00:00 sh <defunct>
+0 S  1000  5662  5654  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+1 R  1000  5663  5658  0  80   0 -   632 -      pts/1    00:00:00 13
+1 R  1000  5664  5656  0  80   0 -   590 -      pts/1    00:00:00 13
+0 S  1000  5665  5656  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5668  5657  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5669  5659  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 R  1000  5670  5665  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 R  1000  5671  5668  0  80   0 -   203 -      pts/1    00:00:00 ps
+0 R  1000  5672  5662  0  80   0 -  1355 -      pts/1    00:00:00 ps
+1 R  1000  5673  5669  0  80   0 -   653 -      pts/1    00:00:00 sh
+
+LISTADO
+ID proceso padre:  5654 
+ID proceso actual: 5656 
+ID proceso hijo:   0 
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000   761   682  0  80   0 -  2501 core_s pts/1    00:00:00 bash
+1 S  1000  5654   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 Z  1000  5656  5654  0  80   0 -     0 -      pts/1    00:00:00 13 <defunct>
+1 S  1000  5657   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5658  5654  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5659   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+0 S  1000  5662  5654  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5663  5658  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+1 D  1000  5664   661  0  80   0 -   632 -      pts/1    00:00:00 13
+0 S  1000  5668  5657  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5669  5659  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 R  1000  5671  5668  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 R  1000  5672  5662  0  80   0 -  2635 -      pts/1    00:00:00 ps
+1 R  1000  5673  5669  0  80   0 -   653 -      pts/1    00:00:00 sh
+
+LISTADO
+ID proceso padre:  5653 
+ID proceso actual: 5654 
+ID proceso hijo:   0 
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000   761   682  0  80   0 -  2501 core_s pts/1    00:00:00 bash
+1 S  1000  5657   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5658   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5659   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+0 S  1000  5663  5658  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+1 D  1000  5664   661  0  80   0 -   632 -      pts/1    00:00:00 13
+0 S  1000  5668  5657  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 S  1000  5669  5659  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 R  1000  5671  5668  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 R  1000  5673  5669  0  80   0 -  2111 -      pts/1    00:00:00 ps
+0 R  1000  5674  5663  0  80   0 -  2569 -      pts/1    00:00:00 ps
+1 R  1000  5675  5664  0  80   0 -   632 -      pts/1    00:00:00 13
+
+LISTADO
+ID proceso padre:  5653 
+ID proceso actual: 5657 
+ID proceso hijo:   0 
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000   761   682  0  80   0 -  2501 core_s pts/1    00:00:00 bash
+1 S  1000  5658   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5659   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+0 S  1000  5663  5658  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+1 S  1000  5664   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+0 S  1000  5669  5659  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 R  1000  5673  5669  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 R  1000  5674  5663  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 S  1000  5675  5664  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000   761   682  0  80   0 -  2501 core_s pts/1    00:00:00 bash
+1 S  1000  5658   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+1 S  1000  5659   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+0 S  1000  5663  5658  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+1 S  1000  5664   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+0 S  1000  5669  5659  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 R  1000  5673  5669  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 R  1000  5674  5663  0  80   0 -  2635 -      pts/1    00:00:00 ps
+0 S  1000  5675  5664  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+
+LISTADO
+ID proceso padre:  5654 
+ID proceso actual: 5658 
+ID proceso hijo:   0 
+
+LISTADO
+ID proceso padre:  5655 
+ID proceso actual: 5659 
+ID proceso hijo:   0 
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000   761   682  0  80   0 -  2501 core_s pts/1    00:00:00 bash
+1 S  1000  5664   661  0  80   0 -   623 do_wai pts/1    00:00:00 13
+0 S  1000  5675  5664  0  80   0 -   653 do_wai pts/1    00:00:00 sh
+0 R  1000  5676  5675  0  80   0 -  2635 -      pts/1    00:00:00 ps
+
+LISTADO
+ID proceso padre:  661 
+ID proceso actual: 5664 
+ID proceso hijo:   0 
