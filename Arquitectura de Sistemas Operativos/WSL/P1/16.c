@@ -4,47 +4,34 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-int main(void)
+int main(int argc, char *argv[])
 {
+    freopen("16.txt", "w", stdout);
 
-    pid_t pid;
-    pid_t id1 = fork();
-    pid_t id2 = fork();
+    int N = atoi(argv[1]);
+    pid_t PID[N];
+    int i;
+    int ID_SALIDA;
 
-    if (id1 > 0 && id2 > 0)
+    for (i = 0; i < N; i++)
     {
-        wait(NULL);
-        wait(NULL);
-        printf("\nPADRE FINALIZADO \n");
-        printf("ID proceso padre:  %d \n", getppid());
-        printf("ID proceso actual: %d \n", getpid());
-        printf("ID proceso hijo:   %d \n", pid);
+        if ((PID[i] = fork()) == 0) // *-----------------------=> PROCESOS HIJOS
+        {
+            exit(100 + i);
+        }
     }
-    else if (id1 == 0 && id2 > 0)
+    for (i = N - 1; i >= 0; i--)
     {
-        pid = id2;
-        sleep(2);
-        wait(NULL);
-        printf("\nHIJO FINALIZADO \n");
-        printf("ID proceso padre:  %d \n", getppid());
-        printf("ID proceso actual: %d \n", getpid());
-        printf("ID proceso hijo:   %d \n", pid);
-    }
-    else if (id1 > 0 && id2 == 0)
-    {
-        pid = id1;
-        sleep(1);
-        printf("\nNIETO FINALIZADO \n");
-        printf("ID proceso padre:  %d \n", getppid());
-        printf("ID proceso actual: %d \n", getpid());
-        printf("ID proceso hijo:   %d \n", pid);
-    }
-    else
-    {
-        printf("\nBISNIETO FINALIZADO\n");
-        printf("ID proceso padre:  %d \n", getppid());
-        printf("ID proceso actual: %d \n", getpid());
-        printf("ID proceso hijo:   %d \n", pid);
+        pid_t ID_HIJO = waitpid(PID[i], &ID_SALIDA, 0);
+        if (WIFEXITED(ID_SALIDA))
+        {
+            printf("\nHijo %d finalizado con código de salida %d del proceso padre %d.\n", ID_HIJO, WEXITSTATUS(ID_SALIDA), getpid());
+            system("ps -l");
+        }
+        else
+        {
+            printf("[ PROCESO %d FINALIZACIÓN ANORMAL ]\n", ID_HIJO);
+        }
     }
     exit(0);
 }
