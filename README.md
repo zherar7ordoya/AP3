@@ -1,1 +1,1 @@
-![Gerardo Tordoya](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/C_Sharp_wordmark.svg/1200px-C_Sharp_wordmark.svg.png)
+![Gerardo Rodolfo Tordoya](https://upload.wikimedia.org/wikipedia/commons/e/e1/C_Sharp.png)
