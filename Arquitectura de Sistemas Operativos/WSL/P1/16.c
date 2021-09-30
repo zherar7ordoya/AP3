@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
         pid_t ID_HIJO = waitpid(PID[i], &ID_SALIDA, 0);
         if (WIFEXITED(ID_SALIDA))
         {
-            printf("\nHijo %d finalizado con código de salida %d del proceso padre %d.\n", ID_HIJO, WEXITSTATUS(ID_SALIDA), getpid());
+            printf("\nHijo %d finalizado con código de salida %d del proceso padre %d.\n\n", ID_HIJO, WEXITSTATUS(ID_SALIDA), getpid());
             system("ps -l");
         }
         else

@@ -4,32 +4,31 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-int main(int argc, char **argv)
+int main(void)
 {
     int var = 5;
     pid_t pid;
     pid = fork();
 
+    printf("%d: Soy Main(1). Variable = %d \n", getpid(), var);
+
     if (pid == 0)
     {
-        printf("\n");
-        printf("Hijo: Soy el proceso hijo.\n");
-        printf("Hijo: Recibo variable en %d \n", var);
-        printf("Hijo: Restando 1 a la variable... \n");
+        printf("%d: Soy Hijo.    Variable = %d \n", getpid(), var);
         var--;
-        printf("Hijo: Ahora variable está en %d \n", var);
-}
+        printf("%d: Variable decrementada = %d \n", getpid(), var);
+    }
 
-var++;
+    printf("%d: Soy Main(2). Variable = %d \n", getpid(), var);
 
-if (pid > 0)
-{
-    printf("\n");
-    printf("Padre: Soy el proceso padre.\n");
-    printf("Padre: Recibo variable en %d \n", var);
-    printf("Padre: Sumando 1 a la variable... \n");
-    var++;
-    printf("Padre: Ahora variable está en %d \n", var);
-}
+    if (pid > 0)
+    {
+        printf("%d: Soy Padre.   Variable = %d \n", getpid(), var);
+        var++;
+        printf("%d: Variable incrementada = %d \n", getpid(), var);
+    }
+
+    printf("%d: Soy Main(3). Variable = %d \n", getpid(), var);
+
     exit(0);
 }
