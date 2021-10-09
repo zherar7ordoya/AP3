@@ -17,19 +17,31 @@ namespace PARCIAL_1
         {
             InitializeComponent();
 
-            txtLegajoBeneficiario.GotFocus        += new EventHandler(EventosUnificados);
-            txtTipoBeneficiario.GotFocus          += new EventHandler(EventosUnificados);
-            txtNombreBeneficiario.GotFocus        += new EventHandler(EventosUnificados);
-            txtApellidoBeneficiario.GotFocus      += new EventHandler(EventosUnificados);
-            txtSueldoBeneficiario.GotFocus        += new EventHandler(EventosUnificados);
+            txtLegajoBeneficiario.GotFocus   += new EventHandler(AdquiereFoco);
+            txtTipoBeneficiario.GotFocus     += new EventHandler(AdquiereFoco);
+            txtNombreBeneficiario.GotFocus   += new EventHandler(AdquiereFoco);
+            txtApellidoBeneficiario.GotFocus += new EventHandler(AdquiereFoco);
+            txtSueldoBeneficiario.GotFocus   += new EventHandler(AdquiereFoco);
 
-            txtCodigoAdelanto.GotFocus            += new EventHandler(EventosUnificados);
-            txtFechaOtorgamientoAdelanto.GotFocus += new EventHandler(EventosUnificados);
-            txtFechaCancelacionAdelanto.GotFocus  += new EventHandler(EventosUnificados);
-            txtImporteOtorgadoAdelanto.GotFocus   += new EventHandler(EventosUnificados);
-            txtImportePagadoAdelanto.GotFocus     += new EventHandler(EventosUnificados);
-            txtBeneficioAdelanto.GotFocus         += new EventHandler(EventosUnificados);
-            txtSaldoAdeudadoAdelanto.GotFocus     += new EventHandler(EventosUnificados);
+            txtLegajoBeneficiario.Leave   += new EventHandler(PierdeFoco);
+            txtTipoBeneficiario.Leave     += new EventHandler(PierdeFoco);
+            txtNombreBeneficiario.Leave   += new EventHandler(PierdeFoco);
+            txtApellidoBeneficiario.Leave += new EventHandler(PierdeFoco);
+            txtSueldoBeneficiario.Leave   += new EventHandler(PierdeFoco);
+
+            txtFechaOtorgamientoAdelanto.GotFocus += new EventHandler(AdquiereFoco);
+            txtFechaCancelacionAdelanto.GotFocus  += new EventHandler(AdquiereFoco);
+            txtImporteOtorgadoAdelanto.GotFocus   += new EventHandler(AdquiereFoco);
+            txtImportePagadoAdelanto.GotFocus     += new EventHandler(AdquiereFoco);
+            txtBeneficioAdelanto.GotFocus         += new EventHandler(AdquiereFoco);
+            txtSaldoAdeudadoAdelanto.GotFocus     += new EventHandler(AdquiereFoco);
+
+            txtFechaOtorgamientoAdelanto.Leave += new EventHandler(PierdeFoco);
+            txtFechaCancelacionAdelanto.Leave  += new EventHandler(PierdeFoco);
+            txtImporteOtorgadoAdelanto.Leave   += new EventHandler(PierdeFoco);
+            txtImportePagadoAdelanto.Leave     += new EventHandler(PierdeFoco);
+            txtBeneficioAdelanto.Leave         += new EventHandler(PierdeFoco);
+            txtSaldoAdeudadoAdelanto.Leave     += new EventHandler(PierdeFoco);
         }
         private void CAdministradorDeAdelantos_Load(object sender, EventArgs e)
         {
@@ -42,6 +54,32 @@ namespace PARCIAL_1
 
         private List<CAdelanto> adelantos = new List<CAdelanto>();
         private List<CEmpleado> empleados = new List<CEmpleado>();
+
+        #region INTERNALS
+        private void ActualizarGrillaAdelantos()
+        {
+            dgvAdelantos.DataSource = null;
+            dgvAdelantos.DataSource = adelantos;
+            this.dgvAdelantos.Columns["Bloqueado"].Visible = false;
+        }
+        private void ActualizarGrillaEmpleados()
+        {
+            dgvBeneficiarios.DataSource = null;
+            dgvBeneficiarios.DataSource = empleados;
+            this.dgvBeneficiarios.Columns["Acumulador"].Visible = false;
+            this.dgvBeneficiarios.Columns["Contador"].Visible = false;
+        }
+        private void CapturadorErrores(Exception excepcion)
+        {
+            MessageBox.Show
+                (
+                excepcion.Message,
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
+        }
+        #endregion
 
         #region BOTONES
         private void btnAltaBeneficiario_Click(object sender, EventArgs e)
@@ -57,11 +95,8 @@ namespace PARCIAL_1
                                 Convert.ToDecimal(txtSueldoBeneficiario.Text)
                                 );
                 empleados.Add(empleado);
-
-                dgvBeneficiarios.DataSource = null;
-                dgvBeneficiarios.DataSource = empleados;
-                this.dgvBeneficiarios.Columns["Acumulador"].Visible = false;
-                this.dgvBeneficiarios.Columns["Contador"].Visible = false;
+                ActualizarGrillaEmpleados();
+                txtLegajoBeneficiario.Text = Convert.ToString(txtLegajoBeneficiario.Tag);
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
@@ -71,11 +106,7 @@ namespace PARCIAL_1
             {
                 CEmpleado empleado = empleados.Find(x => x.Legajo == Convert.ToUInt16(txtLegajoBeneficiario.Text));
                 empleados.Remove(empleado);
-
-                dgvBeneficiarios.DataSource = null;
-                dgvBeneficiarios.DataSource = empleados;
-                this.dgvBeneficiarios.Columns["Acumulador"].Visible = false;
-                this.dgvBeneficiarios.Columns["Contador"].Visible = false;
+                ActualizarGrillaEmpleados();
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
@@ -84,15 +115,11 @@ namespace PARCIAL_1
             try
             {
                 CEmpleado empleado = empleados.Find(x => x.Legajo == Convert.ToUInt16(txtLegajoBeneficiario.Text));
-                empleado.Tipo = txtTipoBeneficiario.Text;
-                empleado.Nombre = txtNombreBeneficiario.Text;
-                empleado.Apellido = txtApellidoBeneficiario.Text;
-                empleado.Sueldo = Convert.ToDecimal(txtSueldoBeneficiario.Text);
-
-                dgvBeneficiarios.DataSource = null;
-                dgvBeneficiarios.DataSource = empleados;
-                this.dgvBeneficiarios.Columns["Acumulador"].Visible = false;
-                this.dgvBeneficiarios.Columns["Contador"].Visible = false;
+                empleado.Tipo      = txtTipoBeneficiario.Text;
+                empleado.Nombre    = txtNombreBeneficiario.Text;
+                empleado.Apellido  = txtApellidoBeneficiario.Text;
+                empleado.Sueldo    = Convert.ToDecimal(txtSueldoBeneficiario.Text);
+                ActualizarGrillaEmpleados();
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
@@ -100,7 +127,14 @@ namespace PARCIAL_1
         {
             try
             {
-
+                CAdelanto adelanto = new CAdelanto
+                                (
+                                txtCodigoAdelanto.Text,
+                                Convert.ToDateTime(txtFechaOtorgamientoAdelanto.Text),
+                                Convert.ToDecimal(txtImporteOtorgadoAdelanto.Text)
+                                );
+                adelantos.Add(adelanto);
+                ActualizarGrillaAdelantos();
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
@@ -108,7 +142,9 @@ namespace PARCIAL_1
         {
             try
             {
-
+                CAdelanto adelanto = adelantos.Find(x => x.CodigoAlfanumerico == txtCodigoAdelanto.Text);
+                adelantos.Remove(adelanto);
+                ActualizarGrillaAdelantos();
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
@@ -116,7 +152,14 @@ namespace PARCIAL_1
         {
             try
             {
-
+                CAdelanto adelanto         = adelantos.Find(x => x.CodigoAlfanumerico == txtCodigoAdelanto.Text);
+                adelanto.FechaOtorgamiento = Convert.ToDateTime(txtFechaOtorgamientoAdelanto.Text);
+                adelanto.FechaCancelacion  = Convert.ToDateTime(txtFechaCancelacionAdelanto.Text);
+                adelanto.ImporteOtorgado   = Convert.ToDecimal(txtImporteOtorgadoAdelanto.Text);
+                adelanto.ImportePagado     = Convert.ToDecimal(txtImportePagadoAdelanto.Text);
+                adelanto.Beneficio         = Convert.ToDecimal(txtBeneficioAdelanto.Text);
+                adelanto.SaldoAdeudado     = Convert.ToDecimal(txtSaldoAdeudadoAdelanto.Text);
+                ActualizarGrillaAdelantos();
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
@@ -136,16 +179,6 @@ namespace PARCIAL_1
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
-        private void CapturadorErrores(Exception excepcion)
-        {
-            MessageBox.Show
-                (
-                excepcion.Message,
-                "Error",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-                );
-        }
         #endregion
 
         #region EVENTOS
@@ -157,10 +190,18 @@ namespace PARCIAL_1
         {
 
         }
-        private void EventosUnificados(object sender, EventArgs e)
+        private void AdquiereFoco(object sender, EventArgs e)
         {
             TextBox origen = (sender as TextBox);
             origen.Text = String.Empty;
+        }
+        private void PierdeFoco(object sender, EventArgs e)
+        {
+            TextBox origen = (sender as TextBox);
+            if (origen.Text == String.Empty)
+            {
+                origen.Text = Convert.ToString(origen.Tag);
+            }
         }
         #endregion
 

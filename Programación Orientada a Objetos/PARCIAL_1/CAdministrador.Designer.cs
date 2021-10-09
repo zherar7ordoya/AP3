@@ -59,7 +59,7 @@ namespace PARCIAL_1
             this.txtImporteOtorgadoAdelanto = new System.Windows.Forms.TextBox();
             this.txtFechaCancelacionAdelanto = new System.Windows.Forms.TextBox();
             this.txtFechaOtorgamientoAdelanto = new System.Windows.Forms.TextBox();
-            this.txtCodigoAdelanto = new System.Windows.Forms.TextBox();
+            this.txtCodigoAdelanto = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficiarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantosPorBeneficiario)).BeginInit();
@@ -86,7 +86,7 @@ namespace PARCIAL_1
             this.dgvAdelantos.Name = "dgvAdelantos";
             this.dgvAdelantos.ReadOnly = true;
             this.dgvAdelantos.Size = new System.Drawing.Size(745, 110);
-            this.dgvAdelantos.TabIndex = 1;
+            this.dgvAdelantos.TabIndex = 23;
             // 
             // dgvAdelantosPorBeneficiario
             // 
@@ -97,7 +97,7 @@ namespace PARCIAL_1
             this.dgvAdelantosPorBeneficiario.Name = "dgvAdelantosPorBeneficiario";
             this.dgvAdelantosPorBeneficiario.ReadOnly = true;
             this.dgvAdelantosPorBeneficiario.Size = new System.Drawing.Size(745, 159);
-            this.dgvAdelantosPorBeneficiario.TabIndex = 2;
+            this.dgvAdelantosPorBeneficiario.TabIndex = 24;
             this.dgvAdelantosPorBeneficiario.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvAdelantosPorBeneficiario_RowsAdded);
             // 
             // lblBeneficiarios
@@ -165,7 +165,7 @@ namespace PARCIAL_1
             this.btnAltaAdelanto.Location = new System.Drawing.Point(763, 206);
             this.btnAltaAdelanto.Name = "btnAltaAdelanto";
             this.btnAltaAdelanto.Size = new System.Drawing.Size(100, 23);
-            this.btnAltaAdelanto.TabIndex = 10;
+            this.btnAltaAdelanto.TabIndex = 16;
             this.btnAltaAdelanto.Text = "Alta";
             this.btnAltaAdelanto.UseVisualStyleBackColor = true;
             this.btnAltaAdelanto.Click += new System.EventHandler(this.btnAltaAdelanto_Click);
@@ -175,7 +175,7 @@ namespace PARCIAL_1
             this.btnBajaAdelanto.Location = new System.Drawing.Point(763, 235);
             this.btnBajaAdelanto.Name = "btnBajaAdelanto";
             this.btnBajaAdelanto.Size = new System.Drawing.Size(100, 23);
-            this.btnBajaAdelanto.TabIndex = 11;
+            this.btnBajaAdelanto.TabIndex = 17;
             this.btnBajaAdelanto.Text = "Baja";
             this.btnBajaAdelanto.UseVisualStyleBackColor = true;
             this.btnBajaAdelanto.Click += new System.EventHandler(this.btnBajaAdelanto_Click);
@@ -185,7 +185,7 @@ namespace PARCIAL_1
             this.btnModificacionAdelanto.Location = new System.Drawing.Point(763, 264);
             this.btnModificacionAdelanto.Name = "btnModificacionAdelanto";
             this.btnModificacionAdelanto.Size = new System.Drawing.Size(100, 23);
-            this.btnModificacionAdelanto.TabIndex = 12;
+            this.btnModificacionAdelanto.TabIndex = 18;
             this.btnModificacionAdelanto.Text = "Modificación";
             this.btnModificacionAdelanto.UseVisualStyleBackColor = true;
             this.btnModificacionAdelanto.Click += new System.EventHandler(this.btnModificacionAdelanto_Click);
@@ -195,7 +195,7 @@ namespace PARCIAL_1
             this.btnAsignarAdelanto.Location = new System.Drawing.Point(763, 293);
             this.btnAsignarAdelanto.Name = "btnAsignarAdelanto";
             this.btnAsignarAdelanto.Size = new System.Drawing.Size(100, 23);
-            this.btnAsignarAdelanto.TabIndex = 13;
+            this.btnAsignarAdelanto.TabIndex = 19;
             this.btnAsignarAdelanto.Text = "Asignar";
             this.btnAsignarAdelanto.UseVisualStyleBackColor = true;
             this.btnAsignarAdelanto.Click += new System.EventHandler(this.btnAsignarAdelanto_Click);
@@ -205,21 +205,21 @@ namespace PARCIAL_1
             this.txtTotalAdelantos.Location = new System.Drawing.Point(763, 419);
             this.txtTotalAdelantos.Name = "txtTotalAdelantos";
             this.txtTotalAdelantos.Size = new System.Drawing.Size(100, 20);
-            this.txtTotalAdelantos.TabIndex = 14;
+            this.txtTotalAdelantos.TabIndex = 20;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(763, 484);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 15;
+            this.textBox2.TabIndex = 21;
             // 
             // btnPagar
             // 
             this.btnPagar.Location = new System.Drawing.Point(763, 539);
             this.btnPagar.Name = "btnPagar";
             this.btnPagar.Size = new System.Drawing.Size(100, 23);
-            this.btnPagar.TabIndex = 16;
+            this.btnPagar.TabIndex = 22;
             this.btnPagar.Text = "Pagar";
             this.btnPagar.UseVisualStyleBackColor = true;
             this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
@@ -247,7 +247,8 @@ namespace PARCIAL_1
             this.txtLegajoBeneficiario.Location = new System.Drawing.Point(33, 125);
             this.txtLegajoBeneficiario.Name = "txtLegajoBeneficiario";
             this.txtLegajoBeneficiario.Size = new System.Drawing.Size(100, 20);
-            this.txtLegajoBeneficiario.TabIndex = 19;
+            this.txtLegajoBeneficiario.TabIndex = 1;
+            this.txtLegajoBeneficiario.Tag = "Legajo";
             this.txtLegajoBeneficiario.Text = "Legajo";
             // 
             // txtTipoBeneficiario
@@ -255,7 +256,8 @@ namespace PARCIAL_1
             this.txtTipoBeneficiario.Location = new System.Drawing.Point(139, 125);
             this.txtTipoBeneficiario.Name = "txtTipoBeneficiario";
             this.txtTipoBeneficiario.Size = new System.Drawing.Size(100, 20);
-            this.txtTipoBeneficiario.TabIndex = 20;
+            this.txtTipoBeneficiario.TabIndex = 2;
+            this.txtTipoBeneficiario.Tag = "Tipo";
             this.txtTipoBeneficiario.Text = "Tipo";
             // 
             // txtNombreBeneficiario
@@ -263,7 +265,8 @@ namespace PARCIAL_1
             this.txtNombreBeneficiario.Location = new System.Drawing.Point(245, 125);
             this.txtNombreBeneficiario.Name = "txtNombreBeneficiario";
             this.txtNombreBeneficiario.Size = new System.Drawing.Size(100, 20);
-            this.txtNombreBeneficiario.TabIndex = 21;
+            this.txtNombreBeneficiario.TabIndex = 3;
+            this.txtNombreBeneficiario.Tag = "Nombre";
             this.txtNombreBeneficiario.Text = "Nombre";
             // 
             // txtApellidoBeneficiario
@@ -271,7 +274,8 @@ namespace PARCIAL_1
             this.txtApellidoBeneficiario.Location = new System.Drawing.Point(351, 125);
             this.txtApellidoBeneficiario.Name = "txtApellidoBeneficiario";
             this.txtApellidoBeneficiario.Size = new System.Drawing.Size(100, 20);
-            this.txtApellidoBeneficiario.TabIndex = 22;
+            this.txtApellidoBeneficiario.TabIndex = 4;
+            this.txtApellidoBeneficiario.Tag = "Apellido";
             this.txtApellidoBeneficiario.Text = "Apellido";
             // 
             // txtSueldoBeneficiario
@@ -279,7 +283,8 @@ namespace PARCIAL_1
             this.txtSueldoBeneficiario.Location = new System.Drawing.Point(457, 125);
             this.txtSueldoBeneficiario.Name = "txtSueldoBeneficiario";
             this.txtSueldoBeneficiario.Size = new System.Drawing.Size(100, 20);
-            this.txtSueldoBeneficiario.TabIndex = 23;
+            this.txtSueldoBeneficiario.TabIndex = 5;
+            this.txtSueldoBeneficiario.Tag = "Sueldo";
             this.txtSueldoBeneficiario.Text = "Sueldo";
             // 
             // txtSaldoAdeudadoAdelanto
@@ -287,7 +292,8 @@ namespace PARCIAL_1
             this.txtSaldoAdeudadoAdelanto.Location = new System.Drawing.Point(657, 322);
             this.txtSaldoAdeudadoAdelanto.Name = "txtSaldoAdeudadoAdelanto";
             this.txtSaldoAdeudadoAdelanto.Size = new System.Drawing.Size(100, 20);
-            this.txtSaldoAdeudadoAdelanto.TabIndex = 24;
+            this.txtSaldoAdeudadoAdelanto.TabIndex = 15;
+            this.txtSaldoAdeudadoAdelanto.Tag = "Saldo adeudado";
             this.txtSaldoAdeudadoAdelanto.Text = "Saldo adeudado";
             // 
             // txtBeneficioAdelanto
@@ -295,7 +301,8 @@ namespace PARCIAL_1
             this.txtBeneficioAdelanto.Location = new System.Drawing.Point(551, 322);
             this.txtBeneficioAdelanto.Name = "txtBeneficioAdelanto";
             this.txtBeneficioAdelanto.Size = new System.Drawing.Size(100, 20);
-            this.txtBeneficioAdelanto.TabIndex = 25;
+            this.txtBeneficioAdelanto.TabIndex = 14;
+            this.txtBeneficioAdelanto.Tag = "Beneficio";
             this.txtBeneficioAdelanto.Text = "Beneficio";
             // 
             // txtImportePagadoAdelanto
@@ -303,7 +310,8 @@ namespace PARCIAL_1
             this.txtImportePagadoAdelanto.Location = new System.Drawing.Point(445, 322);
             this.txtImportePagadoAdelanto.Name = "txtImportePagadoAdelanto";
             this.txtImportePagadoAdelanto.Size = new System.Drawing.Size(100, 20);
-            this.txtImportePagadoAdelanto.TabIndex = 26;
+            this.txtImportePagadoAdelanto.TabIndex = 13;
+            this.txtImportePagadoAdelanto.Tag = "Importe pagado";
             this.txtImportePagadoAdelanto.Text = "Importe pagado";
             // 
             // txtImporteOtorgadoAdelanto
@@ -311,7 +319,8 @@ namespace PARCIAL_1
             this.txtImporteOtorgadoAdelanto.Location = new System.Drawing.Point(339, 322);
             this.txtImporteOtorgadoAdelanto.Name = "txtImporteOtorgadoAdelanto";
             this.txtImporteOtorgadoAdelanto.Size = new System.Drawing.Size(100, 20);
-            this.txtImporteOtorgadoAdelanto.TabIndex = 27;
+            this.txtImporteOtorgadoAdelanto.TabIndex = 12;
+            this.txtImporteOtorgadoAdelanto.Tag = "Importe otorgado";
             this.txtImporteOtorgadoAdelanto.Text = "Importe otorgado";
             // 
             // txtFechaCancelacionAdelanto
@@ -319,7 +328,8 @@ namespace PARCIAL_1
             this.txtFechaCancelacionAdelanto.Location = new System.Drawing.Point(233, 322);
             this.txtFechaCancelacionAdelanto.Name = "txtFechaCancelacionAdelanto";
             this.txtFechaCancelacionAdelanto.Size = new System.Drawing.Size(100, 20);
-            this.txtFechaCancelacionAdelanto.TabIndex = 28;
+            this.txtFechaCancelacionAdelanto.TabIndex = 11;
+            this.txtFechaCancelacionAdelanto.Tag = "Fecha cancelación";
             this.txtFechaCancelacionAdelanto.Text = "Fecha cancelación";
             // 
             // txtFechaOtorgamientoAdelanto
@@ -327,16 +337,19 @@ namespace PARCIAL_1
             this.txtFechaOtorgamientoAdelanto.Location = new System.Drawing.Point(127, 322);
             this.txtFechaOtorgamientoAdelanto.Name = "txtFechaOtorgamientoAdelanto";
             this.txtFechaOtorgamientoAdelanto.Size = new System.Drawing.Size(100, 20);
-            this.txtFechaOtorgamientoAdelanto.TabIndex = 29;
+            this.txtFechaOtorgamientoAdelanto.TabIndex = 10;
+            this.txtFechaOtorgamientoAdelanto.Tag = "Fecha otorgamiento";
             this.txtFechaOtorgamientoAdelanto.Text = "Fecha otorgamiento";
             // 
             // txtCodigoAdelanto
             // 
             this.txtCodigoAdelanto.Location = new System.Drawing.Point(21, 322);
+            this.txtCodigoAdelanto.Mask = "0000LLLL";
             this.txtCodigoAdelanto.Name = "txtCodigoAdelanto";
             this.txtCodigoAdelanto.Size = new System.Drawing.Size(100, 20);
-            this.txtCodigoAdelanto.TabIndex = 30;
-            this.txtCodigoAdelanto.Text = "Código";
+            this.txtCodigoAdelanto.TabIndex = 9;
+            this.txtCodigoAdelanto.Tag = "1234ABCD";
+            this.txtCodigoAdelanto.Text = "1234ABCD";
             // 
             // CAdministradorDeAdelantos
             // 
@@ -417,7 +430,7 @@ namespace PARCIAL_1
         private System.Windows.Forms.TextBox txtImporteOtorgadoAdelanto;
         private System.Windows.Forms.TextBox txtFechaCancelacionAdelanto;
         private System.Windows.Forms.TextBox txtFechaOtorgamientoAdelanto;
-        private System.Windows.Forms.TextBox txtCodigoAdelanto;
+        private System.Windows.Forms.MaskedTextBox txtCodigoAdelanto;
     }
 }
 
