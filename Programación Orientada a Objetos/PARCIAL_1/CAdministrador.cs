@@ -17,13 +17,11 @@ namespace PARCIAL_1
         {
             InitializeComponent();
 
-            txtLegajoBeneficiario.GotFocus   += new EventHandler(AdquiereFoco);
             txtTipoBeneficiario.GotFocus     += new EventHandler(AdquiereFoco);
             txtNombreBeneficiario.GotFocus   += new EventHandler(AdquiereFoco);
             txtApellidoBeneficiario.GotFocus += new EventHandler(AdquiereFoco);
             txtSueldoBeneficiario.GotFocus   += new EventHandler(AdquiereFoco);
 
-            txtLegajoBeneficiario.Leave   += new EventHandler(PierdeFoco);
             txtTipoBeneficiario.Leave     += new EventHandler(PierdeFoco);
             txtNombreBeneficiario.Leave   += new EventHandler(PierdeFoco);
             txtApellidoBeneficiario.Leave += new EventHandler(PierdeFoco);
@@ -56,19 +54,6 @@ namespace PARCIAL_1
         private List<CEmpleado> empleados = new List<CEmpleado>();
 
         #region INTERNALS
-        private void ActualizarGrillaAdelantos()
-        {
-            dgvAdelantos.DataSource = null;
-            dgvAdelantos.DataSource = adelantos;
-            this.dgvAdelantos.Columns["Bloqueado"].Visible = false;
-        }
-        private void ActualizarGrillaEmpleados()
-        {
-            dgvBeneficiarios.DataSource = null;
-            dgvBeneficiarios.DataSource = empleados;
-            this.dgvBeneficiarios.Columns["Acumulador"].Visible = false;
-            this.dgvBeneficiarios.Columns["Contador"].Visible = false;
-        }
         private void CapturadorErrores(Exception excepcion)
         {
             MessageBox.Show
@@ -79,13 +64,72 @@ namespace PARCIAL_1
                 MessageBoxIcon.Error
                 );
         }
+        private void ActualizarGrillaAdelantos()
+        {
+            try
+            {
+                dgvAdelantos.DataSource = null;
+                dgvAdelantos.DataSource = adelantos;
+                this.dgvAdelantos.Columns["Bloqueado"].Visible = false;
+            }
+            catch (Exception excepcion) { CapturadorErrores(excepcion); }
+        }
+        private void ActualizarGrillaEmpleados()
+        {
+            try
+            {
+                dgvBeneficiarios.DataSource = null;
+                dgvBeneficiarios.DataSource = empleados;
+                this.dgvBeneficiarios.Columns["Acumulador"].Visible = false;
+                this.dgvBeneficiarios.Columns["Contador"].Visible = false;
+            }
+            catch (Exception excepcion) { CapturadorErrores(excepcion); }
+        }
+        private void ActualizarGrillaFiltrada()
+        {
+            try
+            {
+                uint legajo = Convert.ToUInt16(dgvBeneficiarios.SelectedRows[0].Cells[0].Value.ToString());
+                CEmpleado empleado = empleados.Find(x => x.Legajo == legajo);
+                CAdelanto adelanto = dgvAdelantos.SelectedRows[0].DataBoundItem as CAdelanto;
+                empleado.Adelantos.Add(adelanto);
+                List<CAdelanto> filtrado = new List<CAdelanto>();
+
+                decimal total_adelantos = 0, total_adeudado = 0;
+                foreach (CAdelanto item in empleado.Adelantos)
+                {
+                    total_adelantos += item.ImporteOtorgado;
+                    total_adeudado += item.SaldoAdeudado;
+                    filtrado.Add(item);
+                }
+                txtTotalAdelantos.Text = total_adelantos.ToString();
+                txtTotalAdeudado.Text = total_adeudado.ToString();
+
+                filtrado.RemoveAt(filtrado.Count - 1); // TODO: Eliminar luego de corregir el bug.
+                dgvAdelantosPorBeneficiario.DataSource = null;
+                dgvAdelantosPorBeneficiario.DataSource = filtrado;
+                this.dgvAdelantosPorBeneficiario.Columns["Bloqueado"].Visible = false;
+            }
+            catch (Exception excepcion) { CapturadorErrores(excepcion); }
+        }
         #endregion
 
-        #region BOTONES
+        #region ABM EMPLEADOS
         private void btnAltaBeneficiario_Click(object sender, EventArgs e)
         {
             try
             {
+                switch (txtTipoBeneficiario.Text)
+                {
+                    case "Administrativo":
+                        break;
+                    case "Directivo":
+                        break;
+                    case "Operario":
+                        break;
+                    default:
+                        throw new Exception("Los valores válidos para tipo son: \n\nAdministrativo \nDirectivo \nOperario");
+                }
                 CEmpleado empleado = new CEmpleado
                                 (
                                 Convert.ToUInt16(txtLegajoBeneficiario.Text),
@@ -123,6 +167,9 @@ namespace PARCIAL_1
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
+        #endregion
+
+        #region ABM ADELANTOS
         private void btnAltaAdelanto_Click(object sender, EventArgs e)
         {
             try
@@ -163,11 +210,41 @@ namespace PARCIAL_1
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
+        #endregion
+
+        #region ASIGNAR & PAGAR
+        /// <summary>
+        /// AQUÍ HAY UN BUG...!
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        // TODO: Corregir el bug.
         private void btnAsignarAdelanto_Click(object sender, EventArgs e)
         {
             try
             {
+                uint legajo = Convert.ToUInt16(dgvBeneficiarios.SelectedRows[0].Cells[0].Value.ToString());
+                CEmpleado empleado = empleados.Find(x => x.Legajo == legajo);
+                CAdelanto adelanto = dgvAdelantos.SelectedRows[0].DataBoundItem as CAdelanto;
 
+                switch (empleado.Tipo)
+                {
+                    case "Administrativo":
+                        adelanto.Beneficio = adelanto.ImporteOtorgado / 100 * 5;
+                        break;
+                    case "Directivo":
+                        adelanto.Beneficio = adelanto.ImporteOtorgado / 100 * 1;
+                        break;
+                    case "Operario":
+                        adelanto.Beneficio = adelanto.ImporteOtorgado / 100 * 10;
+                        break;
+                    default:
+                        break;
+                }
+                adelanto.SaldoAdeudado = adelanto.ImporteOtorgado - adelanto.Beneficio;
+                empleado.Adelantos.Add(adelanto);
+
+                ActualizarGrillaFiltrada();
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
@@ -175,7 +252,19 @@ namespace PARCIAL_1
         {
             try
             {
-
+                List<CAdelanto> filtrado = dgvAdelantosPorBeneficiario.DataSource as List<CAdelanto>;
+                foreach(CAdelanto item in filtrado)
+                {
+                    foreach(CAdelanto x in adelantos)
+                    {
+                        if(item.CodigoAlfanumerico==x.CodigoAlfanumerico)
+                        {
+                            x.ImportePagado = x.SaldoAdeudado;
+                            x.FechaCancelacion = DateTime.Now;
+                        }
+                    }
+                }
+                ActualizarGrillaFiltrada();
             }
             catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
@@ -184,11 +273,11 @@ namespace PARCIAL_1
         #region EVENTOS
         private void dgvBeneficiarios_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-
+            //ActualizarGrillaFiltrada();
         }
         private void dgvAdelantosPorBeneficiario_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-
+            //ActualizarGrillaFiltrada();
         }
         private void AdquiereFoco(object sender, EventArgs e)
         {

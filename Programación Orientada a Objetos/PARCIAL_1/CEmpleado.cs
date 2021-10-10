@@ -44,8 +44,21 @@ namespace PARCIAL_1
             this.nombre     = nombre;
             this.apellido   = apellido;
             this.sueldo     = sueldo;
+            this.Adelantos  = new List<CAdelanto>();
             this.acumulador = 0;
             this.contador   = 0;
+        }
+
+
+        public void AsignarAdelanto(CAdelanto adelanto)
+        {
+            adelantos.Add(new CAdelanto
+                (
+                adelanto.CodigoAlfanumerico,
+                adelanto.FechaOtorgamiento,
+                adelanto.ImporteOtorgado,
+                adelanto.RetornarEmpleado()
+                ));
         }
     }
 }

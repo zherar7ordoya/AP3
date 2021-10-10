@@ -44,11 +44,10 @@ namespace PARCIAL_1
             this.btnModificacionAdelanto = new System.Windows.Forms.Button();
             this.btnAsignarAdelanto = new System.Windows.Forms.Button();
             this.txtTotalAdelantos = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtTotalAdeudado = new System.Windows.Forms.TextBox();
             this.btnPagar = new System.Windows.Forms.Button();
             this.lblTotalAdelantos = new System.Windows.Forms.Label();
-            this.txtTotalAdeudado = new System.Windows.Forms.Label();
-            this.txtLegajoBeneficiario = new System.Windows.Forms.TextBox();
+            this.lblTotalAdeudado = new System.Windows.Forms.Label();
             this.txtTipoBeneficiario = new System.Windows.Forms.TextBox();
             this.txtNombreBeneficiario = new System.Windows.Forms.TextBox();
             this.txtApellidoBeneficiario = new System.Windows.Forms.TextBox();
@@ -60,6 +59,7 @@ namespace PARCIAL_1
             this.txtFechaCancelacionAdelanto = new System.Windows.Forms.TextBox();
             this.txtFechaOtorgamientoAdelanto = new System.Windows.Forms.TextBox();
             this.txtCodigoAdelanto = new System.Windows.Forms.MaskedTextBox();
+            this.txtLegajoBeneficiario = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficiarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantosPorBeneficiario)).BeginInit();
@@ -71,6 +71,7 @@ namespace PARCIAL_1
             this.dgvBeneficiarios.AllowUserToDeleteRows = false;
             this.dgvBeneficiarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBeneficiarios.Location = new System.Drawing.Point(12, 38);
+            this.dgvBeneficiarios.MultiSelect = false;
             this.dgvBeneficiarios.Name = "dgvBeneficiarios";
             this.dgvBeneficiarios.ReadOnly = true;
             this.dgvBeneficiarios.Size = new System.Drawing.Size(545, 81);
@@ -83,6 +84,7 @@ namespace PARCIAL_1
             this.dgvAdelantos.AllowUserToDeleteRows = false;
             this.dgvAdelantos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdelantos.Location = new System.Drawing.Point(12, 206);
+            this.dgvAdelantos.MultiSelect = false;
             this.dgvAdelantos.Name = "dgvAdelantos";
             this.dgvAdelantos.ReadOnly = true;
             this.dgvAdelantos.Size = new System.Drawing.Size(745, 110);
@@ -94,6 +96,7 @@ namespace PARCIAL_1
             this.dgvAdelantosPorBeneficiario.AllowUserToDeleteRows = false;
             this.dgvAdelantosPorBeneficiario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdelantosPorBeneficiario.Location = new System.Drawing.Point(12, 403);
+            this.dgvAdelantosPorBeneficiario.MultiSelect = false;
             this.dgvAdelantosPorBeneficiario.Name = "dgvAdelantosPorBeneficiario";
             this.dgvAdelantosPorBeneficiario.ReadOnly = true;
             this.dgvAdelantosPorBeneficiario.Size = new System.Drawing.Size(745, 159);
@@ -207,12 +210,12 @@ namespace PARCIAL_1
             this.txtTotalAdelantos.Size = new System.Drawing.Size(100, 20);
             this.txtTotalAdelantos.TabIndex = 20;
             // 
-            // textBox2
+            // txtTotalAdeudado
             // 
-            this.textBox2.Location = new System.Drawing.Point(763, 484);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 21;
+            this.txtTotalAdeudado.Location = new System.Drawing.Point(763, 484);
+            this.txtTotalAdeudado.Name = "txtTotalAdeudado";
+            this.txtTotalAdeudado.Size = new System.Drawing.Size(100, 20);
+            this.txtTotalAdeudado.TabIndex = 21;
             // 
             // btnPagar
             // 
@@ -233,23 +236,14 @@ namespace PARCIAL_1
             this.lblTotalAdelantos.TabIndex = 17;
             this.lblTotalAdelantos.Text = "Total adelantos";
             // 
-            // txtTotalAdeudado
+            // lblTotalAdeudado
             // 
-            this.txtTotalAdeudado.AutoSize = true;
-            this.txtTotalAdeudado.Location = new System.Drawing.Point(763, 468);
-            this.txtTotalAdeudado.Name = "txtTotalAdeudado";
-            this.txtTotalAdeudado.Size = new System.Drawing.Size(82, 13);
-            this.txtTotalAdeudado.TabIndex = 18;
-            this.txtTotalAdeudado.Text = "Total adeudado";
-            // 
-            // txtLegajoBeneficiario
-            // 
-            this.txtLegajoBeneficiario.Location = new System.Drawing.Point(33, 125);
-            this.txtLegajoBeneficiario.Name = "txtLegajoBeneficiario";
-            this.txtLegajoBeneficiario.Size = new System.Drawing.Size(100, 20);
-            this.txtLegajoBeneficiario.TabIndex = 1;
-            this.txtLegajoBeneficiario.Tag = "Legajo";
-            this.txtLegajoBeneficiario.Text = "Legajo";
+            this.lblTotalAdeudado.AutoSize = true;
+            this.lblTotalAdeudado.Location = new System.Drawing.Point(763, 468);
+            this.lblTotalAdeudado.Name = "lblTotalAdeudado";
+            this.lblTotalAdeudado.Size = new System.Drawing.Size(82, 13);
+            this.lblTotalAdeudado.TabIndex = 18;
+            this.lblTotalAdeudado.Text = "Total adeudado";
             // 
             // txtTipoBeneficiario
             // 
@@ -348,14 +342,23 @@ namespace PARCIAL_1
             this.txtCodigoAdelanto.Name = "txtCodigoAdelanto";
             this.txtCodigoAdelanto.Size = new System.Drawing.Size(100, 20);
             this.txtCodigoAdelanto.TabIndex = 9;
-            this.txtCodigoAdelanto.Tag = "1234ABCD";
-            this.txtCodigoAdelanto.Text = "1234ABCD";
+            this.txtCodigoAdelanto.Tag = "";
+            // 
+            // txtLegajoBeneficiario
+            // 
+            this.txtLegajoBeneficiario.Location = new System.Drawing.Point(33, 125);
+            this.txtLegajoBeneficiario.Mask = "0000";
+            this.txtLegajoBeneficiario.Name = "txtLegajoBeneficiario";
+            this.txtLegajoBeneficiario.Size = new System.Drawing.Size(100, 20);
+            this.txtLegajoBeneficiario.TabIndex = 1;
+            this.txtLegajoBeneficiario.Tag = "";
             // 
             // CAdministradorDeAdelantos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 580);
+            this.Controls.Add(this.txtLegajoBeneficiario);
             this.Controls.Add(this.txtCodigoAdelanto);
             this.Controls.Add(this.txtFechaOtorgamientoAdelanto);
             this.Controls.Add(this.txtFechaCancelacionAdelanto);
@@ -367,11 +370,10 @@ namespace PARCIAL_1
             this.Controls.Add(this.txtApellidoBeneficiario);
             this.Controls.Add(this.txtNombreBeneficiario);
             this.Controls.Add(this.txtTipoBeneficiario);
-            this.Controls.Add(this.txtLegajoBeneficiario);
-            this.Controls.Add(this.txtTotalAdeudado);
+            this.Controls.Add(this.lblTotalAdeudado);
             this.Controls.Add(this.lblTotalAdelantos);
             this.Controls.Add(this.btnPagar);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtTotalAdeudado);
             this.Controls.Add(this.txtTotalAdelantos);
             this.Controls.Add(this.btnAsignarAdelanto);
             this.Controls.Add(this.btnModificacionAdelanto);
@@ -415,11 +417,10 @@ namespace PARCIAL_1
         private System.Windows.Forms.Button btnModificacionAdelanto;
         private System.Windows.Forms.Button btnAsignarAdelanto;
         private System.Windows.Forms.TextBox txtTotalAdelantos;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTotalAdeudado;
         private System.Windows.Forms.Button btnPagar;
         private System.Windows.Forms.Label lblTotalAdelantos;
-        private System.Windows.Forms.Label txtTotalAdeudado;
-        private System.Windows.Forms.TextBox txtLegajoBeneficiario;
+        private System.Windows.Forms.Label lblTotalAdeudado;
         private System.Windows.Forms.TextBox txtTipoBeneficiario;
         private System.Windows.Forms.TextBox txtNombreBeneficiario;
         private System.Windows.Forms.TextBox txtApellidoBeneficiario;
@@ -431,6 +432,7 @@ namespace PARCIAL_1
         private System.Windows.Forms.TextBox txtFechaCancelacionAdelanto;
         private System.Windows.Forms.TextBox txtFechaOtorgamientoAdelanto;
         private System.Windows.Forms.MaskedTextBox txtCodigoAdelanto;
+        private System.Windows.Forms.MaskedTextBox txtLegajoBeneficiario;
     }
 }
 

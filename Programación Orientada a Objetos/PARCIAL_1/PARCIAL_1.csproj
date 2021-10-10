@@ -60,6 +60,7 @@
       <DependentUpon>CAdministrador.cs</DependentUpon>
     </Compile>
     <Compile Include="CEmpleado.cs" />
+    <Compile Include="IAdelanto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CAdministrador.resx">
