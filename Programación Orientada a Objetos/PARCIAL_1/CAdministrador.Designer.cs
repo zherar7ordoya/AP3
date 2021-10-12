@@ -74,6 +74,7 @@ namespace PARCIAL_1
             this.dgvBeneficiarios.MultiSelect = false;
             this.dgvBeneficiarios.Name = "dgvBeneficiarios";
             this.dgvBeneficiarios.ReadOnly = true;
+            this.dgvBeneficiarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBeneficiarios.Size = new System.Drawing.Size(545, 81);
             this.dgvBeneficiarios.TabIndex = 0;
             this.dgvBeneficiarios.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBeneficiarios_RowEnter);
@@ -87,6 +88,7 @@ namespace PARCIAL_1
             this.dgvAdelantos.MultiSelect = false;
             this.dgvAdelantos.Name = "dgvAdelantos";
             this.dgvAdelantos.ReadOnly = true;
+            this.dgvAdelantos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAdelantos.Size = new System.Drawing.Size(745, 110);
             this.dgvAdelantos.TabIndex = 23;
             // 

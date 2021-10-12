@@ -91,8 +91,9 @@ namespace PARCIAL_1
             {
                 uint legajo = Convert.ToUInt16(dgvBeneficiarios.SelectedRows[0].Cells[0].Value.ToString());
                 CEmpleado empleado = empleados.Find(x => x.Legajo == legajo);
-                CAdelanto adelanto = dgvAdelantos.SelectedRows[0].DataBoundItem as CAdelanto;
-                empleado.Adelantos.Add(adelanto);
+
+                //CAdelanto adelanto = dgvAdelantos.SelectedRows[0].DataBoundItem as CAdelanto;
+                //empleado.Adelantos.Add(adelanto);
                 List<CAdelanto> filtrado = new List<CAdelanto>();
 
                 decimal total_adelantos = 0, total_adeudado = 0;
@@ -105,12 +106,12 @@ namespace PARCIAL_1
                 txtTotalAdelantos.Text = total_adelantos.ToString();
                 txtTotalAdeudado.Text = total_adeudado.ToString();
 
-                filtrado.RemoveAt(filtrado.Count - 1); // TODO: Eliminar luego de corregir el bug.
+                //filtrado.RemoveAt(filtrado.Count - 1); // TODO: Eliminar luego de corregir el bug.
                 dgvAdelantosPorBeneficiario.DataSource = null;
                 dgvAdelantosPorBeneficiario.DataSource = filtrado;
                 this.dgvAdelantosPorBeneficiario.Columns["Bloqueado"].Visible = false;
             }
-            catch (Exception excepcion) { CapturadorErrores(excepcion); }
+            catch (Exception excepcion) { /*CapturadorErrores(excepcion);*/ }
         }
         #endregion
 
@@ -273,7 +274,11 @@ namespace PARCIAL_1
         #region EVENTOS
         private void dgvBeneficiarios_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            //ActualizarGrillaFiltrada();
+            try
+            {
+                ActualizarGrillaFiltrada();
+            }
+            catch (Exception excepcion) { CapturadorErrores(excepcion); }
         }
         private void dgvAdelantosPorBeneficiario_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
