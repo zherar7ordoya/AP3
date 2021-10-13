@@ -53,18 +53,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CAdelanto.cs" />
-    <Compile Include="CAdministrador.cs">
+    <Compile Include="CAdministrativo.cs" />
+    <Compile Include="CDirectivo.cs" />
+    <Compile Include="COperario.cs" />
+    <Compile Include="CVistaFormulario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CAdministrador.Designer.cs">
-      <DependentUpon>CAdministrador.cs</DependentUpon>
+    <Compile Include="CVistaFormulario.Designer.cs">
+      <DependentUpon>CVistaFormulario.cs</DependentUpon>
     </Compile>
     <Compile Include="CEmpleado.cs" />
     <Compile Include="IAdelanto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CAdministrador.resx">
-      <DependentUpon>CAdministrador.cs</DependentUpon>
+    <Compile Include="Vista.cs" />
+    <EmbeddedResource Include="CVistaFormulario.resx">
+      <DependentUpon>CVistaFormulario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

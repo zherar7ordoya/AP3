@@ -16,7 +16,7 @@ namespace PARCIAL_1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CAdministradorDeAdelantos());
+            Application.Run(new CVistaFormulario());
         }
     }
 }

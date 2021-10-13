@@ -1,7 +1,7 @@
 ﻿
 namespace PARCIAL_1
 {
-    partial class CAdministradorDeAdelantos
+    partial class CVistaFormulario
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,8 @@ namespace PARCIAL_1
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CAdministradorDeAdelantos));
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CVistaFormulario));
             this.dgvBeneficiarios = new System.Windows.Forms.DataGridView();
             this.dgvAdelantos = new System.Windows.Forms.DataGridView();
             this.dgvAdelantosPorBeneficiario = new System.Windows.Forms.DataGridView();
@@ -60,9 +61,11 @@ namespace PARCIAL_1
             this.txtFechaOtorgamientoAdelanto = new System.Windows.Forms.TextBox();
             this.txtCodigoAdelanto = new System.Windows.Forms.MaskedTextBox();
             this.txtLegajoBeneficiario = new System.Windows.Forms.MaskedTextBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficiarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantosPorBeneficiario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvBeneficiarios
@@ -264,6 +267,7 @@ namespace PARCIAL_1
             this.txtNombreBeneficiario.TabIndex = 3;
             this.txtNombreBeneficiario.Tag = "Nombre";
             this.txtNombreBeneficiario.Text = "Nombre";
+            this.txtNombreBeneficiario.TextChanged += new System.EventHandler(this.txtNombreBeneficiario_TextChanged);
             // 
             // txtApellidoBeneficiario
             // 
@@ -355,7 +359,11 @@ namespace PARCIAL_1
             this.txtLegajoBeneficiario.TabIndex = 1;
             this.txtLegajoBeneficiario.Tag = "";
             // 
-            // CAdministradorDeAdelantos
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
+            // CVistaFormulario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -391,13 +399,14 @@ namespace PARCIAL_1
             this.Controls.Add(this.dgvAdelantos);
             this.Controls.Add(this.dgvBeneficiarios);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "CAdministradorDeAdelantos";
+            this.Name = "CVistaFormulario";
             this.Text = "Administrador de Adelantos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CAdministradorDeAdelantos_FormClosing);
-            this.Load += new System.EventHandler(this.CAdministradorDeAdelantos_Load);
+            this.Load += new System.EventHandler(this.CVistaFormulario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficiarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdelantosPorBeneficiario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,6 +444,7 @@ namespace PARCIAL_1
         private System.Windows.Forms.TextBox txtFechaOtorgamientoAdelanto;
         private System.Windows.Forms.MaskedTextBox txtCodigoAdelanto;
         private System.Windows.Forms.MaskedTextBox txtLegajoBeneficiario;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
 

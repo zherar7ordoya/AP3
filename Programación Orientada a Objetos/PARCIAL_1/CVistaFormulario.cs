@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace PARCIAL_1
 {
-    public partial class CAdministradorDeAdelantos : Form
+    public partial class CVistaFormulario : Form
     {
         #region CARGA
-        public CAdministradorDeAdelantos()
+        public CVistaFormulario()
         {
             InitializeComponent();
 
@@ -41,13 +41,15 @@ namespace PARCIAL_1
             txtBeneficioAdelanto.Leave         += new EventHandler(PierdeFoco);
             txtSaldoAdeudadoAdelanto.Leave     += new EventHandler(PierdeFoco);
         }
-        private void CAdministradorDeAdelantos_Load(object sender, EventArgs e)
+
+        private void CVistaFormulario_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
         }
+
         #endregion
 
         private List<CAdelanto> adelantos = new List<CAdelanto>();
@@ -297,6 +299,33 @@ namespace PARCIAL_1
                 origen.Text = Convert.ToString(origen.Tag);
             }
         }
+
+        private void txtNombreBeneficiario_TextChanged(object sender, EventArgs e)
+        {
+            bool error = false;
+
+            foreach(char caracter in txtNombreBeneficiario.Text)
+            {
+                if (char.IsDigit(caracter))
+                {
+                    error = true;
+                    break;
+                }
+            }
+
+            // Verifica condición de error
+            if (error)
+            {
+                errorProvider.SetError(txtNombreBeneficiario, "Se admiten únicamente letras");
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
+
+
+
         #endregion
 
         #region DESCARGA
@@ -323,5 +352,7 @@ namespace PARCIAL_1
             }
         }
         #endregion
+
+
     }
 }
