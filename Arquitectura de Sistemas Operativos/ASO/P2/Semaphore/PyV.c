@@ -1,8 +1,8 @@
-#include <unistd.h>
-#include <sys/sem.h>
+#include <sys/types.h>
 #include <sys/ipc.h>
+#include <sys/sem.h>
 
-int P (int semid, int sem)
+void P(int semid, int sem)
 {
     struct sembuf buf;
     buf.sem_num = sem;
@@ -11,7 +11,7 @@ int P (int semid, int sem)
     semop(semid, &buf, 1);
 }
 
-int V (int semid, int sem)
+void V(int semid, int sem)
 {
     struct sembuf buf;
     buf.sem_num = sem;
