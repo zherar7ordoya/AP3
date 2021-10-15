@@ -22,10 +22,10 @@ namespace IEnumerableIEnumerator
 
         public void MostrarInformacion()
         {
-            Console.WriteLine($"Automovil: {modelo}");
-            Console.WriteLine($"Costo: {costo}");
-            Console.WriteLine($"Impuesto: {impuesto}");
-            Console.WriteLine($"TOTAL: {costo+impuesto}");
+            Console.WriteLine($"Automovil: { modelo }"          );
+            Console.WriteLine($"Costo:     { costo }"           );
+            Console.WriteLine($"Impuesto:  { impuesto }"        );
+            Console.WriteLine($"TOTAL:     { costo + impuesto }");
         }
     }
 }

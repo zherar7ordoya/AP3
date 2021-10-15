@@ -4,7 +4,7 @@ namespace IEnumerableIEnumerator
 {
     class CConcesionaria
     {
-        private CAutomovil[] disponibles;
+        private readonly CAutomovil[] disponibles;
         public CConcesionaria()
         {
             disponibles = new CAutomovil[4];
