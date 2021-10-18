@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRefrigerador.cs" />
-    <Compile Include="CSink.cs" />
+    <Compile Include="CRefrigeradorSink.cs" />
+    <Compile Include="CTienda.cs" />
+    <Compile Include="CTiendaSink.cs" />
     <Compile Include="IEvento.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

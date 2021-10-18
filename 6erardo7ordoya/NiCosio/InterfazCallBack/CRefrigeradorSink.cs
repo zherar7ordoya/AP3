@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static System.Console;
 
 namespace InterfazCallBack
@@ -15,7 +11,7 @@ namespace InterfazCallBack
     /// Other object-oriented languages, such as Java and C#, have built-in 
     /// support for sinks by allowing events to be fired to delegate functions.
     /// </summary>
-    class CSink : IEvento
+    class CRefrigeradorSink : IEvento
     {
         /// <summary>
         /// Código a ejecutar cuando suceda el evento.
@@ -24,7 +20,7 @@ namespace InterfazCallBack
         public void EReservasBajas(int pKilos)
         {
             ForegroundColor = ConsoleColor.Yellow;
-            WriteLine("--> Reservas bajas de alimentos");
+            WriteLine("\n--> Reservas bajas de alimentos");
             WriteLine($"--> Quedan { pKilos }");
         }
     }

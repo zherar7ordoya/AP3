@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static System.Console;
 
 namespace InterfazCallBack
@@ -13,7 +9,8 @@ namespace InterfazCallBack
         {
             CRefrigerador refrigerador = new CRefrigerador(50, -20);
             Random aleatorio = new Random();
-            CSink sink1 = new CSink();
+            CRefrigeradorSink sink1 = new CRefrigeradorSink();
+            CTiendaSink sink2 = new CTiendaSink();
 
             /* Ya tenemos el refrigerador y ya tenemos el sink. Lo único que
              * nos falta es llevar a cabo esa unión entre ambos de tal forma
@@ -24,6 +21,7 @@ namespace InterfazCallBack
              * to, su método (el de la lista) va a ser invocado.
              */
             refrigerador.AgregarSink(sink1);
+            refrigerador.AgregarSink(sink2);
 
             while (refrigerador.Kilos > 0)
             {
