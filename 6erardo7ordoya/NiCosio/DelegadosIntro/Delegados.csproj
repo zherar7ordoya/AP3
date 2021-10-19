@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2302E894-C3EB-4738-8051-6879BF784C2B}</ProjectGuid>
+    <ProjectGuid>{B8CCB9BE-5E94-4E55-B453-F11C7BD60492}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>InterfazCallBack</RootNamespace>
-    <AssemblyName>InterfazCallBack</AssemblyName>
+    <RootNamespace>Delegados</RootNamespace>
+    <AssemblyName>Delegados</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,11 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRefrigerador.cs" />
-    <Compile Include="CRefrigeradorSink.cs" />
-    <Compile Include="CTienda.cs" />
-    <Compile Include="CTiendaSink.cs" />
-    <Compile Include="IEventosRefrigerador.cs" />
+    <Compile Include="CPastel.cs" />
+    <Compile Include="CRadio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,8 +3,13 @@ using static System.Console;
 
 namespace InterfazCallBack
 {
-    class CTiendaSink : IEvento
+    class CTiendaSink : IEventosRefrigerador
     {
+        public void ElDescongelado(int pGrados)
+        {
+            // throw new NotImplementedException();
+        }
+
         public void EReservasBajas(int pKilos)
         {
             ForegroundColor = ConsoleColor.Green;

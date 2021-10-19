@@ -11,8 +11,20 @@ namespace InterfazCallBack
     /// Other object-oriented languages, such as Java and C#, have built-in 
     /// support for sinks by allowing events to be fired to delegate functions.
     /// </summary>
-    class CRefrigeradorSink : IEvento
+    class CRefrigeradorSink : IEventosRefrigerador
     {
+        private bool paro = false;
+        public bool Paro { get { return paro; } }
+        public void ElDescongelado(int pGrados)
+        {
+            ForegroundColor = ConsoleColor.Red;
+            WriteLine("\nEl refrigerador se descongeló...");
+            if (pGrados > 0)
+            {
+                paro = true;
+            }
+        }
+
         /// <summary>
         /// Código a ejecutar cuando suceda el evento.
         /// </summary>

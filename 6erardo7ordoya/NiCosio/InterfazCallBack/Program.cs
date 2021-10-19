@@ -7,8 +7,9 @@ namespace InterfazCallBack
     {
         static void Main(string[] args)
         {
-            CRefrigerador refrigerador = new CRefrigerador(50, -20);
+            CRefrigerador refrigerador = new CRefrigerador(500, -20);
             Random aleatorio = new Random();
+
             CRefrigeradorSink sink1 = new CRefrigeradorSink();
             CTiendaSink sink2 = new CTiendaSink();
 
@@ -23,7 +24,7 @@ namespace InterfazCallBack
             refrigerador.AgregarSink(sink1);
             refrigerador.AgregarSink(sink2);
 
-            while (refrigerador.Kilos > 0)
+            while (refrigerador.Kilos > 0 && sink1.Paro==false)
             {
                 refrigerador.Trabajar(aleatorio.Next(1, 5));
             }

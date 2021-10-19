@@ -3,8 +3,9 @@
     /// <summary>
     /// Eventos que tendrá refrigerador.
     /// </summary>
-    interface IEvento
+    interface IEventosRefrigerador
     {
         void EReservasBajas(int pKilos);
+        void ElDescongelado(int pGrados);
     }
 }

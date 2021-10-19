@@ -23,14 +23,14 @@ namespace InterfazCallBack
         /// Con este método, adicionamos un Sink.
         /// </summary>
         /// <param name="pSink"></param>
-        public void AgregarSink(IEvento pSink)
+        public void AgregarSink(IEventosRefrigerador pSink)
         {
             if (pSink != null)
             {
                 listaSinks.Add(pSink);
             }
         }
-        public void EliminarSink(IEvento pSink)
+        public void EliminarSink(IEventosRefrigerador pSink)
         {
             if (listaSinks.Contains(pSink))
             {
@@ -47,16 +47,23 @@ namespace InterfazCallBack
             grados++;
 
             ForegroundColor = ConsoleColor.Gray;
-            WriteLine($"{ kilosAlimentos } kilos, { grados } grados.");
+            WriteLine($"\n{ kilosAlimentos } kilos, { grados } grados.");
 
             // Verificar si se cumple la condición para invocar los handlers.
             // En este caso, ésta es la condición del evento.
             if (kilosAlimentos < 10)
             {
                 // Invocar los handlers de cada Sink.
-                foreach(IEvento handler in listaSinks)
+                foreach(IEventosRefrigerador handler in listaSinks)
                 {
                     handler.EReservasBajas(kilosAlimentos);
+                }
+            }
+            if (grados >= 0)
+            {
+                foreach (IEventosRefrigerador handler in listaSinks)
+                {
+                    handler.ElDescongelado(grados);
                 }
             }
         }
