@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegates", "..\Delegates\Delegates.csproj", "{B13C28A7-E752-4070-958F-606A9780231E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "..\Events\Events.csproj", "{6C05250D-9922-4920-B49B-CA4B23AF080C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B13C28A7-E752-4070-958F-606A9780231E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B13C28A7-E752-4070-958F-606A9780231E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B13C28A7-E752-4070-958F-606A9780231E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B13C28A7-E752-4070-958F-606A9780231E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C05250D-9922-4920-B49B-CA4B23AF080C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C05250D-9922-4920-B49B-CA4B23AF080C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C05250D-9922-4920-B49B-CA4B23AF080C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C05250D-9922-4920-B49B-CA4B23AF080C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {617984D5-C045-43D5-8393-336A7F0F65A7}
+	EndGlobalSection
+EndGlobal
