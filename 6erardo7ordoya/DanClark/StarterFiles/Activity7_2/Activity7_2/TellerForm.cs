@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Activity7_2Starter
@@ -32,7 +26,7 @@ namespace Activity7_2Starter
                 {
                     oSavingsAccount.AccountNumber = int.Parse(txtAccountNumber.Text);
                     txtBalance.Text = oSavingsAccount.GetBalance().ToString();
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -42,10 +36,18 @@ namespace Activity7_2Starter
 
         private void btnWithdraw_Click(object sender, EventArgs e)
         {
-           
             try
             {
-              
+                if (rdbChecking.Checked)
+                {
+                    oCheckingAccount.AccountNumber = int.Parse(txtAccountNumber.Text);
+                    txtBalance.Text = oCheckingAccount.Withdraw(double.Parse(txtAmount.Text)).ToString();
+                }
+                else if (rdbSavings.Checked)
+                {
+                    oSavingsAccount.AccountNumber = int.Parse(txtAccountNumber.Text);
+                    txtBalance.Text = oSavingsAccount.Withdraw(double.Parse(txtAmount.Text)).ToString();
+                }
             }
             catch (Exception ex)
             {

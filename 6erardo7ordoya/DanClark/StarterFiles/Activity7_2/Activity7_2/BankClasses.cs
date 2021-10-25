@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Activity7_2Starter
 {
@@ -36,8 +33,11 @@ namespace Activity7_2Starter
                 throw new ApplicationException("Account number incorrect.");
             }
         }
-        public double Withdraw(double amount)
+        public virtual double Withdraw(double amount)
         {
+            _balance -= amount;
+            return Balance;
+            /*
             if (Balance >= amount)
             {
                 _balance -= amount;
@@ -47,12 +47,44 @@ namespace Activity7_2Starter
             {
                 throw new ApplicationException("Not enough funds.");
             }
+            */
         }
     }
     class SavingsAccount : Account
     {
+        public override double Withdraw(double amount)
+        {
+            if (Balance >= amount)
+            {
+                return base.Withdraw(amount);
+            }
+            else
+            {
+                return -1; //Not enough funds.
+            }
+        }
     }
     class CheckingAccount : Account
     {
+        public double GetMinimumBalance()
+        {
+            return 200;
+        }
+        public override double Withdraw(double amount)
+        {
+            if (Balance >= amount + GetMinimumBalance())
+            {
+                return base.Withdraw(amount);
+                /*
+                _balance -= amount;
+                return Balance;
+                */
+            }
+            else
+            {
+
+                return -1; //Not enough funds
+            }
+        }
     }
 }
