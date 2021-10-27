@@ -1,1 +1,41 @@
-157
+==================================================================
+
+CAPÍTULO 2:
+Designing OOP Solutions (Identifying the Class Structure)
+
+CAPÍTULO 3:
+Designing OOP Solutions (Modeling the Object Interaction)
+
+CAPÍTULO 4:
+Designing OOP Solutions (A Case Study)
+
+==================================================================
+
+
+Static Aspects
+--------------
+
+1) SRS
+   Defines the scope of the system.
+
+2) USE CASE DIAGRAM
+   Define the system boundaries and identify the external entities
+   that will use the system.
+
+3) CLASS DIAGRAM
+   Model the structure of the classes that will be developed to 
+   implement the system.
+
+
+
+Dynamic Aspects
+---------------
+
+4) SEQUENCE DIAGRAM
+   Models how the classes of objects interact with each other over
+   time as the system runs.
+
+5) ACTIVITY DIAGRAM
+   Illustrates the flow of activities that need to occur during an
+   operation or process.
+
