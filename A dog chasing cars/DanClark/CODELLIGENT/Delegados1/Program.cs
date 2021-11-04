@@ -35,7 +35,7 @@ namespace Delegados1
             delegado4d = Metodo1;
             delegado4d += Metodo2;
 
-            /*=======================*/
+            /*==================================================================*/
             //Desarrrollo 1
             //delegado1();
 
