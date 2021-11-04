@@ -16,13 +16,14 @@ namespace Ej0001
             A = new Alumno();
             A.CambioEnNombre += FuncionCambioEnNombre;
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            A.Nombre = Interaction.InputBox("Ingrese el Nombre:");
-        }
         private void FuncionCambioEnNombre(object sender, EventArgs e)
         {
             MessageBox.Show("Se produjo un cambio en el nombre, ahora es: " + A.Nombre);
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            A.Nombre = Interaction.InputBox("Ingrese el Nombre:");
+            A.CambioEnNombre -= FuncionCambioEnNombre;
         }
     }
     public class Alumno
