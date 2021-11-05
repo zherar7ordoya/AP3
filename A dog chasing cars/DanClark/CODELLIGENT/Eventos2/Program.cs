@@ -14,7 +14,7 @@ namespace Eventos2
             var cat = new Cat
             {
                 Id = 1,
-                Name = "Puflito",
+                Name = "Michifús",
                 Health = 200
             };
             cat.OnHealthChanged += Cat_OnHealthChanged;
