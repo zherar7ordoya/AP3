@@ -1,6 +1,10 @@
 ﻿using static System.Console;
 using PhotoApplication;
 
+/// <summary>
+/// https://youtu.be/ZGHBGFLuvmg
+/// </summary>
+
 namespace Delegados3
 {
     class Program

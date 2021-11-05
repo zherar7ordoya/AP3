@@ -1,6 +1,9 @@
 ﻿using System.Threading;
 using static System.Console;
 
+/// <summary>
+/// https://youtu.be/ZGHBGFLuvmg
+/// </summary>
 
 namespace Delegados2
 {

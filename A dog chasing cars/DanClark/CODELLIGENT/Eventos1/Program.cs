@@ -1,6 +1,10 @@
 ﻿using System;
 using static System.Console;
 
+/// <summary>
+/// https://youtu.be/841BAFuoXGE
+/// </summary>
+
 namespace Eventos1
 {
     class Program

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 
@@ -19,9 +12,16 @@ namespace Ej0022
         }
         private void CalculaDescuento(Producto P)
         {
-            P.Precio=decimal.Parse(Interaction.InputBox("Ingrese el precio del producto nacional: "));
-            MessageBox.Show("El precio sin descuento es: " + P.Precio + "\n" +
-                            "El precio con descuento es: " + P.PrecioConDescuento().ToString());
+            P.Precio=decimal.Parse(Interaction.InputBox
+                ("Ingrese el precio del producto nacional: "));
+            MessageBox.Show
+                (
+                "El precio sin descuento es: " + 
+                P.Precio + 
+                "\n" +
+                "El precio con descuento es: " + 
+                P.PrecioConDescuento()
+                );
         }
         private void Form1_Load(object sender, EventArgs e)
         {

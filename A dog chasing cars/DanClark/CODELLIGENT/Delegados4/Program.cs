@@ -1,5 +1,10 @@
 ﻿using System;
 using static System.Console;
+
+/// <summary>
+/// https://youtu.be/ZGHBGFLuvmg
+/// </summary>
+
 namespace Delegados4
 {
     class Program

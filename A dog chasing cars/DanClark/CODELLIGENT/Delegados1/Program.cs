@@ -1,5 +1,9 @@
 ﻿using static System.Console;
 
+/// <summary>
+/// https://youtu.be/ZGHBGFLuvmg
+/// </summary>
+
 namespace Delegados1
 {
     //Desarrollo 1
