@@ -29,35 +29,35 @@ namespace Formularios1
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvAcciones = new System.Windows.Forms.DataGridView();
+            this.dgvAccionesDisponibles = new System.Windows.Forms.DataGridView();
             this.dgvAccionistas = new System.Windows.Forms.DataGridView();
-            this.dgvFiltrados = new System.Windows.Forms.DataGridView();
+            this.dgvAccionesPorAccionista = new System.Windows.Forms.DataGridView();
             this.btnAltaAcciones = new System.Windows.Forms.Button();
             this.btnAltaAccionistas = new System.Windows.Forms.Button();
             this.btnBajaAccionistas = new System.Windows.Forms.Button();
             this.btnComprarAcciones = new System.Windows.Forms.Button();
             this.btnVenderAcciones = new System.Windows.Forms.Button();
             this.grpTipo = new System.Windows.Forms.GroupBox();
-            this.rbnTipoA = new System.Windows.Forms.RadioButton();
-            this.rbnTipoB = new System.Windows.Forms.RadioButton();
-            this.rbnTipoC = new System.Windows.Forms.RadioButton();
-            this.rbnTipoD = new System.Windows.Forms.RadioButton();
-            this.rbnTipoE = new System.Windows.Forms.RadioButton();
-            this.rbnTipoF = new System.Windows.Forms.RadioButton();
             this.rbnTipoG = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAcciones)).BeginInit();
+            this.rbnTipoF = new System.Windows.Forms.RadioButton();
+            this.rbnTipoE = new System.Windows.Forms.RadioButton();
+            this.rbnTipoD = new System.Windows.Forms.RadioButton();
+            this.rbnTipoC = new System.Windows.Forms.RadioButton();
+            this.rbnTipoB = new System.Windows.Forms.RadioButton();
+            this.rbnTipoA = new System.Windows.Forms.RadioButton();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccionesDisponibles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccionistas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFiltrados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccionesPorAccionista)).BeginInit();
             this.grpTipo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgvAcciones
+            // dgvAccionesDisponibles
             // 
-            this.dgvAcciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAcciones.Location = new System.Drawing.Point(90, 12);
-            this.dgvAcciones.Name = "dgvAcciones";
-            this.dgvAcciones.Size = new System.Drawing.Size(240, 188);
-            this.dgvAcciones.TabIndex = 1;
+            this.dgvAccionesDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAccionesDisponibles.Location = new System.Drawing.Point(90, 12);
+            this.dgvAccionesDisponibles.Name = "dgvAccionesDisponibles";
+            this.dgvAccionesDisponibles.Size = new System.Drawing.Size(240, 188);
+            this.dgvAccionesDisponibles.TabIndex = 1;
             // 
             // dgvAccionistas
             // 
@@ -66,14 +66,15 @@ namespace Formularios1
             this.dgvAccionistas.Name = "dgvAccionistas";
             this.dgvAccionistas.Size = new System.Drawing.Size(240, 188);
             this.dgvAccionistas.TabIndex = 2;
+            this.dgvAccionistas.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAccionistas_CellEnter);
             // 
-            // dgvFiltrados
+            // dgvAccionesPorAccionista
             // 
-            this.dgvFiltrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFiltrados.Location = new System.Drawing.Point(90, 264);
-            this.dgvFiltrados.Name = "dgvFiltrados";
-            this.dgvFiltrados.Size = new System.Drawing.Size(544, 188);
-            this.dgvFiltrados.TabIndex = 3;
+            this.dgvAccionesPorAccionista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAccionesPorAccionista.Location = new System.Drawing.Point(90, 264);
+            this.dgvAccionesPorAccionista.Name = "dgvAccionesPorAccionista";
+            this.dgvAccionesPorAccionista.Size = new System.Drawing.Size(544, 188);
+            this.dgvAccionesPorAccionista.TabIndex = 3;
             // 
             // btnAltaAcciones
             // 
@@ -81,8 +82,9 @@ namespace Formularios1
             this.btnAltaAcciones.Name = "btnAltaAcciones";
             this.btnAltaAcciones.Size = new System.Drawing.Size(115, 23);
             this.btnAltaAcciones.TabIndex = 4;
-            this.btnAltaAcciones.Text = "Alta Acciones";
+            this.btnAltaAcciones.Text = "Alta de acción";
             this.btnAltaAcciones.UseVisualStyleBackColor = true;
+            this.btnAltaAcciones.Click += new System.EventHandler(this.btnAltaAcciones_Click);
             // 
             // btnAltaAccionistas
             // 
@@ -90,8 +92,9 @@ namespace Formularios1
             this.btnAltaAccionistas.Name = "btnAltaAccionistas";
             this.btnAltaAccionistas.Size = new System.Drawing.Size(115, 23);
             this.btnAltaAccionistas.TabIndex = 5;
-            this.btnAltaAccionistas.Text = "Alta Accionistas";
+            this.btnAltaAccionistas.Text = "Alta de accionista";
             this.btnAltaAccionistas.UseVisualStyleBackColor = true;
+            this.btnAltaAccionistas.Click += new System.EventHandler(this.btnAltaAccionistas_Click);
             // 
             // btnBajaAccionistas
             // 
@@ -99,8 +102,9 @@ namespace Formularios1
             this.btnBajaAccionistas.Name = "btnBajaAccionistas";
             this.btnBajaAccionistas.Size = new System.Drawing.Size(115, 23);
             this.btnBajaAccionistas.TabIndex = 6;
-            this.btnBajaAccionistas.Text = "Baja Accionistas";
+            this.btnBajaAccionistas.Text = "Baja de accionista";
             this.btnBajaAccionistas.UseVisualStyleBackColor = true;
+            this.btnBajaAccionistas.Click += new System.EventHandler(this.btnBajaAccionistas_Click);
             // 
             // btnComprarAcciones
             // 
@@ -108,8 +112,9 @@ namespace Formularios1
             this.btnComprarAcciones.Name = "btnComprarAcciones";
             this.btnComprarAcciones.Size = new System.Drawing.Size(116, 23);
             this.btnComprarAcciones.TabIndex = 7;
-            this.btnComprarAcciones.Text = "Comprar Acciones";
+            this.btnComprarAcciones.Text = "Comprar acción";
             this.btnComprarAcciones.UseVisualStyleBackColor = true;
+            this.btnComprarAcciones.Click += new System.EventHandler(this.btnComprarAcciones_Click);
             // 
             // btnVenderAcciones
             // 
@@ -117,8 +122,9 @@ namespace Formularios1
             this.btnVenderAcciones.Name = "btnVenderAcciones";
             this.btnVenderAcciones.Size = new System.Drawing.Size(116, 23);
             this.btnVenderAcciones.TabIndex = 8;
-            this.btnVenderAcciones.Text = "Vender Acciones";
+            this.btnVenderAcciones.Text = "Vender acción";
             this.btnVenderAcciones.UseVisualStyleBackColor = true;
+            this.btnVenderAcciones.Click += new System.EventHandler(this.btnVenderAcciones_Click);
             // 
             // grpTipo
             // 
@@ -136,6 +142,66 @@ namespace Formularios1
             this.grpTipo.TabStop = false;
             this.grpTipo.Text = "Tipo";
             // 
+            // rbnTipoG
+            // 
+            this.rbnTipoG.AutoSize = true;
+            this.rbnTipoG.Location = new System.Drawing.Point(6, 157);
+            this.rbnTipoG.Name = "rbnTipoG";
+            this.rbnTipoG.Size = new System.Drawing.Size(57, 17);
+            this.rbnTipoG.TabIndex = 6;
+            this.rbnTipoG.Text = "Tipo G";
+            this.rbnTipoG.UseVisualStyleBackColor = true;
+            // 
+            // rbnTipoF
+            // 
+            this.rbnTipoF.AutoSize = true;
+            this.rbnTipoF.Location = new System.Drawing.Point(6, 134);
+            this.rbnTipoF.Name = "rbnTipoF";
+            this.rbnTipoF.Size = new System.Drawing.Size(55, 17);
+            this.rbnTipoF.TabIndex = 5;
+            this.rbnTipoF.Text = "Tipo F";
+            this.rbnTipoF.UseVisualStyleBackColor = true;
+            // 
+            // rbnTipoE
+            // 
+            this.rbnTipoE.AutoSize = true;
+            this.rbnTipoE.Location = new System.Drawing.Point(6, 111);
+            this.rbnTipoE.Name = "rbnTipoE";
+            this.rbnTipoE.Size = new System.Drawing.Size(56, 17);
+            this.rbnTipoE.TabIndex = 4;
+            this.rbnTipoE.Text = "Tipo E";
+            this.rbnTipoE.UseVisualStyleBackColor = true;
+            // 
+            // rbnTipoD
+            // 
+            this.rbnTipoD.AutoSize = true;
+            this.rbnTipoD.Location = new System.Drawing.Point(6, 88);
+            this.rbnTipoD.Name = "rbnTipoD";
+            this.rbnTipoD.Size = new System.Drawing.Size(57, 17);
+            this.rbnTipoD.TabIndex = 3;
+            this.rbnTipoD.Text = "Tipo D";
+            this.rbnTipoD.UseVisualStyleBackColor = true;
+            // 
+            // rbnTipoC
+            // 
+            this.rbnTipoC.AutoSize = true;
+            this.rbnTipoC.Location = new System.Drawing.Point(6, 65);
+            this.rbnTipoC.Name = "rbnTipoC";
+            this.rbnTipoC.Size = new System.Drawing.Size(56, 17);
+            this.rbnTipoC.TabIndex = 2;
+            this.rbnTipoC.Text = "Tipo C";
+            this.rbnTipoC.UseVisualStyleBackColor = true;
+            // 
+            // rbnTipoB
+            // 
+            this.rbnTipoB.AutoSize = true;
+            this.rbnTipoB.Location = new System.Drawing.Point(6, 42);
+            this.rbnTipoB.Name = "rbnTipoB";
+            this.rbnTipoB.Size = new System.Drawing.Size(56, 17);
+            this.rbnTipoB.TabIndex = 1;
+            this.rbnTipoB.Text = "Tipo B";
+            this.rbnTipoB.UseVisualStyleBackColor = true;
+            // 
             // rbnTipoA
             // 
             this.rbnTipoA.AutoSize = true;
@@ -148,66 +214,6 @@ namespace Formularios1
             this.rbnTipoA.Text = "Tipo A";
             this.rbnTipoA.UseVisualStyleBackColor = true;
             // 
-            // rbnTipoB
-            // 
-            this.rbnTipoB.AutoSize = true;
-            this.rbnTipoB.Location = new System.Drawing.Point(6, 42);
-            this.rbnTipoB.Name = "rbnTipoB";
-            this.rbnTipoB.Size = new System.Drawing.Size(56, 17);
-            this.rbnTipoB.TabIndex = 1;
-            this.rbnTipoB.Text = "Tipo B";
-            this.rbnTipoB.UseVisualStyleBackColor = true;
-            // 
-            // rbnTipoC
-            // 
-            this.rbnTipoC.AutoSize = true;
-            this.rbnTipoC.Location = new System.Drawing.Point(6, 65);
-            this.rbnTipoC.Name = "rbnTipoC";
-            this.rbnTipoC.Size = new System.Drawing.Size(56, 17);
-            this.rbnTipoC.TabIndex = 2;
-            this.rbnTipoC.Text = "Tipo C";
-            this.rbnTipoC.UseVisualStyleBackColor = true;
-            // 
-            // rbnTipoD
-            // 
-            this.rbnTipoD.AutoSize = true;
-            this.rbnTipoD.Location = new System.Drawing.Point(6, 88);
-            this.rbnTipoD.Name = "rbnTipoD";
-            this.rbnTipoD.Size = new System.Drawing.Size(57, 17);
-            this.rbnTipoD.TabIndex = 3;
-            this.rbnTipoD.Text = "Tipo D";
-            this.rbnTipoD.UseVisualStyleBackColor = true;
-            // 
-            // rbnTipoE
-            // 
-            this.rbnTipoE.AutoSize = true;
-            this.rbnTipoE.Location = new System.Drawing.Point(6, 111);
-            this.rbnTipoE.Name = "rbnTipoE";
-            this.rbnTipoE.Size = new System.Drawing.Size(56, 17);
-            this.rbnTipoE.TabIndex = 4;
-            this.rbnTipoE.Text = "Tipo E";
-            this.rbnTipoE.UseVisualStyleBackColor = true;
-            // 
-            // rbnTipoF
-            // 
-            this.rbnTipoF.AutoSize = true;
-            this.rbnTipoF.Location = new System.Drawing.Point(6, 134);
-            this.rbnTipoF.Name = "rbnTipoF";
-            this.rbnTipoF.Size = new System.Drawing.Size(55, 17);
-            this.rbnTipoF.TabIndex = 5;
-            this.rbnTipoF.Text = "Tipo F";
-            this.rbnTipoF.UseVisualStyleBackColor = true;
-            // 
-            // rbnTipoG
-            // 
-            this.rbnTipoG.AutoSize = true;
-            this.rbnTipoG.Location = new System.Drawing.Point(6, 157);
-            this.rbnTipoG.Name = "rbnTipoG";
-            this.rbnTipoG.Size = new System.Drawing.Size(57, 17);
-            this.rbnTipoG.TabIndex = 6;
-            this.rbnTipoG.Text = "Tipo G";
-            this.rbnTipoG.UseVisualStyleBackColor = true;
-            // 
             // CFormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,16 +225,16 @@ namespace Formularios1
             this.Controls.Add(this.btnBajaAccionistas);
             this.Controls.Add(this.btnAltaAccionistas);
             this.Controls.Add(this.btnAltaAcciones);
-            this.Controls.Add(this.dgvFiltrados);
+            this.Controls.Add(this.dgvAccionesPorAccionista);
             this.Controls.Add(this.dgvAccionistas);
-            this.Controls.Add(this.dgvAcciones);
+            this.Controls.Add(this.dgvAccionesDisponibles);
             this.Name = "CFormularioPrincipal";
             this.Text = "Formulario Principal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CFormularioPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.CFormularioPrincipal_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAcciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccionesDisponibles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccionistas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFiltrados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccionesPorAccionista)).EndInit();
             this.grpTipo.ResumeLayout(false);
             this.grpTipo.PerformLayout();
             this.ResumeLayout(false);
@@ -236,9 +242,9 @@ namespace Formularios1
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dgvAcciones;
+        private System.Windows.Forms.DataGridView dgvAccionesDisponibles;
         private System.Windows.Forms.DataGridView dgvAccionistas;
-        private System.Windows.Forms.DataGridView dgvFiltrados;
+        private System.Windows.Forms.DataGridView dgvAccionesPorAccionista;
         private System.Windows.Forms.Button btnAltaAcciones;
         private System.Windows.Forms.Button btnAltaAccionistas;
         private System.Windows.Forms.Button btnBajaAccionistas;
