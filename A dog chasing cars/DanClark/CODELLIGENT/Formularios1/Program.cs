@@ -11,9 +11,22 @@ namespace Formularios1
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CFormularioPrincipal());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new CFormularioPrincipal());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show
+                    (
+                    ex.Message,
+                    "Excepción capturada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+            }
         }
     }
 }

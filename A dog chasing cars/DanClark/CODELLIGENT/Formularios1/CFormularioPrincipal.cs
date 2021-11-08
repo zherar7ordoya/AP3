@@ -17,7 +17,6 @@ namespace Formularios1
         {
             while (true)
             {
-                ///if (usuario != string.Empty) { break; }
                 if (Regex.Match(usuario, "[A-Z][a-z]+(?: [A-Z][a-z]+)?").Success) { break; }
                 usuario = Interaction.InputBox
                     (
@@ -26,16 +25,11 @@ namespace Formularios1
                     "Gerardo Tordoya"
                     );
             }
-
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.CenterToScreen();
-            this.Text += $" (Usuario: {usuario})";
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-
-            this.dgvAccionesDisponibles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAccionistas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAccionesPorAccionista.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.Text           += $" (Usuario: {usuario})";
+            this.MaximizeBox     = false;
+            this.MinimizeBox     = false;
         }
         #endregion
 
@@ -56,42 +50,46 @@ namespace Formularios1
                     .FirstOrDefault();
                 int cantidad = int.Parse(Interaction.InputBox("Cantidad: "));
                 decimal cotizacion = decimal.Parse(Interaction.InputBox("Cotización: "));
-                
-                if (radioBtn != null)
+
+                switch (radioBtn.Name)
                 {
-                    switch (radioBtn.Name)
-                    {
-                        case "rbnTipoA":
-                            this.LAccionesDisponibles.Add(new AccionEmpresaA
-                                (
-                                cantidad,
-                                "AEA",
-                                "Acción Empresa A",
-                                cotizacion
-                                ));
-                            break;
-                        case "rbnTipoB":
-                            this.LAccionesDisponibles.Add(new AccionEmpresaB
-                                (
-                                cantidad,
-                                "AEB",
-                                "Acción Empresa B",
-                                cotizacion
-                                ));
-                            break;
-                        default:
-                            MessageBox.Show
-                                (
-                                "Opción no disponible",
-                                "Revise los datos ingresados",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error
-                                );
-                            break;
-                    }
+                    case "rbnTipoA":
+                        this.LAccionesDisponibles.Add(new AccionEmpresaA
+                            (
+                            cantidad,
+                            "Tipo A",
+                            "Empresa A",
+                            cotizacion
+                            ));
+                        break;
+                    case "rbnTipoB":
+                        this.LAccionesDisponibles.Add(new AccionEmpresaB
+                            (
+                            cantidad,
+                            "Tipo B",
+                            "Empresa B",
+                            cotizacion
+                            ));
+                        break;
+                    default:
+                        MessageBox.Show
+                            (
+                            "Opción no disponible",
+                            "Revise los datos ingresados",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                            );
+                        break;
                 }
-                this.dgvAccionesDisponibles.DataSource = null;
-                this.dgvAccionesDisponibles.DataSource = this.LAccionesDisponibles;
+
+                /* Sobre este error, consulte:
+                 * https://social.msdn.microsoft.com/Forums/vstudio/en-US/89237586-f644-41e3-b1d4-479c6d6a882e/datagridview-indexoutofrangeexceptionindex-1-does-not-have-a-value?forum=winformsdatacontrols&prof=required
+                 */
+                if (LAccionesDisponibles != null && LAccionesDisponibles.Count > 0)
+                {
+                    this.dgvAccionesDisponibles.DataSource = null;
+                    this.dgvAccionesDisponibles.DataSource = this.LAccionesDisponibles;
+                }
             }
             catch (Exception ex)
             {
@@ -128,7 +126,8 @@ namespace Formularios1
 
         private void btnBajaAccionistas_Click(object sender, EventArgs e)
         {
-            Accionista accionista = (Accionista)(this.dgvAccionistas.SelectedRows[0].DataBoundItem);
+            Accionista accionista = 
+                (Accionista)(this.dgvAccionistas.SelectedRows[0].DataBoundItem);
 
             // *----------=> Si posee acciones, éstas pasan a estar disponibles
             if (accionista.VerAcciones().Count > 0)
@@ -138,7 +137,7 @@ namespace Formularios1
             
             this.ListaAccionistas.Remove(accionista); // * Accionista eliminado
 
-            // *-----------------------=> Actualizar DGV acciones (disponibles)
+            // *-------------------------=> Actualizar DGV acciones disponibles
             this.dgvAccionesDisponibles.DataSource = null;
             this.dgvAccionesDisponibles.DataSource = this.LAccionesDisponibles;
 
@@ -146,7 +145,7 @@ namespace Formularios1
             this.dgvAccionistas.DataSource = null;
             this.dgvAccionistas.DataSource = this.ListaAccionistas;
 
-            // *----=> Actualizar DGV de acciones del accionista (seleccionado)
+            // *----------------------=> Actualizar DGV acciones por accionista
             this.dgvAccionesPorAccionista.DataSource = null;
             this.dgvAccionesPorAccionista.DataSource = 
                 ((Accionista)this
@@ -221,10 +220,23 @@ namespace Formularios1
         /// <param name="e">Evento</param>
         private void dgvAccionistas_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            this.dgvAccionesPorAccionista.DataSource = null;
-            this.dgvAccionesPorAccionista.DataSource =
-                ((Accionista)this.dgvAccionistas.SelectedRows[0].DataBoundItem)
-                .VerAcciones();
+            try
+            {
+                this.dgvAccionesPorAccionista.DataSource = null;
+                this.dgvAccionesPorAccionista.DataSource =
+                    ((Accionista)this.dgvAccionistas.SelectedRows[0].DataBoundItem)
+                    .VerAcciones();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show
+                    (
+                    $"El accionista aún no tiene acciones\n{ex.Message}",
+                    "Excepción capturada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            }
         }
         #endregion
 
@@ -288,12 +300,12 @@ namespace Formularios1
             get => this.identificador; 
             set => this.identificador = value; 
         }
-        public string Descripcion
+        public string Descripción
         { 
             get => this.descripcion; 
             set => this.descripcion = value; 
         }
-        public decimal Cotizacion
+        public decimal Cotización
         { 
             get => this.cotizacion;
             set => this.cotizacion = value;
