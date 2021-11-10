@@ -1,1 +1,0 @@
-![Gerardo Rodolfo Tordoya](https://upload.wikimedia.org/wikipedia/commons/e/e1/C_Sharp.png)
