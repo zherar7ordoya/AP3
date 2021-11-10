@@ -85,6 +85,8 @@ namespace Formularios2
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -99,6 +101,7 @@ namespace Formularios2
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
@@ -134,7 +137,7 @@ namespace Formularios2
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(174, 214);
+            this.button1.Location = new System.Drawing.Point(255, 214);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
@@ -143,14 +146,14 @@ namespace Formularios2
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(149, 188);
+            this.textBox2.Location = new System.Drawing.Point(230, 188);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 4;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(43, 188);
+            this.textBox1.Location = new System.Drawing.Point(124, 188);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 3;
@@ -158,7 +161,7 @@ namespace Formularios2
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(146, 172);
+            this.label2.Location = new System.Drawing.Point(227, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 2;
@@ -167,7 +170,7 @@ namespace Formularios2
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 172);
+            this.label1.Location = new System.Drawing.Point(121, 172);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 1;
@@ -189,6 +192,7 @@ namespace Formularios2
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.label6);
@@ -204,25 +208,25 @@ namespace Formularios2
             this.groupBox2.Controls.Add(this.dataGridView2);
             this.groupBox2.Location = new System.Drawing.Point(397, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(732, 245);
+            this.groupBox2.Size = new System.Drawing.Size(739, 245);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Grilla 2: Cobros pendientes del cliente";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(42, 219);
+            this.label7.Location = new System.Drawing.Point(655, 45);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 13);
+            this.label7.Size = new System.Drawing.Size(75, 75);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Información";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(649, 19);
+            this.button5.Location = new System.Drawing.Point(655, 19);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 13;
@@ -231,7 +235,7 @@ namespace Formularios2
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(568, 214);
+            this.button4.Location = new System.Drawing.Point(655, 214);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 12;
@@ -241,7 +245,7 @@ namespace Formularios2
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(541, 172);
+            this.label6.Location = new System.Drawing.Point(627, 175);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 13);
             this.label6.TabIndex = 11;
@@ -250,7 +254,7 @@ namespace Formularios2
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(434, 172);
+            this.label5.Location = new System.Drawing.Point(521, 175);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 10;
@@ -259,7 +263,7 @@ namespace Formularios2
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(328, 172);
+            this.label4.Location = new System.Drawing.Point(415, 175);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 9;
@@ -268,7 +272,7 @@ namespace Formularios2
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(222, 172);
+            this.label3.Location = new System.Drawing.Point(309, 175);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 8;
@@ -276,7 +280,7 @@ namespace Formularios2
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(543, 188);
+            this.textBox5.Location = new System.Drawing.Point(630, 191);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 20);
             this.textBox5.TabIndex = 7;
@@ -284,21 +288,21 @@ namespace Formularios2
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(437, 188);
+            this.dateTimePicker1.Location = new System.Drawing.Point(524, 191);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(100, 20);
             this.dateTimePicker1.TabIndex = 6;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(331, 188);
+            this.textBox4.Location = new System.Drawing.Point(418, 191);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 20);
             this.textBox4.TabIndex = 5;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(225, 188);
+            this.textBox3.Location = new System.Drawing.Point(312, 191);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 4;
@@ -306,7 +310,7 @@ namespace Formularios2
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(131, 192);
+            this.radioButton2.Location = new System.Drawing.Point(218, 195);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(88, 17);
             this.radioButton2.TabIndex = 3;
@@ -317,7 +321,7 @@ namespace Formularios2
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(45, 192);
+            this.radioButton1.Location = new System.Drawing.Point(132, 195);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(80, 17);
             this.radioButton1.TabIndex = 2;
@@ -337,7 +341,7 @@ namespace Formularios2
             this.Vencimiento,
             this.Importe,
             this.Client2});
-            this.dataGridView2.Location = new System.Drawing.Point(0, 19);
+            this.dataGridView2.Location = new System.Drawing.Point(6, 19);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(643, 150);
@@ -464,7 +468,7 @@ namespace Formularios2
             this.groupBox4.Controls.Add(this.dataGridView4);
             this.groupBox4.Location = new System.Drawing.Point(12, 292);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1117, 95);
+            this.groupBox4.Size = new System.Drawing.Size(1124, 95);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Grilla 4: Cobros cancelados del cliente";
@@ -472,7 +476,7 @@ namespace Formularios2
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(1022, 19);
+            this.radioButton4.Location = new System.Drawing.Point(1029, 19);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(89, 17);
             this.radioButton4.TabIndex = 5;
@@ -483,7 +487,7 @@ namespace Formularios2
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(934, 19);
+            this.radioButton3.Location = new System.Drawing.Point(941, 19);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(82, 17);
             this.radioButton3.TabIndex = 4;
@@ -562,7 +566,7 @@ namespace Formularios2
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.dataGridView5);
-            this.groupBox5.Location = new System.Drawing.Point(874, 422);
+            this.groupBox5.Location = new System.Drawing.Point(881, 422);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(255, 95);
             this.groupBox5.TabIndex = 4;
@@ -595,11 +599,33 @@ namespace Formularios2
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
             // 
+            // label8
+            // 
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 175);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(112, 62);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Alta de clientes.\r\nModifique/elimine con un click en la cabecera de fila.";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label9
+            // 
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(8, 175);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(118, 62);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Alta de cobros.\r\nSeleccione pago con un click en la cabecera de fila.";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // CFormulario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1139, 524);
+            this.ClientSize = new System.Drawing.Size(1146, 524);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -684,6 +710,8 @@ namespace Formularios2
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
 
