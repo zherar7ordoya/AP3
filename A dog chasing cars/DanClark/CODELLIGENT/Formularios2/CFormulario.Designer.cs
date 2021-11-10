@@ -30,6 +30,7 @@ namespace Formularios2
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@ namespace Formularios2
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -85,8 +87,6 @@ namespace Formularios2
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -116,6 +116,17 @@ namespace Formularios2
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Grilla 1: Listado de clientes";
+            // 
+            // label8
+            // 
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 175);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(112, 62);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Alta de clientes.\r\nModifique/elimine con un click en la cabecera de fila.";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button3
             // 
@@ -222,7 +233,19 @@ namespace Formularios2
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(75, 75);
             this.label7.TabIndex = 14;
+            this.label7.Text = "El total a pagar supera los $10.000";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(8, 175);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(118, 62);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Alta de cobros.\r\nSeleccione pago con un click en la cabecera de fila.";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button5
             // 
@@ -598,28 +621,6 @@ namespace Formularios2
             this.dataGridViewTextBoxColumn14.HeaderText = "Total";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            // 
-            // label8
-            // 
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(6, 175);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(112, 62);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Alta de clientes.\r\nModifique/elimine con un click en la cabecera de fila.";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label9
-            // 
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(8, 175);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(118, 62);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Alta de cobros.\r\nSeleccione pago con un click en la cabecera de fila.";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CFormulario
             // 
