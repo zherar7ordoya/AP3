@@ -18,7 +18,8 @@ namespace Formularios2
             InitializeComponent();
         }
 
-        List<Cliente> clientes = new List<Cliente>();
+        //List<Cliente> clientes = new List<Cliente>();
+        SortedSet<CCliente> clientes = new SortedSet<CCliente>();
         string usuario = string.Empty;
 
         private void Form1_Load(object sender, EventArgs e)
@@ -35,33 +36,44 @@ namespace Formularios2
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            clientes.Add(new Cliente() { Legajo = "2", Nombre = "Rodolfo" });
-            clientes.Add(new Cliente() { Legajo = "3", Nombre = "Tordoya" });
-            clientes.Add(new Cliente() { Legajo = "1", Nombre = "Gerardo" });
+            clientes.Add(new CCliente() { Legajo = 5, Nombre = "Gamma" });
+            clientes.Add(new CCliente() { Legajo = 4, Nombre = "Beta" });
+            clientes.Add(new CCliente() { Legajo = 3, Nombre = "Alpha" });
+            clientes.Add(new CCliente() { Legajo = 2, Nombre = "Tordoya" });
+            clientes.Add(new CCliente() { Legajo = 1, Nombre = "Gerardo" });
 
-            List<Cliente> ordenado = clientes.OrderBy(x => x.Legajo).ToList();
+            List<CCliente> ordenado = clientes.OrderBy(x => x.Legajo).ToList();
             //List<Cliente> ordenado = clientes.OrderByDescending(x => x.Legajo).ToList();
-        
-            this.dataGridView1.DataSource = ordenado;
-            
+            List<CCliente> listado = clientes.Select(x => x).ToList();
+
+            //this.DgvListaClientes.DataSource = ordenado;
+            this.DgvListaClientes.DataSource = listado;
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            TextboxLegajoCliente.Text = DgvListaClientes.Rows[e.RowIndex].Cells[0].Value.ToString();
+            TextboxNombreCliente.Text = DgvListaClientes.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+            BotonAltaCliente.Enabled = false;
+            BotonModificaCliente.Enabled = true;
+            BotonBajaCliente.Enabled = true;
         }
 
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox1.Text = String.Empty;
-            textBox2.Text = String.Empty;
+            TextboxLegajoCliente.Text = String.Empty;
+            TextboxNombreCliente.Text = String.Empty;
+
+            BotonAltaCliente.Enabled = true;
+            BotonModificaCliente.Enabled = false;
+            BotonBajaCliente.Enabled = false;
         }
 
 
 
-
+        #region CLOSURE                                                               <
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Escape)
@@ -71,7 +83,6 @@ namespace Formularios2
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
         private void CFormulario_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show
@@ -85,11 +96,25 @@ namespace Formularios2
                 e.Cancel = true;
             }
         }
+#endregion
     }
 
-    class Cliente
+    class CCliente : IComparable
     {
-        public string Legajo { get; set; }
+        public int Legajo { get; set; }
         public string Nombre { get; set; }
+
+        public int CompareTo(object obj)
+        {
+            //Hacemos typecast con el objeto con el cual nos vamos a comparar
+            CCliente tmp = (CCliente)obj;
+
+            //Si somos mayores regresamos 1
+            if (Legajo > tmp.Legajo) { return 1; }
+            //Si somos menores regresamos -1
+            if (Legajo < tmp.Legajo) { return -1; }
+            //Si somos iguales regresamos 0
+            return 0;
+        }
     }
 }

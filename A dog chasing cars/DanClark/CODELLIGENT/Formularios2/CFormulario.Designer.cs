@@ -31,15 +31,16 @@ namespace Formularios2
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.BotonModificaCliente = new System.Windows.Forms.Button();
+            this.BotonBajaCliente = new System.Windows.Forms.Button();
+            this.BotonAltaCliente = new System.Windows.Forms.Button();
+            this.TextboxNombreCliente = new System.Windows.Forms.TextBox();
+            this.TextboxLegajoCliente = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DgvListaClientes = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
@@ -52,8 +53,6 @@ namespace Formularios2
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Código = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,7 +87,7 @@ namespace Formularios2
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvListaClientes)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -102,14 +101,14 @@ namespace Formularios2
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.BotonModificaCliente);
+            this.groupBox1.Controls.Add(this.BotonBajaCliente);
+            this.groupBox1.Controls.Add(this.BotonAltaCliente);
+            this.groupBox1.Controls.Add(this.TextboxNombreCliente);
+            this.groupBox1.Controls.Add(this.TextboxLegajoCliente);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.DgvListaClientes);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(340, 245);
@@ -128,50 +127,50 @@ namespace Formularios2
             this.label8.Text = "Alta de clientes.\r\nModifique/elimine con un click en la cabecera de fila.";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // button3
+            // BotonModificaCliente
             // 
-            this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(255, 19);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Modificación";
-            this.button3.UseVisualStyleBackColor = true;
+            this.BotonModificaCliente.Enabled = false;
+            this.BotonModificaCliente.Location = new System.Drawing.Point(255, 19);
+            this.BotonModificaCliente.Name = "BotonModificaCliente";
+            this.BotonModificaCliente.Size = new System.Drawing.Size(75, 23);
+            this.BotonModificaCliente.TabIndex = 7;
+            this.BotonModificaCliente.Text = "Modificación";
+            this.BotonModificaCliente.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // BotonBajaCliente
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(255, 48);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Baja";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BotonBajaCliente.Enabled = false;
+            this.BotonBajaCliente.Location = new System.Drawing.Point(255, 48);
+            this.BotonBajaCliente.Name = "BotonBajaCliente";
+            this.BotonBajaCliente.Size = new System.Drawing.Size(75, 23);
+            this.BotonBajaCliente.TabIndex = 6;
+            this.BotonBajaCliente.Text = "Baja";
+            this.BotonBajaCliente.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BotonAltaCliente
             // 
-            this.button1.Location = new System.Drawing.Point(255, 214);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Alta";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BotonAltaCliente.Location = new System.Drawing.Point(255, 214);
+            this.BotonAltaCliente.Name = "BotonAltaCliente";
+            this.BotonAltaCliente.Size = new System.Drawing.Size(75, 23);
+            this.BotonAltaCliente.TabIndex = 5;
+            this.BotonAltaCliente.Text = "Alta";
+            this.BotonAltaCliente.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // TextboxNombreCliente
             // 
-            this.textBox2.ForeColor = System.Drawing.Color.Red;
-            this.textBox2.Location = new System.Drawing.Point(230, 188);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 4;
+            this.TextboxNombreCliente.ForeColor = System.Drawing.Color.Red;
+            this.TextboxNombreCliente.Location = new System.Drawing.Point(230, 188);
+            this.TextboxNombreCliente.Name = "TextboxNombreCliente";
+            this.TextboxNombreCliente.Size = new System.Drawing.Size(100, 20);
+            this.TextboxNombreCliente.TabIndex = 4;
             // 
-            // textBox1
+            // TextboxLegajoCliente
             // 
-            this.textBox1.ForeColor = System.Drawing.Color.Red;
-            this.textBox1.Location = new System.Drawing.Point(124, 188);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 3;
+            this.TextboxLegajoCliente.ForeColor = System.Drawing.Color.Red;
+            this.TextboxLegajoCliente.Location = new System.Drawing.Point(124, 188);
+            this.TextboxLegajoCliente.Name = "TextboxLegajoCliente";
+            this.TextboxLegajoCliente.Size = new System.Drawing.Size(100, 20);
+            this.TextboxLegajoCliente.TabIndex = 3;
             // 
             // label2
             // 
@@ -191,21 +190,22 @@ namespace Formularios2
             this.label1.TabIndex = 1;
             this.label1.Text = "Legajo";
             // 
-            // dataGridView1
+            // DgvListaClientes
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(243, 150);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
+            this.DgvListaClientes.AllowUserToAddRows = false;
+            this.DgvListaClientes.AllowUserToDeleteRows = false;
+            this.DgvListaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvListaClientes.Location = new System.Drawing.Point(6, 19);
+            this.DgvListaClientes.Name = "DgvListaClientes";
+            this.DgvListaClientes.ReadOnly = true;
+            this.DgvListaClientes.Size = new System.Drawing.Size(243, 150);
+            this.DgvListaClientes.TabIndex = 0;
+            this.DgvListaClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.DgvListaClientes.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.button5);
@@ -218,8 +218,6 @@ namespace Formularios2
             this.groupBox2.Controls.Add(this.dateTimePicker1);
             this.groupBox2.Controls.Add(this.textBox4);
             this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Controls.Add(this.radioButton1);
             this.groupBox2.Controls.Add(this.dataGridView2);
             this.groupBox2.Location = new System.Drawing.Point(397, 12);
             this.groupBox2.Name = "groupBox2";
@@ -227,6 +225,16 @@ namespace Formularios2
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Grilla 2: Cobros pendientes del cliente";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(217, 193);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(89, 17);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.Text = "Tipo especial";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -337,28 +345,6 @@ namespace Formularios2
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 4;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(218, 191);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(88, 17);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.Text = "Tipo especial";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(132, 191);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(80, 17);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Tipo normal";
-            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // dataGridView2
             // 
@@ -646,7 +632,7 @@ namespace Formularios2
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvListaClientes)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -664,16 +650,16 @@ namespace Formularios2
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DgvListaClientes;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button BotonModificaCliente;
+        private System.Windows.Forms.Button BotonBajaCliente;
+        private System.Windows.Forms.Button BotonAltaCliente;
+        private System.Windows.Forms.TextBox TextboxNombreCliente;
+        private System.Windows.Forms.TextBox TextboxLegajoCliente;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView2;
@@ -693,8 +679,6 @@ namespace Formularios2
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -721,6 +705,7 @@ namespace Formularios2
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
