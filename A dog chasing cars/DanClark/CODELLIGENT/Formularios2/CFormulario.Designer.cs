@@ -177,9 +177,9 @@ namespace Formularios2
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(227, 172);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Nombre";
+            this.label2.Text = "Nombre del cliente";
             // 
             // label1
             // 
@@ -301,9 +301,9 @@ namespace Formularios2
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(415, 175);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.Size = new System.Drawing.Size(91, 13);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Nombre";
+            this.label4.Text = "Nombre del cobro";
             // 
             // label3
             // 
