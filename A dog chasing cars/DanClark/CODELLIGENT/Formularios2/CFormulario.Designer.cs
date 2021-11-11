@@ -130,6 +130,7 @@ namespace Formularios2
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(255, 19);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
@@ -139,6 +140,7 @@ namespace Formularios2
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(255, 48);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -157,6 +159,7 @@ namespace Formularios2
             // 
             // textBox2
             // 
+            this.textBox2.ForeColor = System.Drawing.Color.Red;
             this.textBox2.Location = new System.Drawing.Point(230, 188);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
@@ -164,6 +167,7 @@ namespace Formularios2
             // 
             // textBox1
             // 
+            this.textBox1.ForeColor = System.Drawing.Color.Red;
             this.textBox1.Location = new System.Drawing.Point(124, 188);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
@@ -249,6 +253,7 @@ namespace Formularios2
             // 
             // button5
             // 
+            this.button5.Enabled = false;
             this.button5.Location = new System.Drawing.Point(655, 19);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
@@ -303,6 +308,7 @@ namespace Formularios2
             // 
             // textBox5
             // 
+            this.textBox5.ForeColor = System.Drawing.Color.Red;
             this.textBox5.Location = new System.Drawing.Point(630, 191);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 20);
@@ -318,6 +324,7 @@ namespace Formularios2
             // 
             // textBox4
             // 
+            this.textBox4.ForeColor = System.Drawing.Color.Red;
             this.textBox4.Location = new System.Drawing.Point(418, 191);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 20);
@@ -325,6 +332,7 @@ namespace Formularios2
             // 
             // textBox3
             // 
+            this.textBox3.ForeColor = System.Drawing.Color.Red;
             this.textBox3.Location = new System.Drawing.Point(312, 191);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
@@ -333,7 +341,7 @@ namespace Formularios2
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(218, 195);
+            this.radioButton2.Location = new System.Drawing.Point(218, 191);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(88, 17);
             this.radioButton2.TabIndex = 3;
@@ -344,7 +352,7 @@ namespace Formularios2
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(132, 195);
+            this.radioButton1.Location = new System.Drawing.Point(132, 191);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(80, 17);
             this.radioButton1.TabIndex = 2;
