@@ -14,47 +14,17 @@ namespace Formularios2
 {
     public partial class CFormulario : Form
     {
-        public CFormulario()
-        {
-            InitializeComponent();
-        }
-
+        public CFormulario() { InitializeComponent(); }
         List<CCliente> clientes = new List<CCliente>();
         string usuario = string.Empty;
+        CCliente cliente = null;
+        CCobro cobro = null;
 
-     
-
-
-
-
-        #region CLOSURE                                                               <
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.Escape)
-            {
-                this.Close();
-                return true;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-        private void CFormulario_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (MessageBox.Show
-            (
-            $"{usuario}, ¿deseas cerrar esta aplicación?",
-            "Salir de la aplicación",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question
-            ) == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
-        }
-        #endregion
-
+        #region APERTURA DEL FORMULARIO
         private void CFormulario_Load(object sender, EventArgs e)
         {
             IniciaFormulario();
+            this.TextboxLegajoCliente.Focus();
 
             //clientes.Add(new CCliente(3, "Tres"));
             //clientes.Add(new CCliente(5, "Cinco"));
@@ -80,7 +50,7 @@ namespace Formularios2
             //MessageBox.Show(cuantos.ToString());
 
         }
- 
+
         private void IniciaFormulario()
         {
             usuario = Interaction.InputBox
@@ -95,80 +65,204 @@ namespace Formularios2
             this.MaximizeBox = false;
             this.MinimizeBox = false;
         }
-        private void DgvListaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        #endregion
+
+        #region CIERRE DEL FORMULARIO
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        private void CFormulario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show
+            (
+            "¿Desea salir de la aplicación?",
+            $"{usuario}",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+            ) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+        #endregion
+
+        #region EVENTOS GRUPO CLIENTE (GRILLA 1)
+        private void DgvListaClientes_CellClick(
+            object sender,
+            DataGridViewCellEventArgs e)
         {
             TextboxLegajoCliente.Text = String.Empty;
             TextboxNombreCliente.Text = String.Empty;
 
+            TextboxLegajoCliente.Enabled = true;
             CmdAltaCliente.Enabled = true;
             CmdModificaCliente.Enabled = false;
             CmdBajaCliente.Enabled = false;
         }
 
-        private void DgvListaClientes_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DgvListaClientes_RowHeaderMouseClick(
+            object sender,
+            DataGridViewCellMouseEventArgs e)
         {
-            TextboxLegajoCliente.Text = DgvListaClientes.Rows[e.RowIndex].Cells[0].Value.ToString();
-            TextboxNombreCliente.Text = DgvListaClientes.Rows[e.RowIndex].Cells[1].Value.ToString();
+            cliente = (CCliente)
+                (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
 
+            TextboxLegajoCliente.Text = DgvListaClientes
+                .Rows[e.RowIndex].Cells[0].Value.ToString();
+            TextboxNombreCliente.Text = DgvListaClientes
+                .Rows[e.RowIndex].Cells[1].Value.ToString();
+
+            TextboxLegajoCliente.Enabled = false;
             CmdAltaCliente.Enabled = false;
             CmdModificaCliente.Enabled = true;
             CmdBajaCliente.Enabled = true;
         }
+#endregion
 
+        #region BOTONES GRUPO CLIENTE (GRILLA 1)
         private void CmdAltaCliente_Click(object sender, EventArgs e)
         {
+            ErrorProvider.Clear();
             try
             {
+                // Verificaciones
                 if (
                     TextboxLegajoCliente.Text == string.Empty ||
                     TextboxNombreCliente.Text == string.Empty
-                    ) { throw new ArgumentException(); }
+                    ) { throw new Exception("No pueden haber campos vacíos"); }
                 else if (
                     !Regex.Match(TextboxNombreCliente.Text,
-                    "[A-Z][a-z]+").Success
-                    ) { throw new FormatException(); }
-                else if(clientes.Any(x => x.Legajo == Int32.Parse(TextboxLegajoCliente.Text)))
+                    "^[A-Z][a-zA-Z]*$").Success
+                    ) { throw new Exception("Use un nombre propio (Ej.: Fulano)"); }
+                else if(clientes.Any
+                    (x => x.Legajo == Int32.Parse(TextboxLegajoCliente.Text)))
                 { throw new Exception("Los legajos deben ser diferentes."); }
 
-                clientes.Add(new CCliente(Int32.Parse(TextboxLegajoCliente.Text), TextboxNombreCliente.Text));
+                // Operaciones
+                clientes.Add(new CCliente(
+                    Int32.Parse(TextboxLegajoCliente.Text),
+                    TextboxNombreCliente.Text
+                    ));
                 DgvListaClientes.DataSource = null;
                 DgvListaClientes.DataSource = clientes;
+
+                // Adendas
                 DgvListaClientes_CellClick(this, null);
-            }
-            catch(FormatException)
-            {
-                MessageBox.Show
-                (
-                "Para el legajo, ingrese un número entero.\n\n" +
-                "Para el nombre del cliente, ingrese un nombre propio.\n" +
-                "Ejemplos:\n" +
-                "    Fulano\n" +
-                "    Mengano Zutano",
-                "Algo ha fallado...",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-                );
-            }
-            catch (ArgumentException)
-            {
-                MessageBox.Show
-                (
-                "Todos los campos son obligatorios.",
-                "Algo ha fallado...",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-                );
+                this.TextboxLegajoCliente.Focus();
             }
             catch (Exception error)
             {
+                ErrorProvider.SetError(
+                    EtiquetaClientes,
+                    error.Message);
+
                 MessageBox.Show
                     (
-                    error.Message,
+                    "En el ícono encontrará mayores detalles.",
                     "Algo ha fallado...",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                     );
             }
+        }
+
+        private void CmdBajaCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Verificaciones
+                // Operaciones
+                if (MessageBox.Show
+                    (
+                    "¿Confirma baja?",
+                    $"{usuario}",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                    ) == DialogResult.Yes)
+                {
+                    //CCliente cliente =
+                    //    (CCliente)
+                    //    (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
+                    this.clientes.Remove(cliente);
+                    DgvListaClientes.DataSource = null;
+                    DgvListaClientes.DataSource = clientes;
+                }
+
+                // Adendas
+                DgvListaClientes_CellClick(this, null);
+                this.TextboxLegajoCliente.Focus();
+            }
+            catch (Exception error)
+            {
+                ErrorProvider.SetError(
+                    EtiquetaClientes,
+                    error.Message);
+
+                MessageBox.Show
+                    (
+                    "En el ícono encontrará mayores detalles.",
+                    "Algo ha fallado...",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+            }
+        }
+
+        private void CmdModificaCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Verificaciones
+                // Operaciones
+                if (MessageBox.Show
+                    (
+                    "¿Confirma modificación?",
+                    $"{usuario}",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                    ) == DialogResult.Yes)
+                {
+                    this.clientes.Remove(cliente);
+                    CmdAltaCliente_Click(this, null);
+                }
+
+                // Adendas
+            }
+            catch (Exception error)
+            {
+                ErrorProvider.SetError(
+                    EtiquetaClientes,
+                    error.Message);
+
+                MessageBox.Show
+                    (
+                    "En el ícono encontrará mayores detalles.",
+                    "Algo ha fallado...",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+            }
+
+        }
+        #endregion
+
+        private void DgvListaPendientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void DgvListaPendientes_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            cliente = (CCliente)
+                (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
+            cobro = (CCobro)
+                (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
         }
     }
 

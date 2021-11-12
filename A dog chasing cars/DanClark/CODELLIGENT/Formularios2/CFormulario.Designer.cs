@@ -29,6 +29,7 @@ namespace Formularios2
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.GrpGrilla1 = new System.Windows.Forms.GroupBox();
             this.EtiquetaClientes = new System.Windows.Forms.Label();
             this.CmdModificaCliente = new System.Windows.Forms.Button();
@@ -62,6 +63,7 @@ namespace Formularios2
             this.DgvListaCanceladorG4 = new System.Windows.Forms.DataGridView();
             this.GrpGrilla5 = new System.Windows.Forms.GroupBox();
             this.DgvListaCanceladorG5 = new System.Windows.Forms.DataGridView();
+            this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.GrpGrilla1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaClientes)).BeginInit();
             this.GrpGrilla2.SuspendLayout();
@@ -72,6 +74,7 @@ namespace Formularios2
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladorG4)).BeginInit();
             this.GrpGrilla5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladorG5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // GrpGrilla1
@@ -112,6 +115,7 @@ namespace Formularios2
             this.CmdModificaCliente.TabIndex = 7;
             this.CmdModificaCliente.Text = "Modificación";
             this.CmdModificaCliente.UseVisualStyleBackColor = true;
+            this.CmdModificaCliente.Click += new System.EventHandler(this.CmdModificaCliente_Click);
             // 
             // CmdBajaCliente
             // 
@@ -122,6 +126,7 @@ namespace Formularios2
             this.CmdBajaCliente.TabIndex = 6;
             this.CmdBajaCliente.Text = "Baja";
             this.CmdBajaCliente.UseVisualStyleBackColor = true;
+            this.CmdBajaCliente.Click += new System.EventHandler(this.CmdBajaCliente_Click);
             // 
             // CmdAltaCliente
             // 
@@ -173,6 +178,7 @@ namespace Formularios2
             this.DgvListaClientes.AllowUserToDeleteRows = false;
             this.DgvListaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListaClientes.Location = new System.Drawing.Point(6, 19);
+            this.DgvListaClientes.MultiSelect = false;
             this.DgvListaClientes.Name = "DgvListaClientes";
             this.DgvListaClientes.ReadOnly = true;
             this.DgvListaClientes.Size = new System.Drawing.Size(243, 257);
@@ -328,10 +334,13 @@ namespace Formularios2
             this.DgvListaPendientes.AllowUserToDeleteRows = false;
             this.DgvListaPendientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListaPendientes.Location = new System.Drawing.Point(6, 19);
+            this.DgvListaPendientes.MultiSelect = false;
             this.DgvListaPendientes.Name = "DgvListaPendientes";
             this.DgvListaPendientes.ReadOnly = true;
             this.DgvListaPendientes.Size = new System.Drawing.Size(643, 75);
             this.DgvListaPendientes.TabIndex = 1;
+            this.DgvListaPendientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvListaPendientes_CellClick);
+            this.DgvListaPendientes.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvListaPendientes_RowHeaderMouseClick);
             // 
             // GrpGrilla3
             // 
@@ -349,6 +358,7 @@ namespace Formularios2
             this.DgvListaCanceladorG3.AllowUserToDeleteRows = false;
             this.DgvListaCanceladorG3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListaCanceladorG3.Location = new System.Drawing.Point(6, 19);
+            this.DgvListaCanceladorG3.MultiSelect = false;
             this.DgvListaCanceladorG3.Name = "DgvListaCanceladorG3";
             this.DgvListaCanceladorG3.ReadOnly = true;
             this.DgvListaCanceladorG3.Size = new System.Drawing.Size(843, 150);
@@ -394,6 +404,7 @@ namespace Formularios2
             this.DgvListaCanceladorG4.AllowUserToDeleteRows = false;
             this.DgvListaCanceladorG4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListaCanceladorG4.Location = new System.Drawing.Point(6, 19);
+            this.DgvListaCanceladorG4.MultiSelect = false;
             this.DgvListaCanceladorG4.Name = "DgvListaCanceladorG4";
             this.DgvListaCanceladorG4.ReadOnly = true;
             this.DgvListaCanceladorG4.Size = new System.Drawing.Size(843, 150);
@@ -415,10 +426,15 @@ namespace Formularios2
             this.DgvListaCanceladorG5.AllowUserToDeleteRows = false;
             this.DgvListaCanceladorG5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListaCanceladorG5.Location = new System.Drawing.Point(6, 19);
+            this.DgvListaCanceladorG5.MultiSelect = false;
             this.DgvListaCanceladorG5.Name = "DgvListaCanceladorG5";
             this.DgvListaCanceladorG5.ReadOnly = true;
             this.DgvListaCanceladorG5.Size = new System.Drawing.Size(243, 150);
             this.DgvListaCanceladorG5.TabIndex = 1;
+            // 
+            // ErrorProvider
+            // 
+            this.ErrorProvider.ContainerControl = this;
             // 
             // CFormulario
             // 
@@ -447,6 +463,7 @@ namespace Formularios2
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladorG4)).EndInit();
             this.GrpGrilla5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladorG5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -486,6 +503,7 @@ namespace Formularios2
         private System.Windows.Forms.Label EtiquetaClientes;
         private System.Windows.Forms.Label EtiquetaPendientes;
         private System.Windows.Forms.CheckBox CheckTipoEspecial;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
     }
 }
 
