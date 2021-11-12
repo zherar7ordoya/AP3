@@ -47,11 +47,9 @@ namespace Formularios2
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            clientes.Add(new CCliente() { Legajo = 2, NombreCliente = "Dos" });
-            clientes.Add(new CCliente() { Legajo = 5, NombreCliente = "Cinco" });
-            clientes.Add(new CCliente() { Legajo = 4, NombreCliente = "Cuatro" });
-            clientes.Add(new CCliente() { Legajo = 3, NombreCliente = "Tres" });
-            clientes.Add(new CCliente() { Legajo = 1, NombreCliente = "Uno" });
+            clientes.Add(new CCliente(3, "Tres") );
+            clientes.Add(new CCliente(5, "Cinco"));
+            clientes.Add(new CCliente(1, "Uno"));
 
             List<CCliente> ordenado = clientes.OrderBy(x => x.Legajo).ToList();
             //List<Cliente> ordenado = clientes.OrderByDescending(x => x.Legajo).ToList();
@@ -60,11 +58,10 @@ namespace Formularios2
             //this.DgvListaClientes.DataSource = ordenado;
             this.DgvListaClientes.DataSource = ordenado;
 
-
             DateTime inicio = new DateTime(2021, 11, 4);
             DateTime final = DateTime.Today;
 
-            CCobro objeto = new CCobroNormal();
+            CCobro objeto = new CCobroNormal(1, "Uno", new DateTime(2021, 11, 4), 1000, 1);
 
             double cuantos = objeto.CalcularRetrasoEnDias(inicio, final);
 
@@ -129,31 +126,171 @@ namespace Formularios2
     {
         decimal CalcularRecargo(decimal pImporte, double pDias);
     }
+
+
     public abstract class CCobro
     {
+        // Atributos
+        private int codigo;
+        private string nombreCobro;
+        private DateTime fechaVencimiento;
+        private decimal importe;
+        private int cliente;
+
+        // Propiedades
+        public int Codigo { get => codigo; }
+        public string NombreCobro { get => nombreCobro; }
+        public DateTime FechaVencimiento { get => fechaVencimiento; }
+        public decimal Importe { get => importe; }
+        public int Cliente { get => cliente; }
+
+        // Constructores
+        public CCobro
+            (
+            int      pCodigo,
+            string   pNombreCobro,
+            DateTime pFechaVencimiento,
+            decimal  pImporte,
+            int      pCliente
+            )
+        {
+            this.codigo           = pCodigo;
+            this.nombreCobro      = pNombreCobro;
+            this.fechaVencimiento = pFechaVencimiento;
+            this.importe          = pImporte;
+            this.cliente          = pCliente;
+        }
+
+        // Métodos
         public double CalcularRetrasoEnDias
             (DateTime pDesde,
             DateTime pHasta)
         { return (pHasta - pDesde).TotalDays; }
     }
+
+
+
     public class CCobroNormal : CCobro, ICobro
     {
-        public decimal CalcularRecargo(decimal pImporte, double pDias)
+        // Atributos
+        // Propiedades
+        // Constructores
+        public CCobroNormal
+            (
+            int      pCodigo,
+            string   pNombreCobro,
+            DateTime pFechaVencimiento,
+            decimal  pImporte,
+            int      pCliente
+            )
+            : base
+                  (
+                     pCodigo,
+                     pNombreCobro,
+                     pFechaVencimiento,
+                     pImporte,
+                     pCliente
+                  )
+        { }
+
+            // Métodos
+            public decimal CalcularRecargo(decimal pImporte, double pDias)
         {
             return pImporte * (decimal)0.01 * (decimal)pDias;
         }
     }
+
+
+
     public class CCobroEspecial : CCobro, ICobro
     {
+        // Atributos
+
+        // Propiedades
+
+        // Constructores
+        public CCobroEspecial
+            (
+            int      pCodigo,
+            string   pNombreCobro,
+            DateTime pFechaVencimiento,
+            decimal  pImporte,
+            int      pCliente
+            )
+            : base
+                  (
+                     pCodigo,
+                     pNombreCobro,
+                     pFechaVencimiento,
+                     pImporte,
+                     pCliente
+                  )
+        { }
+
+        // Métodos
         public decimal CalcularRecargo(decimal pImporte, double pDias)
         {
             return (pImporte * (decimal)0.02 * (decimal)pDias) + 1000;
         }
     }
-    public class CCliente //IComparable
+
+
+
+    public class CPago : CCobro, IComparable
     {
+        // Atributos
+        private decimal recargo;
+        private decimal total;
+
+        // Propiedades
+        public decimal Recargo { get => recargo; }
+        public decimal Total { get => total; }
+
+        // Constructores
+        public CPago
+            (
+            int      pCodigo,
+            string   pNombreCobro,
+            DateTime pFechaVencimiento,
+            decimal  pImporte,
+            int      pCliente,
+            decimal  pRecargo,
+            decimal  pTotal
+            )
+            : base
+                  (
+                     pCodigo,
+                     pNombreCobro,
+                     pFechaVencimiento,
+                     pImporte,
+                     pCliente
+                  )
+        {
+            this.recargo = pRecargo;
+            this.total = pTotal;
+        }
+        
+        // Métodos
+        public int CompareTo(object obj)
+        {
+            CPago x = (CPago)obj;
+            if(Total > x.Total) { return 1; }
+            if(Total < x.Total) { return -1; }
+            return 0;
+        }
+    }
+
+
+
+    public class CCliente
+    {
+        // Atributos
         private int legajo;
         private string nombreCliente;
+        private List<CCobro> CobrosPendientes = new List<CCobro>();
+        private List<CPago> CobrosCancelados = new List<CPago>();
+
+        // Propiedades
         public int Legajo
         {
             get => this.legajo;
@@ -165,28 +302,18 @@ namespace Formularios2
             set => this.nombreCliente = value;
         }
 
+        // Constructores
+        public CCliente(int pLegajo, string pNombreCliente)
+        {
+            this.legajo = pLegajo;
+            this.nombreCliente = pNombreCliente;
+        }
 
-        /* IMPLEMENTAR
-         * 
-        public Accionista(string pNombre) { this.nombre = pNombre; }
-        private List<Accion> ListaAcciones = new List<Accion>();
-        public void AltaAccion(Accion pAccion) { this.ListaAcciones.Add(pAccion); }
-        public void BajaAccion(Accion pAccion) { this.ListaAcciones.Remove(pAccion); }
-        public List<Accion> VerAcciones() { return this.ListaAcciones; }
-        */
-
-
-
-        //public int CompareTo(object obj)
-        //{
-        //    //Hacemos typecast con el objeto con el cual nos vamos a comparar
-        //    CCliente x = (CCliente)obj;
-        //    //Si somos mayores regresamos 1
-        //    if (Legajo > x.Legajo) { return 1; }
-        //    //Si somos menores regresamos -1
-        //    if (Legajo < x.Legajo) { return -1; }
-        //    //Si somos iguales regresamos 0
-        //    return 0;
-        //}
+        // Métodos
+        public List<CCobro> VerPendientes() { return this.CobrosPendientes; }
+        public List<CPago> VerCancelados() { return this.CobrosCancelados; }
+        public void AltaPendiente(CCobro pCobro) { this.CobrosPendientes.Add(pCobro); }
+        public void BajaPendiente(CCobro pCobro) { this.CobrosPendientes.Remove(pCobro); }
+        public void AltaCancelado(CPago pPago) { this.CobrosCancelados.Add(pPago); }
     }
 }
