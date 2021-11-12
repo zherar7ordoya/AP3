@@ -8,16 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
 using System.Windows.Forms;
-
-
-/* Calculate difference between two dates (number of days)?
- * Assuming StartDate and EndDate are of type DateTime:
- * (EndDate - StartDate).TotalDays
- * 
- * 
- */
-
-
+using System.Text.RegularExpressions;
 
 namespace Formularios2
 {
@@ -29,66 +20,10 @@ namespace Formularios2
         }
 
         List<CCliente> clientes = new List<CCliente>();
-        //SortedSet<CCliente> clientes = new SortedSet<CCliente>();
-
         string usuario = string.Empty;
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            usuario = Interaction.InputBox
-                (
-                "Ingrese su nombre:",
-                "Usuario",
-                "Gerardo Tordoya"
-                );
-            this.CenterToScreen();
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.Text += $" ({usuario})";
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+     
 
-            clientes.Add(new CCliente(3, "Tres") );
-            clientes.Add(new CCliente(5, "Cinco"));
-            clientes.Add(new CCliente(1, "Uno"));
-
-            List<CCliente> ordenado = clientes.OrderBy(x => x.Legajo).ToList();
-            //List<Cliente> ordenado = clientes.OrderByDescending(x => x.Legajo).ToList();
-            //List<CCliente> listado = clientes.Select(x => x).ToList();
-
-            //this.DgvListaClientes.DataSource = ordenado;
-            this.DgvListaClientes.DataSource = ordenado;
-
-            DateTime inicio = new DateTime(2021, 11, 4);
-            DateTime final = DateTime.Today;
-
-            CCobro objeto = new CCobroNormal(1, "Uno", new DateTime(2021, 11, 4), 1000, 1);
-
-            double cuantos = objeto.CalcularRetrasoEnDias(inicio, final);
-
-            //double dias = (final - inicio).TotalDays;
-            MessageBox.Show(cuantos.ToString());
-        }
-
-        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            TextboxLegajoCliente.Text = DgvListaClientes.Rows[e.RowIndex].Cells[0].Value.ToString();
-            TextboxNombreCliente.Text = DgvListaClientes.Rows[e.RowIndex].Cells[1].Value.ToString();
-
-            BotonAltaCliente.Enabled = false;
-            BotonModificaCliente.Enabled = true;
-            BotonBajaCliente.Enabled = true;
-        }
-
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            TextboxLegajoCliente.Text = String.Empty;
-            TextboxNombreCliente.Text = String.Empty;
-
-            BotonAltaCliente.Enabled = true;
-            BotonModificaCliente.Enabled = false;
-            BotonBajaCliente.Enabled = false;
-        }
 
 
 
@@ -115,7 +50,126 @@ namespace Formularios2
                 e.Cancel = true;
             }
         }
-#endregion
+        #endregion
+
+        private void CFormulario_Load(object sender, EventArgs e)
+        {
+            IniciaFormulario();
+
+            //clientes.Add(new CCliente(3, "Tres"));
+            //clientes.Add(new CCliente(5, "Cinco"));
+            //clientes.Add(new CCliente(1, "Uno"));
+            //clientes.Add(new CCliente(2, "Dos"));
+            //clientes.Add(new CCliente(4, "Cuatro"));
+
+            //List<CCliente> ascendente = clientes.OrderBy(x => x.Legajo).ToList();
+            //List<CCliente> descendente = clientes.OrderByDescending(x => x.Legajo).ToList();
+            //List<CCliente> desordenado = clientes.Select(x => x).ToList();
+
+            //this.DgvListaClientes.DataSource = desordenado;
+            //this.DgvListaPendientes.DataSource = ascendente;
+            //this.DgvListaCanceladorG3.DataSource = descendente;
+            //this.DgvListaCanceladorG4.DataSource = ascendente;
+            //this.DgvListaCanceladorG5.DataSource = desordenado;
+
+            //DateTime inicio = new DateTime(2021, 11, 4);
+            //DateTime final = DateTime.Today;
+            //CCobro objeto = new CCobroNormal(1, "Uno", new DateTime(2021, 11, 4), 1000, 1);
+            //double cuantos = objeto.CalcularRetrasoEnDias(inicio, final);
+            //double dias = (final - inicio).TotalDays;
+            //MessageBox.Show(cuantos.ToString());
+
+        }
+ 
+        private void IniciaFormulario()
+        {
+            usuario = Interaction.InputBox
+                (
+                "Ingrese su nombre:",
+                "Usuario",
+                "Gerardo Tordoya"
+                );
+            this.CenterToScreen();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.Text += $" ({usuario})";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+        }
+        private void DgvListaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            TextboxLegajoCliente.Text = String.Empty;
+            TextboxNombreCliente.Text = String.Empty;
+
+            CmdAltaCliente.Enabled = true;
+            CmdModificaCliente.Enabled = false;
+            CmdBajaCliente.Enabled = false;
+        }
+
+        private void DgvListaClientes_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            TextboxLegajoCliente.Text = DgvListaClientes.Rows[e.RowIndex].Cells[0].Value.ToString();
+            TextboxNombreCliente.Text = DgvListaClientes.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+            CmdAltaCliente.Enabled = false;
+            CmdModificaCliente.Enabled = true;
+            CmdBajaCliente.Enabled = true;
+        }
+
+        private void CmdAltaCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (
+                    TextboxLegajoCliente.Text == string.Empty ||
+                    TextboxNombreCliente.Text == string.Empty
+                    ) { throw new ArgumentException(); }
+                else if (
+                    !Regex.Match(TextboxNombreCliente.Text,
+                    "[A-Z][a-z]+").Success
+                    ) { throw new FormatException(); }
+                else if(clientes.Any(x => x.Legajo == Int32.Parse(TextboxLegajoCliente.Text)))
+                { throw new Exception("Los legajos deben ser diferentes."); }
+
+                clientes.Add(new CCliente(Int32.Parse(TextboxLegajoCliente.Text), TextboxNombreCliente.Text));
+                DgvListaClientes.DataSource = null;
+                DgvListaClientes.DataSource = clientes;
+                DgvListaClientes_CellClick(this, null);
+            }
+            catch(FormatException)
+            {
+                MessageBox.Show
+                (
+                "Para el legajo, ingrese un número entero.\n\n" +
+                "Para el nombre del cliente, ingrese un nombre propio.\n" +
+                "Ejemplos:\n" +
+                "    Fulano\n" +
+                "    Mengano Zutano",
+                "Algo ha fallado...",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show
+                (
+                "Todos los campos son obligatorios.",
+                "Algo ha fallado...",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show
+                    (
+                    error.Message,
+                    "Algo ha fallado...",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+            }
+        }
     }
 
 
@@ -164,7 +218,7 @@ namespace Formularios2
         // Métodos
         public double CalcularRetrasoEnDias
             (DateTime pDesde,
-            DateTime pHasta)
+            DateTime  pHasta)
         { return (pHasta - pDesde).TotalDays; }
     }
 
@@ -192,12 +246,10 @@ namespace Formularios2
                      pCliente
                   )
         { }
-
-            // Métodos
-            public decimal CalcularRecargo(decimal pImporte, double pDias)
-        {
-            return pImporte * (decimal)0.01 * (decimal)pDias;
-        }
+        
+        // Métodos
+        public decimal CalcularRecargo(decimal pImporte, double pDias)
+        { return pImporte * (decimal)0.01 * (decimal)pDias; }
     }
 
 
@@ -205,9 +257,7 @@ namespace Formularios2
     public class CCobroEspecial : CCobro, ICobro
     {
         // Atributos
-
         // Propiedades
-
         // Constructores
         public CCobroEspecial
             (
@@ -229,9 +279,7 @@ namespace Formularios2
 
         // Métodos
         public decimal CalcularRecargo(decimal pImporte, double pDias)
-        {
-            return (pImporte * (decimal)0.02 * (decimal)pDias) + 1000;
-        }
+        { return (pImporte * (decimal)0.02 * (decimal)pDias) + 1000; }
     }
 
 
@@ -267,7 +315,7 @@ namespace Formularios2
                   )
         {
             this.recargo = pRecargo;
-            this.total = pTotal;
+            this.total   = pTotal;
         }
         
         // Métodos
@@ -301,6 +349,8 @@ namespace Formularios2
             get => this.nombreCliente;
             set => this.nombreCliente = value;
         }
+        public List<CCobro> VerPendientes() { return this.CobrosPendientes; }
+        public List<CPago> VerCancelados() { return this.CobrosCancelados; }
 
         // Constructores
         public CCliente(int pLegajo, string pNombreCliente)
@@ -310,10 +360,13 @@ namespace Formularios2
         }
 
         // Métodos
-        public List<CCobro> VerPendientes() { return this.CobrosPendientes; }
-        public List<CPago> VerCancelados() { return this.CobrosCancelados; }
-        public void AltaPendiente(CCobro pCobro) { this.CobrosPendientes.Add(pCobro); }
-        public void BajaPendiente(CCobro pCobro) { this.CobrosPendientes.Remove(pCobro); }
-        public void AltaCancelado(CPago pPago) { this.CobrosCancelados.Add(pPago); }
+        public void AltaPendiente(CCobro pCobro)
+        { this.CobrosPendientes.Add(pCobro); }
+
+        public void BajaPendiente(CCobro pCobro)
+        { this.CobrosPendientes.Remove(pCobro); }
+
+        public void AltaCancelado(CPago pPago)
+        { this.CobrosCancelados.Add(pPago); }
     }
 }
