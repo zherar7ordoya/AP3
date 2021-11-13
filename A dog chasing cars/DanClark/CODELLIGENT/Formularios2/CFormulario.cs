@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Microsoft.VisualBasic;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Reflection;
+
 
 namespace Formularios2
 {
@@ -158,17 +160,7 @@ namespace Formularios2
             }
             catch (Exception error)
             {
-                ErrorProvider.SetError(
-                    EtiquetaClientes,
-                    error.Message);
-
-                MessageBox.Show
-                    (
-                    "En el ícono encontrará mayores detalles.",
-                    "Algo ha fallado...",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                    );
+                InformarExcepcion(EtiquetaClientes, error.Message);
             }
         }
 
@@ -200,17 +192,7 @@ namespace Formularios2
             }
             catch (Exception error)
             {
-                ErrorProvider.SetError(
-                    EtiquetaClientes,
-                    error.Message);
-
-                MessageBox.Show
-                    (
-                    "En el ícono encontrará mayores detalles.",
-                    "Algo ha fallado...",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                    );
+                InformarExcepcion(EtiquetaClientes, error.Message);
             }
         }
 
@@ -236,22 +218,13 @@ namespace Formularios2
             }
             catch (Exception error)
             {
-                ErrorProvider.SetError(
-                    EtiquetaClientes,
-                    error.Message);
-
-                MessageBox.Show
-                    (
-                    "En el ícono encontrará mayores detalles.",
-                    "Algo ha fallado...",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                    );
+                InformarExcepcion(EtiquetaClientes, error.Message);
             }
 
         }
         #endregion
 
+        #region EVENTOS GRUPO PENDIENTES (GRILLA 2)
         private void DgvListaPendientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -264,7 +237,84 @@ namespace Formularios2
             cobro = (CCobro)
                 (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
         }
+        #endregion
+
+        private void CmdAltaCobro_Click(object sender, EventArgs e)
+        {
+            ErrorProvider.Clear();
+            try
+            {
+                // Verificaciones
+                if (DgvListaClientes.SelectedRows.Count == 0)
+                { throw new Exception("Debe seleccionar un cliente.\n" +
+                    "Puede hacerlo con un click en su cabecera de fila."); }
+                else if (
+                    TextboxCodigoCobro.Text == string.Empty ||
+                    TextboxNombreCobro.Text == string.Empty ||
+                    TextboxImporte.Text == string.Empty
+                    ) { throw new Exception("No pueden haber campos vacíos"); }
+
+                // Operaciones
+
+                cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem;
+
+                
+
+                if (CheckTipoEspecial.Checked)
+                {
+                    cobro = new CCobroEspecial(
+                        Int32.Parse(TextboxCodigoCobro.Text),
+                        TextboxNombreCobro.Text,
+                        DatepickerFechaVencimiento.Value,
+                        decimal.Parse(TextboxImporte.Text),
+                        Int32.Parse(TextboxLegajoCliente.Text));
+                    cliente.AltaPendiente(cobro);
+                    
+                    
+
+                }
+                else
+                {
+                    // REVISAR CLASE COBRO
+                    // FALTA TIPO
+                    // CLIENTE A STRING
+                }
+
+                this.DgvListaPendientes.DataSource = null;
+                this.DgvListaPendientes.DataSource = cliente.VerPendientes();
+
+
+
+
+
+                // Adendas
+            }
+            catch (Exception error)
+            {
+                InformarExcepcion(EtiquetaPendientes, error.Message);
+            }
+        }
+
+
+
+        private void InformarExcepcion(Control pControl, string pMensaje)
+        {
+            ErrorProvider.SetError(
+                pControl,
+                pMensaje);
+
+            MessageBox.Show
+                (
+                pMensaje,
+                "Algo ha fallado...",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
+
+        }
     }
+
+
 
 
 

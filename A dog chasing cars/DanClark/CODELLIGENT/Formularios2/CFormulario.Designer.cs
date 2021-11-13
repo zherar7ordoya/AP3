@@ -259,6 +259,7 @@ namespace Formularios2
             this.CmdAltaCobro.TabIndex = 12;
             this.CmdAltaCobro.Text = "Alta";
             this.CmdAltaCobro.UseVisualStyleBackColor = true;
+            this.CmdAltaCobro.Click += new System.EventHandler(this.CmdAltaCobro_Click);
             // 
             // LabelImporte
             // 
