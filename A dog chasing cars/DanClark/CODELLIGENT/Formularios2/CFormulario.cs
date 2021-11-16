@@ -23,6 +23,10 @@ namespace Formularios2
         CCobro cobro = null;
         CPago pago = null;
 
+        List<CPago> ordenable = new List<CPago>();
+        List<CReducida> reducida = new List<CReducida>();
+
+
         #region APERTURA DEL FORMULARIO
         private void CFormulario_Load(object sender, EventArgs e)
         {
@@ -100,16 +104,6 @@ namespace Formularios2
             object sender,
             DataGridViewCellEventArgs e)
         {
-            TextboxLegajoCliente.Text = String.Empty;
-            TextboxNombreCliente.Text = String.Empty;
-
-            TextboxLegajoCliente.Enabled = true;
-            CmdAltaCliente.Enabled = true;
-            CmdModificaCliente.Enabled = false;
-            CmdBajaCliente.Enabled = false;
-
-            this.DgvListaPendientes.DataSource = null;
-
             if (DgvListaClientes.SelectedRows.Count > 0)
             {
                 cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem;
@@ -118,6 +112,20 @@ namespace Formularios2
                     this.DgvListaPendientes.DataSource = cliente.VerPendientes();
                 }
             }
+            this.DgvListaPendientes.DataSource = null;
+
+            TextboxLegajoCliente.Text = String.Empty;
+            TextboxNombreCliente.Text = String.Empty;
+
+            // Controles propios
+            TextboxLegajoCliente.Enabled = true;
+            CmdAltaCliente.Enabled       = true;
+            CmdModificaCliente.Enabled   = false;
+            CmdBajaCliente.Enabled       = false;
+
+            // Controles ajenos
+            CmdAltaCobro.Enabled         = true;
+            CmdPagar.Enabled             = false;
         }
 
         private void DgvListaClientes_RowHeaderMouseClick(
@@ -132,12 +140,18 @@ namespace Formularios2
             TextboxNombreCliente.Text = DgvListaClientes
                 .Rows[e.RowIndex].Cells[1].Value.ToString();
 
+            // Controles propios
             TextboxLegajoCliente.Enabled = false;
-            CmdAltaCliente.Enabled = false;
-            CmdModificaCliente.Enabled = true;
-            CmdBajaCliente.Enabled = true;
-            CmdAltaCobro.Enabled = true;
-            CmdPagar.Enabled = false;
+            CmdAltaCliente.Enabled       = false;
+            CmdModificaCliente.Enabled   = true;
+            CmdBajaCliente.Enabled       = true;
+
+            // Controles ajenos
+            CmdAltaCobro.Enabled         = true;
+            CmdPagar.Enabled             = false;
+
+            DgvListaPendientes.DataSource = null;
+            DgvListaPendientes.DataSource = cliente.VerPendientes();
         }
         #endregion
 
@@ -173,9 +187,7 @@ namespace Formularios2
                 this.TextboxLegajoCliente.Focus();
             }
             catch (Exception error)
-            {
-                InformarExcepcion(EtiquetaClientes, error.Message);
-            }
+            { InformarExcepcion(EtiquetaClientes, error.Message); }
         }
 
         private void CmdBajaCliente_Click(object sender, EventArgs e)
@@ -204,9 +216,7 @@ namespace Formularios2
                 this.TextboxLegajoCliente.Focus();
             }
             catch (Exception error)
-            {
-                InformarExcepcion(EtiquetaClientes, error.Message);
-            }
+            { InformarExcepcion(EtiquetaClientes, error.Message); }
         }
 
         private void CmdModificaCliente_Click(object sender, EventArgs e)
@@ -233,9 +243,7 @@ namespace Formularios2
                 /* --- NADA AÚN --- */
             }
             catch (Exception error)
-            {
-                InformarExcepcion(EtiquetaClientes, error.Message);
-            }
+            { InformarExcepcion(EtiquetaClientes, error.Message); }
 
         }
         #endregion
@@ -323,43 +331,61 @@ namespace Formularios2
                 /* --- NADA AÚN --- */
             }
             catch (Exception error)
-            {
-                InformarExcepcion(EtiquetaPendientes, error.Message);
-            }
+            { InformarExcepcion(EtiquetaPendientes, error.Message); }
         }
 
         private void CmdPagar_Click(object sender, EventArgs e)
         {
-            // Verificaciones
-            /* --- NADA AÚN --- */
+            ErrorProvider.Clear();
+            try
+            {
+                // Verificaciones
+                /* --- NADA AÚN --- */
 
-            // Operaciones
-            /* --- NADA AÚN --- */
+                // Operaciones
+                DateTime desde = (DateTime)DatepickerFechaVencimiento.Value;
+                DateTime hasta = DateTime.Now.AddDays(-1);
+                int retraso = cobro.CalcularRetrasoEnDias(desde, hasta);
+                decimal recargo = cobro.CalcularRecargo(cobro.Importe, retraso);
 
-            //if (cobro.Tipo.Equals("Especial"))
-            //{
-            //    CCobroEspecial poli = (CCobroEspecial)
-            //    (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
-            //}
-            //else
-            //{
-            //    CCobroNormal poli = (CCobroNormal)
-            //    (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
-            //}
+                pago = new CPago
+                    (
+                    cobro.Tipo,
+                    cobro.Codigo,
+                    cobro.NombreCobro,
+                    cobro.FechaVencimiento,
+                    cobro.Importe,
+                    cobro.Cliente,
+                    recargo,
+                    cobro.Importe + recargo
+                    );
 
-            DateTime desde = (DateTime)DatepickerFechaVencimiento.Value;
-            //DateTime hasta = DateTime.Today;
-            DateTime hasta = DateTime.Now.AddDays(-1);
-            //CCobro objeto = new CCobroNormal(1, "Uno", new DateTime(2021, 11, 4), 1000, 1);
-            int retraso = cobro.CalcularRetrasoEnDias(desde, hasta);
+                cliente.AltaCancelado(pago);
+                cliente.BajaPendiente(cobro);
 
-            decimal recargo = cobro.CalcularRecargo(cobro.Importe, retraso);
+                ordenable = cliente.VerCancelados();
+                reducida = cliente.VerCancelados().Select(x => new CReducida()
+                {
+                    Nombre = x.Cliente,
+                    Total = x.Total
+                }).ToList();
 
-            MessageBox.Show(recargo.ToString());
+                DgvListaPendientes.DataSource   = null;
+                DgvListaCanceladosG3.DataSource = null;
+                DgvListaCanceladosG4.DataSource = null;
+                DgvListaCanceladosG5.DataSource = null;
 
+                DgvListaPendientes.DataSource   = cliente.VerPendientes();
+                DgvListaCanceladosG3.DataSource = cliente.VerCancelados();
+                DgvListaCanceladosG4.DataSource = ordenable;
+                DgvListaCanceladosG5.DataSource = reducida;
 
-            // Adendas
-            /* --- NADA AÚN --- */
+                // Adendas
+                RadioAscendente.Checked = false;
+                RadioDescendente.Checked = false;
+            }
+            catch (Exception error)
+            { InformarExcepcion(EtiquetaPendientes, error.Message); }
         }
         #endregion
 
@@ -379,11 +405,34 @@ namespace Formularios2
 
         }
 
-        
+        private void RadioAscendente_CheckedChanged(object sender, EventArgs e)
+        {
+            // cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem;
+            List<CPago> ascendente = cliente.VerCancelados().OrderBy(x => x.Total).ToList();
+            DgvListaCanceladosG4.DataSource = null;
+            DgvListaCanceladosG4.DataSource = ascendente;
+        }
+
+        private void RadioDescendente_CheckedChanged(object sender, EventArgs e)
+        {
+
+            List<CPago> descendente = cliente.VerCancelados().OrderByDescending(x => x.Total).ToList();
+            DgvListaCanceladosG4.DataSource = null;
+            DgvListaCanceladosG4.DataSource = descendente;
+        }
     }
 
 
 
+
+
+
+
+    public class CReducida
+    {
+        public string Nombre { get; set; }
+        public decimal Total { get; set; }
+    }
 
 
 
@@ -436,7 +485,7 @@ namespace Formularios2
             (DateTime pDesde,
             DateTime  pHasta)
         {
-            return (pHasta - pDesde).Days;/*return (int) Math.Round((pHasta - pDesde).TotalDays);*/ }
+            /* return Math.Ceiling((pHasta - pDesde).Days);*/ return (int) Math.Ceiling((pHasta - pDesde).TotalDays); }
 
         public abstract decimal CalcularRecargo(decimal pImporte, double pDias);
     }

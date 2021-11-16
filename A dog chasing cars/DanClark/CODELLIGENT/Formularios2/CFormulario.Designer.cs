@@ -56,24 +56,24 @@ namespace Formularios2
             this.TextboxCodigoCobro = new System.Windows.Forms.TextBox();
             this.DgvListaPendientes = new System.Windows.Forms.DataGridView();
             this.GrpGrilla3 = new System.Windows.Forms.GroupBox();
-            this.DgvListaCanceladorG3 = new System.Windows.Forms.DataGridView();
+            this.DgvListaCanceladosG3 = new System.Windows.Forms.DataGridView();
             this.GrpGrilla4 = new System.Windows.Forms.GroupBox();
             this.RadioDescendente = new System.Windows.Forms.RadioButton();
             this.RadioAscendente = new System.Windows.Forms.RadioButton();
-            this.DgvListaCanceladorG4 = new System.Windows.Forms.DataGridView();
+            this.DgvListaCanceladosG4 = new System.Windows.Forms.DataGridView();
             this.GrpGrilla5 = new System.Windows.Forms.GroupBox();
-            this.DgvListaCanceladorG5 = new System.Windows.Forms.DataGridView();
+            this.DgvListaCanceladosG5 = new System.Windows.Forms.DataGridView();
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.GrpGrilla1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaClientes)).BeginInit();
             this.GrpGrilla2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaPendientes)).BeginInit();
             this.GrpGrilla3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladorG3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladosG3)).BeginInit();
             this.GrpGrilla4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladorG4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladosG4)).BeginInit();
             this.GrpGrilla5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladorG5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladosG5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -346,7 +346,7 @@ namespace Formularios2
             // 
             // GrpGrilla3
             // 
-            this.GrpGrilla3.Controls.Add(this.DgvListaCanceladorG3);
+            this.GrpGrilla3.Controls.Add(this.DgvListaCanceladosG3);
             this.GrpGrilla3.Location = new System.Drawing.Point(358, 187);
             this.GrpGrilla3.Name = "GrpGrilla3";
             this.GrpGrilla3.Size = new System.Drawing.Size(856, 176);
@@ -354,23 +354,23 @@ namespace Formularios2
             this.GrpGrilla3.TabStop = false;
             this.GrpGrilla3.Text = "Grilla 3: Cobros cancelados del cliente";
             // 
-            // DgvListaCanceladorG3
+            // DgvListaCanceladosG3
             // 
-            this.DgvListaCanceladorG3.AllowUserToAddRows = false;
-            this.DgvListaCanceladorG3.AllowUserToDeleteRows = false;
-            this.DgvListaCanceladorG3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvListaCanceladorG3.Location = new System.Drawing.Point(6, 19);
-            this.DgvListaCanceladorG3.MultiSelect = false;
-            this.DgvListaCanceladorG3.Name = "DgvListaCanceladorG3";
-            this.DgvListaCanceladorG3.ReadOnly = true;
-            this.DgvListaCanceladorG3.Size = new System.Drawing.Size(843, 150);
-            this.DgvListaCanceladorG3.TabIndex = 2;
+            this.DgvListaCanceladosG3.AllowUserToAddRows = false;
+            this.DgvListaCanceladosG3.AllowUserToDeleteRows = false;
+            this.DgvListaCanceladosG3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvListaCanceladosG3.Location = new System.Drawing.Point(6, 19);
+            this.DgvListaCanceladosG3.MultiSelect = false;
+            this.DgvListaCanceladosG3.Name = "DgvListaCanceladosG3";
+            this.DgvListaCanceladosG3.ReadOnly = true;
+            this.DgvListaCanceladosG3.Size = new System.Drawing.Size(843, 150);
+            this.DgvListaCanceladosG3.TabIndex = 2;
             // 
             // GrpGrilla4
             // 
             this.GrpGrilla4.Controls.Add(this.RadioDescendente);
             this.GrpGrilla4.Controls.Add(this.RadioAscendente);
-            this.GrpGrilla4.Controls.Add(this.DgvListaCanceladorG4);
+            this.GrpGrilla4.Controls.Add(this.DgvListaCanceladosG4);
             this.GrpGrilla4.Location = new System.Drawing.Point(12, 369);
             this.GrpGrilla4.Name = "GrpGrilla4";
             this.GrpGrilla4.Size = new System.Drawing.Size(947, 177);
@@ -387,34 +387,34 @@ namespace Formularios2
             this.RadioDescendente.TabIndex = 5;
             this.RadioDescendente.Text = "Descendente";
             this.RadioDescendente.UseVisualStyleBackColor = true;
+            this.RadioDescendente.CheckedChanged += new System.EventHandler(this.RadioDescendente_CheckedChanged);
             // 
             // RadioAscendente
             // 
             this.RadioAscendente.AutoSize = true;
-            this.RadioAscendente.Checked = true;
             this.RadioAscendente.Location = new System.Drawing.Point(855, 19);
             this.RadioAscendente.Name = "RadioAscendente";
             this.RadioAscendente.Size = new System.Drawing.Size(82, 17);
             this.RadioAscendente.TabIndex = 4;
-            this.RadioAscendente.TabStop = true;
             this.RadioAscendente.Text = "Ascendente";
             this.RadioAscendente.UseVisualStyleBackColor = true;
+            this.RadioAscendente.CheckedChanged += new System.EventHandler(this.RadioAscendente_CheckedChanged);
             // 
-            // DgvListaCanceladorG4
+            // DgvListaCanceladosG4
             // 
-            this.DgvListaCanceladorG4.AllowUserToAddRows = false;
-            this.DgvListaCanceladorG4.AllowUserToDeleteRows = false;
-            this.DgvListaCanceladorG4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvListaCanceladorG4.Location = new System.Drawing.Point(6, 19);
-            this.DgvListaCanceladorG4.MultiSelect = false;
-            this.DgvListaCanceladorG4.Name = "DgvListaCanceladorG4";
-            this.DgvListaCanceladorG4.ReadOnly = true;
-            this.DgvListaCanceladorG4.Size = new System.Drawing.Size(843, 150);
-            this.DgvListaCanceladorG4.TabIndex = 3;
+            this.DgvListaCanceladosG4.AllowUserToAddRows = false;
+            this.DgvListaCanceladosG4.AllowUserToDeleteRows = false;
+            this.DgvListaCanceladosG4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvListaCanceladosG4.Location = new System.Drawing.Point(6, 19);
+            this.DgvListaCanceladosG4.MultiSelect = false;
+            this.DgvListaCanceladosG4.Name = "DgvListaCanceladosG4";
+            this.DgvListaCanceladosG4.ReadOnly = true;
+            this.DgvListaCanceladosG4.Size = new System.Drawing.Size(843, 150);
+            this.DgvListaCanceladosG4.TabIndex = 3;
             // 
             // GrpGrilla5
             // 
-            this.GrpGrilla5.Controls.Add(this.DgvListaCanceladorG5);
+            this.GrpGrilla5.Controls.Add(this.DgvListaCanceladosG5);
             this.GrpGrilla5.Location = new System.Drawing.Point(959, 369);
             this.GrpGrilla5.Name = "GrpGrilla5";
             this.GrpGrilla5.Size = new System.Drawing.Size(255, 177);
@@ -422,17 +422,17 @@ namespace Formularios2
             this.GrpGrilla5.TabStop = false;
             this.GrpGrilla5.Text = "Grilla 5: Cobros cancelados del cliente";
             // 
-            // DgvListaCanceladorG5
+            // DgvListaCanceladosG5
             // 
-            this.DgvListaCanceladorG5.AllowUserToAddRows = false;
-            this.DgvListaCanceladorG5.AllowUserToDeleteRows = false;
-            this.DgvListaCanceladorG5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvListaCanceladorG5.Location = new System.Drawing.Point(6, 19);
-            this.DgvListaCanceladorG5.MultiSelect = false;
-            this.DgvListaCanceladorG5.Name = "DgvListaCanceladorG5";
-            this.DgvListaCanceladorG5.ReadOnly = true;
-            this.DgvListaCanceladorG5.Size = new System.Drawing.Size(243, 150);
-            this.DgvListaCanceladorG5.TabIndex = 1;
+            this.DgvListaCanceladosG5.AllowUserToAddRows = false;
+            this.DgvListaCanceladosG5.AllowUserToDeleteRows = false;
+            this.DgvListaCanceladosG5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvListaCanceladosG5.Location = new System.Drawing.Point(6, 19);
+            this.DgvListaCanceladosG5.MultiSelect = false;
+            this.DgvListaCanceladosG5.Name = "DgvListaCanceladosG5";
+            this.DgvListaCanceladosG5.ReadOnly = true;
+            this.DgvListaCanceladosG5.Size = new System.Drawing.Size(243, 150);
+            this.DgvListaCanceladosG5.TabIndex = 1;
             // 
             // ErrorProvider
             // 
@@ -459,12 +459,12 @@ namespace Formularios2
             this.GrpGrilla2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaPendientes)).EndInit();
             this.GrpGrilla3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladorG3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladosG3)).EndInit();
             this.GrpGrilla4.ResumeLayout(false);
             this.GrpGrilla4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladorG4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladosG4)).EndInit();
             this.GrpGrilla5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladorG5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladosG5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
@@ -497,11 +497,11 @@ namespace Formularios2
         private System.Windows.Forms.DateTimePicker DatepickerFechaVencimiento;
         private System.Windows.Forms.TextBox TextboxNombreCobro;
         private System.Windows.Forms.TextBox TextboxCodigoCobro;
-        private System.Windows.Forms.DataGridView DgvListaCanceladorG3;
+        private System.Windows.Forms.DataGridView DgvListaCanceladosG3;
         private System.Windows.Forms.RadioButton RadioDescendente;
         private System.Windows.Forms.RadioButton RadioAscendente;
-        private System.Windows.Forms.DataGridView DgvListaCanceladorG4;
-        private System.Windows.Forms.DataGridView DgvListaCanceladorG5;
+        private System.Windows.Forms.DataGridView DgvListaCanceladosG4;
+        private System.Windows.Forms.DataGridView DgvListaCanceladosG5;
         private System.Windows.Forms.Label EtiquetaClientes;
         private System.Windows.Forms.Label EtiquetaPendientes;
         private System.Windows.Forms.CheckBox CheckTipoEspecial;
