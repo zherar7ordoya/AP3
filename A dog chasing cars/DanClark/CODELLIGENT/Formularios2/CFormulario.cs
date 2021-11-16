@@ -21,6 +21,7 @@ namespace Formularios2
         string usuario = string.Empty;
         CCliente cliente = null;
         CCobro cobro = null;
+        CPago pago = null;
 
         #region APERTURA DEL FORMULARIO
         private void CFormulario_Load(object sender, EventArgs e)
@@ -106,6 +107,17 @@ namespace Formularios2
             CmdAltaCliente.Enabled = true;
             CmdModificaCliente.Enabled = false;
             CmdBajaCliente.Enabled = false;
+
+            this.DgvListaPendientes.DataSource = null;
+
+            if (DgvListaClientes.SelectedRows.Count > 0)
+            {
+                cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem;
+                if (cliente.VerPendientes().Count > 0)
+                {
+                    this.DgvListaPendientes.DataSource = cliente.VerPendientes();
+                }
+            }
         }
 
         private void DgvListaClientes_RowHeaderMouseClick(
@@ -124,8 +136,10 @@ namespace Formularios2
             CmdAltaCliente.Enabled = false;
             CmdModificaCliente.Enabled = true;
             CmdBajaCliente.Enabled = true;
+            CmdAltaCobro.Enabled = true;
+            CmdPagar.Enabled = false;
         }
-#endregion
+        #endregion
 
         #region BOTONES GRUPO CLIENTE (GRILLA 1)
         private void CmdAltaCliente_Click(object sender, EventArgs e)
@@ -169,6 +183,8 @@ namespace Formularios2
             try
             {
                 // Verificaciones
+                /* --- NADA AÚN --- */
+
                 // Operaciones
                 if (MessageBox.Show
                     (
@@ -178,9 +194,6 @@ namespace Formularios2
                     MessageBoxIcon.Question
                     ) == DialogResult.Yes)
                 {
-                    //CCliente cliente =
-                    //    (CCliente)
-                    //    (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
                     this.clientes.Remove(cliente);
                     DgvListaClientes.DataSource = null;
                     DgvListaClientes.DataSource = clientes;
@@ -201,6 +214,8 @@ namespace Formularios2
             try
             {
                 // Verificaciones
+                /* --- NADA AÚN --- */
+
                 // Operaciones
                 if (MessageBox.Show
                     (
@@ -215,6 +230,7 @@ namespace Formularios2
                 }
 
                 // Adendas
+                /* --- NADA AÚN --- */
             }
             catch (Exception error)
             {
@@ -227,7 +243,14 @@ namespace Formularios2
         #region EVENTOS GRUPO PENDIENTES (GRILLA 2)
         private void DgvListaPendientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            this.CheckTipoEspecial.Checked = false;
+            TextboxCodigoCobro.Text = String.Empty;
+            TextboxNombreCobro.Text = String.Empty;
+            DatepickerFechaVencimiento.Value = DateTime.Today.AddDays(-1);
+            TextboxImporte.Text = String.Empty;
 
+            CmdAltaCobro.Enabled = true;
+            CmdPagar.Enabled     = false;
         }
 
         private void DgvListaPendientes_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -236,9 +259,19 @@ namespace Formularios2
                 (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
             cobro = (CCobro)
                 (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
+
+            if (cobro.Tipo == "Especial") { this.CheckTipoEspecial.Checked = true; }
+            TextboxCodigoCobro.Text          = cobro.Codigo.ToString();
+            TextboxNombreCobro.Text          = cobro.NombreCobro;
+            DatepickerFechaVencimiento.Value = cobro.FechaVencimiento;
+            TextboxImporte.Text              = cobro.Importe.ToString();
+
+            CmdAltaCobro.Enabled = false;
+            CmdPagar.Enabled     = true;
         }
         #endregion
 
+        #region BOTONES GRUPO PENDIENTES (GRILLA 2)
         private void CmdAltaCobro_Click(object sender, EventArgs e)
         {
             ErrorProvider.Clear();
@@ -254,40 +287,40 @@ namespace Formularios2
                     TextboxImporte.Text == string.Empty
                     ) { throw new Exception("No pueden haber campos vacíos"); }
 
-                // Operaciones
-
                 cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem;
 
-                
+                if (cliente.EsDuplicado(Int32.Parse(TextboxCodigoCobro.Text)))
+                { throw new Exception("Los códigos de cobro no deben repetirse"); }
+                else if(cliente.VerPendientes().Count > 1)
+                { throw new Exception("El cliente no puede tener más de dos pendientes"); }
 
+                // Operaciones
                 if (CheckTipoEspecial.Checked)
                 {
                     cobro = new CCobroEspecial(
+                        "Especial",
                         Int32.Parse(TextboxCodigoCobro.Text),
                         TextboxNombreCobro.Text,
                         DatepickerFechaVencimiento.Value,
                         decimal.Parse(TextboxImporte.Text),
-                        Int32.Parse(TextboxLegajoCliente.Text));
+                        TextboxNombreCliente.Text);
                     cliente.AltaPendiente(cobro);
-                    
-                    
-
                 }
                 else
                 {
-                    // REVISAR CLASE COBRO
-                    // FALTA TIPO
-                    // CLIENTE A STRING
+                    cobro = new CCobroNormal(
+                        "Normal",
+                        Int32.Parse(TextboxCodigoCobro.Text),
+                        TextboxNombreCobro.Text,
+                        DatepickerFechaVencimiento.Value,
+                        decimal.Parse(TextboxImporte.Text),
+                        TextboxNombreCliente.Text);
+                    cliente.AltaPendiente(cobro);
                 }
-
                 this.DgvListaPendientes.DataSource = null;
                 this.DgvListaPendientes.DataSource = cliente.VerPendientes();
-
-
-
-
-
                 // Adendas
+                /* --- NADA AÚN --- */
             }
             catch (Exception error)
             {
@@ -295,7 +328,40 @@ namespace Formularios2
             }
         }
 
+        private void CmdPagar_Click(object sender, EventArgs e)
+        {
+            // Verificaciones
+            /* --- NADA AÚN --- */
 
+            // Operaciones
+            /* --- NADA AÚN --- */
+
+            //if (cobro.Tipo.Equals("Especial"))
+            //{
+            //    CCobroEspecial poli = (CCobroEspecial)
+            //    (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
+            //}
+            //else
+            //{
+            //    CCobroNormal poli = (CCobroNormal)
+            //    (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
+            //}
+
+            DateTime desde = (DateTime)DatepickerFechaVencimiento.Value;
+            //DateTime hasta = DateTime.Today;
+            DateTime hasta = DateTime.Now.AddDays(-1);
+            //CCobro objeto = new CCobroNormal(1, "Uno", new DateTime(2021, 11, 4), 1000, 1);
+            int retraso = cobro.CalcularRetrasoEnDias(desde, hasta);
+
+            decimal recargo = cobro.CalcularRecargo(cobro.Importe, retraso);
+
+            MessageBox.Show(recargo.ToString());
+
+
+            // Adendas
+            /* --- NADA AÚN --- */
+        }
+        #endregion
 
         private void InformarExcepcion(Control pControl, string pMensaje)
         {
@@ -312,6 +378,8 @@ namespace Formularios2
                 );
 
         }
+
+        
     }
 
 
@@ -329,29 +397,33 @@ namespace Formularios2
     public abstract class CCobro
     {
         // Atributos
+        private string tipo;
         private int codigo;
         private string nombreCobro;
         private DateTime fechaVencimiento;
         private decimal importe;
-        private int cliente;
+        private string cliente;
 
         // Propiedades
+        public string Tipo { get => tipo; }
         public int Codigo { get => codigo; }
         public string NombreCobro { get => nombreCobro; }
         public DateTime FechaVencimiento { get => fechaVencimiento; }
         public decimal Importe { get => importe; }
-        public int Cliente { get => cliente; }
+        public string Cliente { get => cliente; }
 
         // Constructores
         public CCobro
             (
+            string   pTipo,
             int      pCodigo,
             string   pNombreCobro,
             DateTime pFechaVencimiento,
             decimal  pImporte,
-            int      pCliente
+            string   pCliente
             )
         {
+            this.tipo             = pTipo;
             this.codigo           = pCodigo;
             this.nombreCobro      = pNombreCobro;
             this.fechaVencimiento = pFechaVencimiento;
@@ -360,29 +432,34 @@ namespace Formularios2
         }
 
         // Métodos
-        public double CalcularRetrasoEnDias
+        public int CalcularRetrasoEnDias
             (DateTime pDesde,
             DateTime  pHasta)
-        { return (pHasta - pDesde).TotalDays; }
+        {
+            return (pHasta - pDesde).Days;/*return (int) Math.Round((pHasta - pDesde).TotalDays);*/ }
+
+        public abstract decimal CalcularRecargo(decimal pImporte, double pDias);
     }
 
 
 
-    public class CCobroNormal : CCobro, ICobro
+    public class CCobroNormal : CCobro //, ICobro
     {
         // Atributos
         // Propiedades
         // Constructores
         public CCobroNormal
             (
+            string   pTipo,
             int      pCodigo,
             string   pNombreCobro,
             DateTime pFechaVencimiento,
             decimal  pImporte,
-            int      pCliente
+            string   pCliente
             )
             : base
                   (
+                     pTipo,
                      pCodigo,
                      pNombreCobro,
                      pFechaVencimiento,
@@ -392,27 +469,29 @@ namespace Formularios2
         { }
         
         // Métodos
-        public decimal CalcularRecargo(decimal pImporte, double pDias)
+        public override decimal CalcularRecargo(decimal pImporte, double pDias)
         { return pImporte * (decimal)0.01 * (decimal)pDias; }
     }
 
 
 
-    public class CCobroEspecial : CCobro, ICobro
+    public class CCobroEspecial : CCobro //, ICobro
     {
         // Atributos
         // Propiedades
         // Constructores
         public CCobroEspecial
             (
+            string   pTipo,
             int      pCodigo,
             string   pNombreCobro,
             DateTime pFechaVencimiento,
             decimal  pImporte,
-            int      pCliente
+            string   pCliente
             )
             : base
                   (
+                     pTipo,
                      pCodigo,
                      pNombreCobro,
                      pFechaVencimiento,
@@ -422,7 +501,7 @@ namespace Formularios2
         { }
 
         // Métodos
-        public decimal CalcularRecargo(decimal pImporte, double pDias)
+        public override decimal CalcularRecargo(decimal pImporte, double pDias)
         { return (pImporte * (decimal)0.02 * (decimal)pDias) + 1000; }
     }
 
@@ -441,16 +520,18 @@ namespace Formularios2
         // Constructores
         public CPago
             (
+            string   pTipo,
             int      pCodigo,
             string   pNombreCobro,
             DateTime pFechaVencimiento,
             decimal  pImporte,
-            int      pCliente,
+            string   pCliente,
             decimal  pRecargo,
             decimal  pTotal
             )
             : base
                   (
+                     pTipo,
                      pCodigo,
                      pNombreCobro,
                      pFechaVencimiento,
@@ -469,6 +550,11 @@ namespace Formularios2
             if(Total > x.Total) { return 1; }
             if(Total < x.Total) { return -1; }
             return 0;
+        }
+
+        public override decimal CalcularRecargo(decimal pImporte, double pDias)
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -504,6 +590,13 @@ namespace Formularios2
         }
 
         // Métodos
+        public bool EsDuplicado(int pCodigo)
+        {
+            if (CobrosPendientes.Count > 0)
+            { return CobrosPendientes[0].Codigo == pCodigo; }
+            
+            return false;
+        }
         public void AltaPendiente(CCobro pCobro)
         { this.CobrosPendientes.Add(pCobro); }
 

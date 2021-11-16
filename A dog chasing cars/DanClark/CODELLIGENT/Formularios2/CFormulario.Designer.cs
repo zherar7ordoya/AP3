@@ -250,6 +250,7 @@ namespace Formularios2
             this.CmdPagar.TabIndex = 13;
             this.CmdPagar.Text = "Pagar";
             this.CmdPagar.UseVisualStyleBackColor = true;
+            this.CmdPagar.Click += new System.EventHandler(this.CmdPagar_Click);
             // 
             // CmdAltaCobro
             // 

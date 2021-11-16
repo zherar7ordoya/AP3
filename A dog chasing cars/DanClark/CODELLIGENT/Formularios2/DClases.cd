@@ -3,37 +3,7 @@
   <Class Name="Formularios2.CFormulario" Collapsed="true">
     <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAQAAAAAbQMABqTAAGEgBDCIPgwUgwAQCQAAgEAQAY=</HashCode>
-      <FileName>CFormulario.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Formularios2.CCobro" Collapsed="true">
-    <Position X="1.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CFormulario.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Formularios2.CCobroNormal" Collapsed="true">
-    <Position X="0.5" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CFormulario.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Formularios2.CCobroEspecial" Collapsed="true">
-    <Position X="2.75" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CFormulario.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Formularios2.CCliente" Collapsed="true">
-    <Position X="5.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAhAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>GAGCAACAGCSgFxBYFkiAEAAGxkgcghyAbAAAACAgUIA=</HashCode>
       <FileName>CFormulario.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -56,10 +26,38 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
+  <Class Name="Formularios2.CCobro" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAAQAAAQAAAAOAAAACgCAAAEAAAAABAAAAAQQ=</HashCode>
+      <FileName>CFormulario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Formularios2.CCobroNormal" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>CFormulario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Formularios2.CCobroEspecial" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>CFormulario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Formularios2.CCliente" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAEAAAAAABABAAAAAQABAAAAgARAAJAEAA=</HashCode>
+      <FileName>CFormulario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="Formularios2.ICobro" Collapsed="true">
     <Position X="5.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>CFormulario.cs</FileName>
     </TypeIdentifier>
   </Interface>
