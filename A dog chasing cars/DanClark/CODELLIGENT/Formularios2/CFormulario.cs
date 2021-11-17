@@ -1,66 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualBasic;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-using System.Reflection;
 
-
-namespace Formularios2
+namespace SistemaDeCobranzas
 {
     public partial class CFormulario : Form
     {
         public CFormulario() { InitializeComponent(); }
+
         List<CCliente> clientes = new List<CCliente>();
-        string usuario = string.Empty;
+
         CCliente cliente = null;
         CCobro cobro = null;
         CPago pago = null;
         
-
         List<CPago> ordenable = new List<CPago>();
         List<CReducida> reducida = new List<CReducida>();
 
-        
-
+        string usuario = string.Empty;
 
         #region APERTURA DEL FORMULARIO
         private void CFormulario_Load(object sender, EventArgs e)
         {
-            IniciaFormulario();
-            this.TextboxLegajoCliente.Focus();
-
-         
-
-            
-
-        }
-
-        private void Pago_OnTotalChanged(object sender, decimal e)
-        {
-            var x = (CPago)sender;
-            if(x.Total > 10000) { LabelInformacion.Text = "El importe total a pagar supera los $10.000"; }
-        }
-
-        private void IniciaFormulario()
-        {
-            usuario = Interaction.InputBox
-                (
-                "Ingrese su nombre:",
-                "Usuario",
-                "Gerardo Tordoya"
-                );
-            this.CenterToScreen();
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.Text += $" ({usuario})";
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            try
+            {
+                IniciaFormulario();
+                this.TextboxLegajoCliente.Focus();
+            }
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
         }
         #endregion
 
@@ -76,16 +48,19 @@ namespace Formularios2
         }
         private void CFormulario_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show
-            (
-            "¿Desea salir de la aplicación?",
-            $"{usuario}",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question
-            ) == DialogResult.No)
+            try
             {
-                e.Cancel = true;
+                if (MessageBox.Show
+                    (
+                    "¿Desea salir de la aplicación?",
+                    $"{usuario}",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                    ) == DialogResult.No)
+                { e.Cancel = true; }
             }
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
         }
         #endregion
 
@@ -94,66 +69,97 @@ namespace Formularios2
             object sender,
             DataGridViewCellEventArgs e)
         {
-            if (DgvListaClientes.SelectedRows.Count > 0)
+            try
             {
-                cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem;
-                if (cliente.VerPendientes().Count > 0)
+                if (DgvListaClientes.SelectedRows.Count > 0)
                 {
-                    this.DgvListaPendientes.DataSource = cliente.VerPendientes();
+                    cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem;
+                    if (cliente.VerPendientes().Count > 0)
+                    { this.DgvListaPendientes.DataSource = cliente.VerPendientes(); }
                 }
+                this.DgvListaPendientes.DataSource = null;
+
+                this.TextboxLegajoCliente.Text     = String.Empty;
+                this.TextboxNombreCliente.Text     = String.Empty;
+
+                /*
+                 * COORDINACIÓN ENTRE GRUPOS
+                 */
+                // *-----------------=> Para G1
+                this.TextboxLegajoCliente.Enabled    = true;
+                this.CmdAltaCliente.Enabled          = true;
+                this.CmdModificaCliente.Enabled      = false;
+                this.CmdBajaCliente.Enabled          = false;
+
+                // *-----------------=> Para G2
+                this.LabelInformacion.Text           = String.Empty;
+                this.CmdAltaCobro.Enabled            = true;
+                this.CmdPagar.Enabled                = false;
+                this.DgvListaPendientes.DataSource   = null;
+
+                // *-----------------=> Para G3
+                this.DgvListaCanceladosG3.DataSource = null;
+
+                // *-----------------=> Para G4
+                this.DgvListaCanceladosG4.DataSource = null;
+
+                // *-----------------=> Para G5
+                this.DgvListaCanceladosG5.DataSource = null;
             }
-            this.DgvListaPendientes.DataSource = null;
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
 
-            TextboxLegajoCliente.Text = String.Empty;
-            TextboxNombreCliente.Text = String.Empty;
-
-            // Controles propios
-            TextboxLegajoCliente.Enabled = true;
-            CmdAltaCliente.Enabled       = true;
-            CmdModificaCliente.Enabled   = false;
-            CmdBajaCliente.Enabled       = false;
-
-            // Controles ajenos
-            CmdAltaCobro.Enabled         = true;
-            CmdPagar.Enabled             = false;
         }
-
         private void DgvListaClientes_RowHeaderMouseClick(
             object sender,
             DataGridViewCellMouseEventArgs e)
         {
-            cliente = (CCliente)
-                (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
+            try
+            {
+                cliente = (CCliente)
+                    (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
 
-            TextboxLegajoCliente.Text = DgvListaClientes
-                .Rows[e.RowIndex].Cells[0].Value.ToString();
-            TextboxNombreCliente.Text = DgvListaClientes
-                .Rows[e.RowIndex].Cells[1].Value.ToString();
+                TextboxLegajoCliente.Text = DgvListaClientes
+                    .Rows[e.RowIndex].Cells[0].Value.ToString();
+                TextboxNombreCliente.Text = DgvListaClientes
+                    .Rows[e.RowIndex].Cells[1].Value.ToString();
 
-            // Controles propios
-            TextboxLegajoCliente.Enabled = false;
-            CmdAltaCliente.Enabled       = false;
-            CmdModificaCliente.Enabled   = true;
-            CmdBajaCliente.Enabled       = true;
+                // Controles propios
+                TextboxLegajoCliente.Enabled  = false;
+                CmdAltaCliente.Enabled        = false;
+                CmdModificaCliente.Enabled    = true;
+                CmdBajaCliente.Enabled        = true;
 
-            // Controles ajenos
-            CmdAltaCobro.Enabled         = true;
-            CmdPagar.Enabled             = false;
+                // Controles ajenos
+                CmdAltaCobro.Enabled          = true;
+                CmdPagar.Enabled              = false;
 
-            DgvListaPendientes.DataSource = null;
-            if (cliente.VerPendientes() != null && cliente.VerPendientes().Count > 0)
-            { DgvListaPendientes.DataSource = cliente.VerPendientes(); }
-            
+                DgvListaPendientes.DataSource = null;
+                if (cliente.VerPendientes() != null && cliente.VerPendientes().Count > 0)
+                { DgvListaPendientes.DataSource = cliente.VerPendientes(); }
+
+                /*
+                 * COORDINACIÓN ENTRE GRUPOS
+                 */
+                // *-----------------=> Para G1
+                // *-----------------=> Para G2
+                this.LabelInformacion.Text = String.Empty;
+
+                // *-----------------=> Para G4
+            }
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
         }
         #endregion
 
         #region BOTONES GRUPO CLIENTE (GRILLA 1)
         private void CmdAltaCliente_Click(object sender, EventArgs e)
         {
-            ErrorProvider.Clear();
             try
             {
                 // Verificaciones
+                ErrorProvider.Clear();
+
                 if (
                     TextboxLegajoCliente.Text == string.Empty ||
                     TextboxNombreCliente.Text == string.Empty
@@ -167,7 +173,8 @@ namespace Formularios2
                 { throw new Exception("Los legajos deben ser diferentes."); }
 
                 // Operaciones
-                clientes.Add(new CCliente(
+                clientes.Add(new CCliente
+                    (
                     Int32.Parse(TextboxLegajoCliente.Text),
                     TextboxNombreCliente.Text
                     ));
@@ -179,9 +186,8 @@ namespace Formularios2
                 this.TextboxLegajoCliente.Focus();
             }
             catch (Exception error)
-            { InformarExcepcion(EtiquetaClientes, error.Message); }
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
         }
-
         private void CmdBajaCliente_Click(object sender, EventArgs e)
         {
             try
@@ -208,9 +214,8 @@ namespace Formularios2
                 this.TextboxLegajoCliente.Focus();
             }
             catch (Exception error)
-            { InformarExcepcion(EtiquetaClientes, error.Message); }
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
         }
-
         private void CmdModificaCliente_Click(object sender, EventArgs e)
         {
             try
@@ -227,15 +232,16 @@ namespace Formularios2
                     MessageBoxIcon.Question
                     ) == DialogResult.Yes)
                 {
-                    this.clientes.Remove(cliente);
-                    CmdAltaCliente_Click(this, null);
+                    cliente.NombreCliente = TextboxNombreCliente.Text;
+                    DgvListaClientes.DataSource = null;
+                    DgvListaClientes.DataSource = clientes;
                 }
 
                 // Adendas
                 /* --- NADA AÚN --- */
             }
             catch (Exception error)
-            { InformarExcepcion(EtiquetaClientes, error.Message); }
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
 
         }
         #endregion
@@ -243,42 +249,72 @@ namespace Formularios2
         #region EVENTOS GRUPO PENDIENTES (GRILLA 2)
         private void DgvListaPendientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.CheckTipoEspecial.Checked   = false;
-            TextboxCodigoCobro.Text          = String.Empty;
-            TextboxNombreCobro.Text          = String.Empty;
-            DatepickerFechaVencimiento.Value = DateTime.Today.AddDays(-1);
-            TextboxImporte.Text              = String.Empty;
+            try
+            {
+                this.CheckTipoEspecial.Checked   = false;
+                TextboxCodigoCobro.Text          = String.Empty;
+                TextboxNombreCobro.Text          = String.Empty;
+                DatepickerFechaVencimiento.Value = DateTime.Today.AddDays(-1);
+                TextboxImporte.Text              = String.Empty;
 
-            CmdAltaCobro.Enabled = true;
-            CmdPagar.Enabled     = false;
+                CmdAltaCobro.Enabled = true;
+                CmdPagar.Enabled     = false;
+
+                /*
+                 * COORDINACIÓN ENTRE GRUPOS
+                 */
+                // *-----------------=> Para G1
+                // *-----------------=> Para G2
+                this.LabelInformacion.Text = String.Empty;
+
+                // *-----------------=> Para G4
+
+            }
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
         }
 
         private void DgvListaPendientes_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            cliente = (CCliente)
-                (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
-            cobro = (CCobro)
-                (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
+            try
+            {
+                cliente = (CCliente)
+                    (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
+                cobro = (CCobro)
+                    (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
 
-            if (cobro.Tipo == "Especial") { this.CheckTipoEspecial.Checked = true; }
+                if (cobro.Tipo == "Especial") { this.CheckTipoEspecial.Checked = true; }
 
-            TextboxCodigoCobro.Text          = cobro.Codigo.ToString();
-            TextboxNombreCobro.Text          = cobro.NombreCobro;
-            DatepickerFechaVencimiento.Value = cobro.FechaVencimiento;
-            TextboxImporte.Text              = cobro.Importe.ToString();
+                TextboxCodigoCobro.Text          = cobro.Codigo.ToString();
+                TextboxNombreCobro.Text          = cobro.NombreCobro;
+                DatepickerFechaVencimiento.Value = cobro.FechaVencimiento;
+                TextboxImporte.Text              = cobro.Importe.ToString();
 
-            CmdAltaCobro.Enabled = false;
-            CmdPagar.Enabled     = true;
+                CmdAltaCobro.Enabled = false;
+                CmdPagar.Enabled     = true;
+
+                /*
+                 * COORDINACIÓN ENTRE GRUPOS
+                 */
+                // *-----------------=> Para G1
+                // *-----------------=> Para G2
+                this.LabelInformacion.Text = String.Empty;
+
+                // *-----------------=> Para G4
+
+            }
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
         }
         #endregion
 
         #region BOTONES GRUPO PENDIENTES (GRILLA 2)
         private void CmdAltaCobro_Click(object sender, EventArgs e)
         {
-            ErrorProvider.Clear();
             try
             {
                 // Verificaciones
+                ErrorProvider.Clear();
                 if (DgvListaClientes.SelectedRows.Count == 0)
                 { throw new Exception("Debe seleccionar un cliente.\n" +
                     "Puede hacerlo con un click en su cabecera de fila."); }
@@ -321,27 +357,27 @@ namespace Formularios2
                 this.DgvListaPendientes.DataSource = null;
                 if (cliente.VerPendientes() != null && cliente.VerPendientes().Count > 0)
                 { this.DgvListaPendientes.DataSource = cliente.VerPendientes(); }
+
                 // Adendas
-                /* --- NADA AÚN --- */
+                CheckTipoEspecial.Checked        = false;
+                TextboxCodigoCobro.Text          = String.Empty;
+                TextboxNombreCobro.Text          = String.Empty;
+                DatepickerFechaVencimiento.Value = DateTime.Now;
+                TextboxImporte.Text              = String.Empty;
             }
             catch (Exception error)
-            { InformarExcepcion(EtiquetaPendientes, error.Message); }
+            { InformaExcepcion(EtiquetaPendientes, error.Message); }
         }
 
         private void CmdPagar_Click(object sender, EventArgs e)
         {
-            ErrorProvider.Clear();
             try
             {
+                ErrorProvider.Clear();
                 // Verificaciones
                 /* --- NADA AÚN --- */
 
                 // Operaciones
-
-               
-
-                
-
                 DateTime desde  = (DateTime)DatepickerFechaVencimiento.Value;
                 DateTime hasta  = DateTime.Now.AddDays(-1);
                 int retraso     = cobro.CalcularRetrasoEnDias(desde, hasta);
@@ -360,24 +396,7 @@ namespace Formularios2
                     );
 
                 pago.OnTotalChanged += Pago_OnTotalChanged;
-
                 pago.Total = cobro.Importe + recargo;
-
-                //pago = new CPago
-                //    (
-                //    cobro.Tipo,
-                //    cobro.Codigo,
-                //    cobro.NombreCobro,
-                //    cobro.FechaVencimiento,
-                //    cobro.Importe,
-                //    cobro.Cliente,
-                //    recargo,
-                //    cobro.Importe + recargo
-                //    );
-
-                
-
-                
 
                 cliente.AltaCancelado(pago);
                 cliente.BajaPendiente(cobro);
@@ -400,54 +419,130 @@ namespace Formularios2
                 DgvListaCanceladosG5.DataSource = reducida;
 
                 // Adendas
-                RadioAscendente.Checked  = false;
-                RadioDescendente.Checked = false;
-                CmdPagar.Enabled         = false;
-                CmdAltaCobro.Enabled     = true;
+                RadioAscendente.Enabled          = true;
+                RadioDescendente.Enabled         = true;
 
+                RadioAscendente.Checked          = false;
+                RadioDescendente.Checked         = false;
+
+                CmdPagar.Enabled                 = false;
+                CmdAltaCobro.Enabled             = true;
+
+                CheckTipoEspecial.Checked        = false;
+                TextboxCodigoCobro.Text          = String.Empty;
+                TextboxNombreCobro.Text          = String.Empty;
+                DatepickerFechaVencimiento.Value = DateTime.Now;
+                TextboxImporte.Text              = String.Empty;
 
             }
             catch (Exception error)
-            { InformarExcepcion(EtiquetaPendientes, error.Message); }
+            { InformaExcepcion(EtiquetaPendientes, error.Message); }
         }
         #endregion
 
-        private void InformarExcepcion(Control pControl, string pMensaje)
-        {
-            ErrorProvider.SetError(
-                pControl,
-                pMensaje);
-
-            MessageBox.Show
-                (
-                pMensaje,
-                "Algo ha fallado...",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-                );
-
-        }
-
+        #region EVENTOS RADIO GRUPO G4 CANCELADOS (GRILLA 4)
         private void RadioAscendente_CheckedChanged(object sender, EventArgs e)
         {
-            // cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem;
-            List<CPago> ascendente = cliente.VerCancelados().OrderBy(x => x.Total).ToList();
-            DgvListaCanceladosG4.DataSource = null;
-            DgvListaCanceladosG4.DataSource = ascendente;
-        }
+            try
+            {
+                if(cliente.VerCancelados() != null && cliente.VerCancelados().Count > 0)
+                {
+                    List<CPago> ascendente = cliente.VerCancelados().OrderBy(x => x.Total).ToList();
+                    DgvListaCanceladosG4.DataSource = null;
+                    DgvListaCanceladosG4.DataSource = ascendente;
+                }
 
+                /*
+                 * COORDINACIÓN ENTRE GRUPOS
+                 */
+                // *-----------------=> Para G1
+                // *-----------------=> Para G2
+                this.LabelInformacion.Text = String.Empty;
+
+                // *-----------------=> Para G4
+            }
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
+        }
         private void RadioDescendente_CheckedChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (cliente.VerCancelados() != null && cliente.VerCancelados().Count > 0)
+                {
+                    List<CPago> descendente = cliente.VerCancelados().OrderByDescending(x => x.Total).ToList();
+                    DgvListaCanceladosG4.DataSource = null;
+                    DgvListaCanceladosG4.DataSource = descendente;
+                }
 
-            List<CPago> descendente = cliente.VerCancelados().OrderByDescending(x => x.Total).ToList();
-            DgvListaCanceladosG4.DataSource = null;
-            DgvListaCanceladosG4.DataSource = descendente;
+                /*
+                 * COORDINACIÓN ENTRE GRUPOS
+                 */
+                // *-----------------=> Para G1
+                // *-----------------=> Para G2
+                this.LabelInformacion.Text = String.Empty;
+
+                // *-----------------=> Para G4
+            }
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
         }
+        #endregion
+
+        #region AYUDANTES
+        private void IniciaFormulario()
+        {
+            try
+            {
+                usuario = Interaction.InputBox
+                    (
+                    "Ingrese su nombre:",
+                    "Usuario",
+                    "Gerardo Tordoya"
+                    );
+                this.CenterToScreen();
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                this.Text += $" ({usuario})";
+                this.MaximizeBox = false;
+                this.MinimizeBox = false;
+            }
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
+        }
+        private void InformaExcepcion(Control pControl, string pMensaje)
+        {
+            try
+            {
+                ErrorProvider.SetError
+                    (
+                    pControl,
+                    pMensaje
+                    );
+
+                MessageBox.Show
+                    (
+                    pMensaje,
+                    "Algo ha fallado...",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+            }
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
+        }
+        private void Pago_OnTotalChanged(object sender, decimal e)
+        {
+            try
+            {
+                var x = (CPago)sender;
+                if (x.Total > 10000)
+                { LabelInformacion.Text = "El importe total a pagar supera los $10.000"; }
+            }
+            catch (Exception error)
+            { InformaExcepcion(EtiquetaClientes, error.Message); }
+        }
+        #endregion
     }
-
-
-
-
 
 
 
@@ -459,11 +554,11 @@ namespace Formularios2
 
 
 
-
     public interface ICobro
     {
         decimal CalcularRecargo(decimal pImporte, double pDias);
     }
+
 
 
     public abstract class CCobro
@@ -507,15 +602,14 @@ namespace Formularios2
         public int CalcularRetrasoEnDias
             (DateTime pDesde,
             DateTime  pHasta)
-        {
-            /* return Math.Ceiling((pHasta - pDesde).Days);*/ return (int) Math.Ceiling((pHasta - pDesde).TotalDays); }
+        { return (int) Math.Ceiling((pHasta - pDesde).TotalDays); }
 
         public abstract decimal CalcularRecargo(decimal pImporte, double pDias);
     }
 
 
 
-    public class CCobroNormal : CCobro //, ICobro
+    public class CCobroNormal : CCobro 
     {
         // Atributos
         // Propiedades
@@ -542,12 +636,15 @@ namespace Formularios2
         
         // Métodos
         public override decimal CalcularRecargo(decimal pImporte, double pDias)
-        { return pImporte * (decimal)0.01 * (decimal)pDias; }
+        { 
+            if(pDias > 0) { return pImporte * (decimal)0.01 * (decimal)pDias; }
+            return 0;
+        }
     }
 
 
 
-    public class CCobroEspecial : CCobro //, ICobro
+    public class CCobroEspecial : CCobro
     {
         // Atributos
         // Propiedades
@@ -574,7 +671,10 @@ namespace Formularios2
 
         // Métodos
         public override decimal CalcularRecargo(decimal pImporte, double pDias)
-        { return (pImporte * (decimal)0.02 * (decimal)pDias) + 1000; }
+        { 
+            if (pDias > 0) { return (pImporte * (decimal)0.02 * (decimal)pDias) + 1000; }
+            return 0;
+        }
     }
 
 
@@ -632,7 +732,6 @@ namespace Formularios2
             if(Total < x.Total) { return -1; }
             return 0;
         }
-
         public override decimal CalcularRecargo(decimal pImporte, double pDias)
         {
             throw new NotImplementedException();
@@ -675,7 +774,6 @@ namespace Formularios2
         {
             if (CobrosPendientes.Count > 0)
             { return CobrosPendientes[0].Codigo == pCodigo; }
-            
             return false;
         }
         public void AltaPendiente(CCobro pCobro)

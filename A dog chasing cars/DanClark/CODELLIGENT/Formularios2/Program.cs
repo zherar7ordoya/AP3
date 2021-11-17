@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Formularios2
+namespace SistemaDeCobranzas
 {
     static class Program
     {

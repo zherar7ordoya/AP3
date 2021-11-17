@@ -1,5 +1,5 @@
 ﻿
-namespace Formularios2
+namespace SistemaDeCobranzas
 {
     partial class CFormulario
     {
@@ -381,6 +381,7 @@ namespace Formularios2
             // RadioDescendente
             // 
             this.RadioDescendente.AutoSize = true;
+            this.RadioDescendente.Enabled = false;
             this.RadioDescendente.Location = new System.Drawing.Point(855, 42);
             this.RadioDescendente.Name = "RadioDescendente";
             this.RadioDescendente.Size = new System.Drawing.Size(89, 17);
@@ -392,6 +393,7 @@ namespace Formularios2
             // RadioAscendente
             // 
             this.RadioAscendente.AutoSize = true;
+            this.RadioAscendente.Enabled = false;
             this.RadioAscendente.Location = new System.Drawing.Point(855, 19);
             this.RadioAscendente.Name = "RadioAscendente";
             this.RadioAscendente.Size = new System.Drawing.Size(82, 17);

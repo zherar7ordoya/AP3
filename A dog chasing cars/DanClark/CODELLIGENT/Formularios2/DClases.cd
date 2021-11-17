@@ -1,60 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Formularios2.CFormulario" Collapsed="true">
+  <Class Name="SistemaDeCobranzas.CFormulario" Collapsed="true">
     <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>GAGCAACAGCSgFxBYFkiAEAAGxkgcghyAbAAAACAgUIA=</HashCode>
+      <HashCode>GAGDAACAGCSgFxBYFkigEAAGxkgcghyAfAAAECBgUIA=</HashCode>
       <FileName>CFormulario.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Formularios2.Program" Collapsed="true">
+  <Class Name="SistemaDeCobranzas.Program" Collapsed="true">
     <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Formularios2.Properties.Resources" Collapsed="true">
+  <Class Name="SistemaDeCobranzas.Properties.Resources" Collapsed="true">
     <Position X="5.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="Formularios2.Properties.Settings" Collapsed="true">
+  <Class Name="SistemaDeCobranzas.Properties.Settings" Collapsed="true">
     <Position X="7" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="Formularios2.CCobro" Collapsed="true">
+  <Class Name="SistemaDeCobranzas.CCobro" Collapsed="true">
     <Position X="1.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABBAAAAQAAAQAAAAOAAAACgCAAAEAAAAABAAAAAQQ=</HashCode>
       <FileName>CFormulario.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Formularios2.CCobroNormal" Collapsed="true">
+  <Class Name="SistemaDeCobranzas.CCobroNormal" Collapsed="true">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>CFormulario.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Formularios2.CCobroEspecial" Collapsed="true">
+  <Class Name="SistemaDeCobranzas.CCobroEspecial" Collapsed="true">
     <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>CFormulario.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Formularios2.CCliente" Collapsed="true">
+  <Class Name="SistemaDeCobranzas.CCliente" Collapsed="true">
     <Position X="5.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAEAAAAAABABAAAAAQABAAAAgARAAJAEAA=</HashCode>
       <FileName>CFormulario.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="Formularios2.ICobro" Collapsed="true">
+  <Interface Name="SistemaDeCobranzas.ICobro" Collapsed="true">
     <Position X="5.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>

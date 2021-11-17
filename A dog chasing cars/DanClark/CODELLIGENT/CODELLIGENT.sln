@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polimorfismos1", "Polimorfi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formularios1", "Formularios1\Formularios1.csproj", "{6C03B967-63A9-47A0-8136-138C01A3719F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formularios2", "Formularios2\Formularios2.csproj", "{B4DD832E-C40C-48C0-A16D-5ADD1E39247E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeCobranzas", "Formularios2\SistemaDeCobranzas.csproj", "{B4DD832E-C40C-48C0-A16D-5ADD1E39247E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
