@@ -22,9 +22,12 @@ namespace Formularios2
         CCliente cliente = null;
         CCobro cobro = null;
         CPago pago = null;
+        
 
         List<CPago> ordenable = new List<CPago>();
         List<CReducida> reducida = new List<CReducida>();
+
+        
 
 
         #region APERTURA DEL FORMULARIO
@@ -33,29 +36,16 @@ namespace Formularios2
             IniciaFormulario();
             this.TextboxLegajoCliente.Focus();
 
-            //clientes.Add(new CCliente(3, "Tres"));
-            //clientes.Add(new CCliente(5, "Cinco"));
-            //clientes.Add(new CCliente(1, "Uno"));
-            //clientes.Add(new CCliente(2, "Dos"));
-            //clientes.Add(new CCliente(4, "Cuatro"));
+         
 
-            //List<CCliente> ascendente = clientes.OrderBy(x => x.Legajo).ToList();
-            //List<CCliente> descendente = clientes.OrderByDescending(x => x.Legajo).ToList();
-            //List<CCliente> desordenado = clientes.Select(x => x).ToList();
+            
 
-            //this.DgvListaClientes.DataSource = desordenado;
-            //this.DgvListaPendientes.DataSource = ascendente;
-            //this.DgvListaCanceladorG3.DataSource = descendente;
-            //this.DgvListaCanceladorG4.DataSource = ascendente;
-            //this.DgvListaCanceladorG5.DataSource = desordenado;
+        }
 
-            //DateTime inicio = new DateTime(2021, 11, 4);
-            //DateTime final = DateTime.Today;
-            //CCobro objeto = new CCobroNormal(1, "Uno", new DateTime(2021, 11, 4), 1000, 1);
-            //double cuantos = objeto.CalcularRetrasoEnDias(inicio, final);
-            //double dias = (final - inicio).TotalDays;
-            //MessageBox.Show(cuantos.ToString());
-
+        private void Pago_OnTotalChanged(object sender, decimal e)
+        {
+            var x = (CPago)sender;
+            if(x.Total > 10000) { LabelInformacion.Text = "El importe total a pagar supera los $10.000"; }
         }
 
         private void IniciaFormulario()
@@ -151,7 +141,9 @@ namespace Formularios2
             CmdPagar.Enabled             = false;
 
             DgvListaPendientes.DataSource = null;
-            DgvListaPendientes.DataSource = cliente.VerPendientes();
+            if (cliente.VerPendientes() != null && cliente.VerPendientes().Count > 0)
+            { DgvListaPendientes.DataSource = cliente.VerPendientes(); }
+            
         }
         #endregion
 
@@ -251,11 +243,11 @@ namespace Formularios2
         #region EVENTOS GRUPO PENDIENTES (GRILLA 2)
         private void DgvListaPendientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.CheckTipoEspecial.Checked = false;
-            TextboxCodigoCobro.Text = String.Empty;
-            TextboxNombreCobro.Text = String.Empty;
+            this.CheckTipoEspecial.Checked   = false;
+            TextboxCodigoCobro.Text          = String.Empty;
+            TextboxNombreCobro.Text          = String.Empty;
             DatepickerFechaVencimiento.Value = DateTime.Today.AddDays(-1);
-            TextboxImporte.Text = String.Empty;
+            TextboxImporte.Text              = String.Empty;
 
             CmdAltaCobro.Enabled = true;
             CmdPagar.Enabled     = false;
@@ -269,6 +261,7 @@ namespace Formularios2
                 (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
 
             if (cobro.Tipo == "Especial") { this.CheckTipoEspecial.Checked = true; }
+
             TextboxCodigoCobro.Text          = cobro.Codigo.ToString();
             TextboxNombreCobro.Text          = cobro.NombreCobro;
             DatepickerFechaVencimiento.Value = cobro.FechaVencimiento;
@@ -326,7 +319,8 @@ namespace Formularios2
                     cliente.AltaPendiente(cobro);
                 }
                 this.DgvListaPendientes.DataSource = null;
-                this.DgvListaPendientes.DataSource = cliente.VerPendientes();
+                if (cliente.VerPendientes() != null && cliente.VerPendientes().Count > 0)
+                { this.DgvListaPendientes.DataSource = cliente.VerPendientes(); }
                 // Adendas
                 /* --- NADA AÚN --- */
             }
@@ -343,9 +337,14 @@ namespace Formularios2
                 /* --- NADA AÚN --- */
 
                 // Operaciones
-                DateTime desde = (DateTime)DatepickerFechaVencimiento.Value;
-                DateTime hasta = DateTime.Now.AddDays(-1);
-                int retraso = cobro.CalcularRetrasoEnDias(desde, hasta);
+
+               
+
+                
+
+                DateTime desde  = (DateTime)DatepickerFechaVencimiento.Value;
+                DateTime hasta  = DateTime.Now.AddDays(-1);
+                int retraso     = cobro.CalcularRetrasoEnDias(desde, hasta);
                 decimal recargo = cobro.CalcularRecargo(cobro.Importe, retraso);
 
                 pago = new CPago
@@ -357,8 +356,28 @@ namespace Formularios2
                     cobro.Importe,
                     cobro.Cliente,
                     recargo,
-                    cobro.Importe + recargo
+                    0
                     );
+
+                pago.OnTotalChanged += Pago_OnTotalChanged;
+
+                pago.Total = cobro.Importe + recargo;
+
+                //pago = new CPago
+                //    (
+                //    cobro.Tipo,
+                //    cobro.Codigo,
+                //    cobro.NombreCobro,
+                //    cobro.FechaVencimiento,
+                //    cobro.Importe,
+                //    cobro.Cliente,
+                //    recargo,
+                //    cobro.Importe + recargo
+                //    );
+
+                
+
+                
 
                 cliente.AltaCancelado(pago);
                 cliente.BajaPendiente(cobro);
@@ -381,8 +400,12 @@ namespace Formularios2
                 DgvListaCanceladosG5.DataSource = reducida;
 
                 // Adendas
-                RadioAscendente.Checked = false;
+                RadioAscendente.Checked  = false;
                 RadioDescendente.Checked = false;
+                CmdPagar.Enabled         = false;
+                CmdAltaCobro.Enabled     = true;
+
+
             }
             catch (Exception error)
             { InformarExcepcion(EtiquetaPendientes, error.Message); }
@@ -564,7 +587,16 @@ namespace Formularios2
 
         // Propiedades
         public decimal Recargo { get => recargo; }
-        public decimal Total { get => total; }
+        public decimal Total
+        { 
+            get => total;
+            set
+            {
+                this.total = value;
+                this.OnTotalChanged?.Invoke(this, this.total);
+            }
+        }
+        public event EventHandler<decimal> OnTotalChanged;
 
         // Constructores
         public CPago

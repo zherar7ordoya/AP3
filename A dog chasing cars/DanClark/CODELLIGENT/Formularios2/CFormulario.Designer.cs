@@ -238,7 +238,7 @@ namespace Formularios2
             this.EtiquetaPendientes.Name = "EtiquetaPendientes";
             this.EtiquetaPendientes.Size = new System.Drawing.Size(118, 62);
             this.EtiquetaPendientes.TabIndex = 16;
-            this.EtiquetaPendientes.Text = "Alta de cobros.\r\nSeleccione pago con un click en la cabecera de fila.";
+            this.EtiquetaPendientes.Text = "Alta de cobros.\r\nSeleccione cobro con un click en la cabecera de fila.";
             this.EtiquetaPendientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CmdPagar
