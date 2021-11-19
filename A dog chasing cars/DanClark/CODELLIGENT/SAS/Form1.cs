@@ -163,8 +163,8 @@ namespace SAS
         #region // *--------------------------------------=> Eventos Operativos
         private void DgvTodosLosEmpleados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            CmdG1Agregar.Enabled   = true;
-            CmdG1Eliminar.Enabled  = false;
+            CmdG1Agregar.Enabled = true;
+            CmdG1Eliminar.Enabled = false;
             CmdG1Modificar.Enabled = false;
         }
         private void DgvTodosLosEmpleados_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -315,17 +315,31 @@ namespace SAS
     public abstract class CEmpleado
     {
         // Atributos
-        private int     legajo;
-        private string  nombre;
-        private string  apellido;
+        private int legajo;
+        private string nombre;
+        private string apellido;
         private decimal sueldo;
         private List<CAdelanto> Adelantos = new List<CAdelanto>();
         // Propiedades
         // Constructores
+        public CEmpleado
+            (
+            int     pLegajo,
+            string  pNombre,
+            string  pApellido,
+            decimal pSueldo
+            )
+        {
+            this.legajo   = pLegajo;
+            this.nombre   = pNombre;
+            this.apellido = pApellido;
+            this.sueldo   = pSueldo;
+        }
 
         // Métodos
         public abstract decimal AplicaBeneficio(decimal pImporteOtorgado);
-        public List<CAdelanto> VerOtorgados() { return Adelantos; }
+        public void TomaBeneficio(CAdelanto pAdelanto) { Adelantos.Add(pAdelanto); }
+        public List<CAdelanto> MuestraOtorgados() { return Adelantos; }
         //public List<CAdelanto> VerAdeudados()
         //{
         //    var filtrada = new List<CAdelanto>(Adelantos);
@@ -339,6 +353,20 @@ namespace SAS
         // Atributos
         // Propiedades
         // Constructores
+        public COperario
+            (
+            int     pLegajo,
+            string  pNombre,
+            string  pApellido,
+            decimal pSueldo
+            ) : base
+                (
+                pLegajo,
+                pNombre,
+                pApellido,
+                pSueldo
+                )
+        { }
 
         // Métodos
         public override decimal AplicaBeneficio(decimal pImporteOtorgado)
@@ -350,6 +378,20 @@ namespace SAS
         // Atributos
         // Propiedades
         // Constructores
+        public CAdministrativo
+            (
+            int     pLegajo,
+            string  pNombre,
+            string  pApellido,
+            decimal pSueldo
+            ) : base
+                (
+                pLegajo,
+                pNombre,
+                pApellido,
+                pSueldo
+                )
+        { }
 
         // Métodos
         public override decimal AplicaBeneficio(decimal pImporteOtorgado)
@@ -361,6 +403,21 @@ namespace SAS
         // Atributos
         // Propiedades
         // Constructores
+        public CDirectivo
+            (
+            int     pLegajo,
+            string  pNombre,
+            string  pApellido,
+            decimal pSueldo
+            ) : base
+                (
+                pLegajo,
+                pNombre,
+                pApellido,
+                pSueldo
+                )
+        { }
+
 
         // Métodos
         public override decimal AplicaBeneficio(decimal pImporteOtorgado)
@@ -370,24 +427,28 @@ namespace SAS
     public class CAdelanto
     {
         // Atributos
-        private string   codigo;
+        private string codigo;
         private DateTime fechaOtorgamiento;
-        private decimal  importeOtorgado;
-        private decimal  beneficio;
-        private decimal  saldoAdeudado;
+        private decimal importeOtorgado;
+        private decimal beneficio;
+        private decimal saldoAdeudado;
         private DateTime fechaCancelacion;
-        private decimal  importePagado;
+        private decimal importePagado;
 
         // Propiedades
-        public string Codigo { get => codigo; set => codigo = value; }
-        public DateTime FechaOtorgamiento { get => fechaOtorgamiento; set => fechaOtorgamiento = value; }
-        public decimal ImporteOtorgado { get => importeOtorgado; set => importeOtorgado = value; }
-        public decimal Beneficio { get => beneficio; set => beneficio = value; }
-        public decimal SaldoAdeudado { get => saldoAdeudado; set => saldoAdeudado = value; }
         public DateTime FechaCancelacion { get => fechaCancelacion; set => fechaCancelacion = value; }
-        public decimal ImportePagado { get => importePagado; set => importePagado = value; }
-        
+
         // Constructores
+        public CAdelanto
+            (
+            string   pCodigo,
+            DateTime pFechaOtorgamiento,
+            decimal  pImporteOtorgado
+            )
+        {
+            this.codigo = pCodigo;
+
+        }
         // Métodos
     }
     #endregion
