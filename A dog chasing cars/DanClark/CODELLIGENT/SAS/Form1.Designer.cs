@@ -32,11 +32,10 @@ namespace SAS
             this.components = new System.ComponentModel.Container();
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.DgvTodosLosEmpleados = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GrpG1 = new System.Windows.Forms.GroupBox();
+            this.RadioOperario = new System.Windows.Forms.RadioButton();
+            this.RadioDirectivo = new System.Windows.Forms.RadioButton();
+            this.RadioAdministrativo = new System.Windows.Forms.RadioButton();
             this.TboxG1Sueldo = new System.Windows.Forms.TextBox();
             this.TboxG1Apellido = new System.Windows.Forms.TextBox();
             this.TboxG1Nombre = new System.Windows.Forms.TextBox();
@@ -47,14 +46,11 @@ namespace SAS
             this.CmdG2Pagar = new System.Windows.Forms.Button();
             this.CmdG2Asignar = new System.Windows.Forms.Button();
             this.GrpG3 = new System.Windows.Forms.GroupBox();
+            this.LabelImportesAdeudados = new System.Windows.Forms.Label();
+            this.LabelImportesOtorgados = new System.Windows.Forms.Label();
+            this.TboxImportesAdeudados = new System.Windows.Forms.TextBox();
+            this.TboxImportesOtorgados = new System.Windows.Forms.TextBox();
             this.DgvAdelantosPorEmpleado = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GrpG2 = new System.Windows.Forms.GroupBox();
             this.LabelInformacion = new System.Windows.Forms.Label();
             this.TboxG2ImportePagado = new System.Windows.Forms.TextBox();
@@ -68,13 +64,6 @@ namespace SAS
             this.CmdG2Eliminar = new System.Windows.Forms.Button();
             this.CmdG2Modificar = new System.Windows.Forms.Button();
             this.DgvTodosLosAdelantos = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimerReloj = new System.Windows.Forms.Timer(this.components);
             this.LabelSesion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
@@ -95,11 +84,6 @@ namespace SAS
             this.DgvTodosLosEmpleados.AllowUserToAddRows = false;
             this.DgvTodosLosEmpleados.AllowUserToDeleteRows = false;
             this.DgvTodosLosEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvTodosLosEmpleados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
             this.DgvTodosLosEmpleados.Location = new System.Drawing.Point(6, 19);
             this.DgvTodosLosEmpleados.MultiSelect = false;
             this.DgvTodosLosEmpleados.Name = "DgvTodosLosEmpleados";
@@ -109,32 +93,11 @@ namespace SAS
             this.DgvTodosLosEmpleados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvTodosLosEmpleados_CellClick);
             this.DgvTodosLosEmpleados.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvTodosLosEmpleados_RowHeaderMouseClick);
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
             // GrpG1
             // 
+            this.GrpG1.Controls.Add(this.RadioOperario);
+            this.GrpG1.Controls.Add(this.RadioDirectivo);
+            this.GrpG1.Controls.Add(this.RadioAdministrativo);
             this.GrpG1.Controls.Add(this.TboxG1Sueldo);
             this.GrpG1.Controls.Add(this.TboxG1Apellido);
             this.GrpG1.Controls.Add(this.TboxG1Nombre);
@@ -149,6 +112,38 @@ namespace SAS
             this.GrpG1.TabIndex = 2;
             this.GrpG1.TabStop = false;
             this.GrpG1.Text = "G1 Todos los Empleados";
+            // 
+            // RadioOperario
+            // 
+            this.RadioOperario.AutoSize = true;
+            this.RadioOperario.Location = new System.Drawing.Point(351, 204);
+            this.RadioOperario.Name = "RadioOperario";
+            this.RadioOperario.Size = new System.Drawing.Size(65, 17);
+            this.RadioOperario.TabIndex = 10;
+            this.RadioOperario.Text = "Operario";
+            this.RadioOperario.UseVisualStyleBackColor = true;
+            // 
+            // RadioDirectivo
+            // 
+            this.RadioDirectivo.AutoSize = true;
+            this.RadioDirectivo.Location = new System.Drawing.Point(245, 204);
+            this.RadioDirectivo.Name = "RadioDirectivo";
+            this.RadioDirectivo.Size = new System.Drawing.Size(67, 17);
+            this.RadioDirectivo.TabIndex = 9;
+            this.RadioDirectivo.Text = "Directivo";
+            this.RadioDirectivo.UseVisualStyleBackColor = true;
+            // 
+            // RadioAdministrativo
+            // 
+            this.RadioAdministrativo.AutoSize = true;
+            this.RadioAdministrativo.Checked = true;
+            this.RadioAdministrativo.Location = new System.Drawing.Point(139, 204);
+            this.RadioAdministrativo.Name = "RadioAdministrativo";
+            this.RadioAdministrativo.Size = new System.Drawing.Size(90, 17);
+            this.RadioAdministrativo.TabIndex = 8;
+            this.RadioAdministrativo.TabStop = true;
+            this.RadioAdministrativo.Text = "Administrativo";
+            this.RadioAdministrativo.UseVisualStyleBackColor = true;
             // 
             // TboxG1Sueldo
             // 
@@ -190,12 +185,13 @@ namespace SAS
             // 
             // CmdG1Agregar
             // 
-            this.CmdG1Agregar.Location = new System.Drawing.Point(457, 176);
+            this.CmdG1Agregar.Location = new System.Drawing.Point(457, 178);
             this.CmdG1Agregar.Name = "CmdG1Agregar";
             this.CmdG1Agregar.Size = new System.Drawing.Size(75, 23);
             this.CmdG1Agregar.TabIndex = 7;
             this.CmdG1Agregar.Text = "Agregar";
             this.CmdG1Agregar.UseVisualStyleBackColor = true;
+            this.CmdG1Agregar.Click += new System.EventHandler(this.CmdG1Agregar_Click);
             // 
             // CmdG1Eliminar
             // 
@@ -206,6 +202,7 @@ namespace SAS
             this.CmdG1Eliminar.TabIndex = 6;
             this.CmdG1Eliminar.Text = "Eliminar";
             this.CmdG1Eliminar.UseVisualStyleBackColor = true;
+            this.CmdG1Eliminar.Click += new System.EventHandler(this.CmdG1Eliminar_Click);
             // 
             // CmdG1Modificar
             // 
@@ -216,6 +213,7 @@ namespace SAS
             this.CmdG1Modificar.TabIndex = 5;
             this.CmdG1Modificar.Text = "Modificar";
             this.CmdG1Modificar.UseVisualStyleBackColor = true;
+            this.CmdG1Modificar.Click += new System.EventHandler(this.CmdG1Modificar_Click);
             // 
             // CmdG2Pagar
             // 
@@ -226,6 +224,7 @@ namespace SAS
             this.CmdG2Pagar.TabIndex = 20;
             this.CmdG2Pagar.Text = "Pagar";
             this.CmdG2Pagar.UseVisualStyleBackColor = true;
+            this.CmdG2Pagar.Click += new System.EventHandler(this.CmdG2Pagar_Click);
             // 
             // CmdG2Asignar
             // 
@@ -236,9 +235,14 @@ namespace SAS
             this.CmdG2Asignar.TabIndex = 17;
             this.CmdG2Asignar.Text = "Asignar";
             this.CmdG2Asignar.UseVisualStyleBackColor = true;
+            this.CmdG2Asignar.Click += new System.EventHandler(this.CmdG2Asignar_Click);
             // 
             // GrpG3
             // 
+            this.GrpG3.Controls.Add(this.LabelImportesAdeudados);
+            this.GrpG3.Controls.Add(this.LabelImportesOtorgados);
+            this.GrpG3.Controls.Add(this.TboxImportesAdeudados);
+            this.GrpG3.Controls.Add(this.TboxImportesOtorgados);
             this.GrpG3.Controls.Add(this.DgvAdelantosPorEmpleado);
             this.GrpG3.Location = new System.Drawing.Point(557, 12);
             this.GrpG3.Name = "GrpG3";
@@ -247,67 +251,55 @@ namespace SAS
             this.GrpG3.TabStop = false;
             this.GrpG3.Text = "G3 Adelantos por Empleado";
             // 
+            // LabelImportesAdeudados
+            // 
+            this.LabelImportesAdeudados.Location = new System.Drawing.Point(544, 204);
+            this.LabelImportesAdeudados.Name = "LabelImportesAdeudados";
+            this.LabelImportesAdeudados.Size = new System.Drawing.Size(100, 20);
+            this.LabelImportesAdeudados.TabIndex = 25;
+            this.LabelImportesAdeudados.Text = "Total Adeudado";
+            this.LabelImportesAdeudados.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // LabelImportesOtorgados
+            // 
+            this.LabelImportesOtorgados.Location = new System.Drawing.Point(544, 178);
+            this.LabelImportesOtorgados.Name = "LabelImportesOtorgados";
+            this.LabelImportesOtorgados.Size = new System.Drawing.Size(100, 20);
+            this.LabelImportesOtorgados.TabIndex = 24;
+            this.LabelImportesOtorgados.Text = "Total Otorgado";
+            this.LabelImportesOtorgados.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TboxImportesAdeudados
+            // 
+            this.TboxImportesAdeudados.Enabled = false;
+            this.TboxImportesAdeudados.Location = new System.Drawing.Point(650, 204);
+            this.TboxImportesAdeudados.Name = "TboxImportesAdeudados";
+            this.TboxImportesAdeudados.Size = new System.Drawing.Size(100, 20);
+            this.TboxImportesAdeudados.TabIndex = 23;
+            this.TboxImportesAdeudados.Tag = "Importes Adeudados";
+            this.TboxImportesAdeudados.Text = "Importes Adeudados";
+            // 
+            // TboxImportesOtorgados
+            // 
+            this.TboxImportesOtorgados.Enabled = false;
+            this.TboxImportesOtorgados.Location = new System.Drawing.Point(650, 178);
+            this.TboxImportesOtorgados.Name = "TboxImportesOtorgados";
+            this.TboxImportesOtorgados.Size = new System.Drawing.Size(100, 20);
+            this.TboxImportesOtorgados.TabIndex = 22;
+            this.TboxImportesOtorgados.Tag = "Importes Otorgados";
+            this.TboxImportesOtorgados.Text = "Importes Otorgados";
+            // 
             // DgvAdelantosPorEmpleado
             // 
             this.DgvAdelantosPorEmpleado.AllowUserToAddRows = false;
             this.DgvAdelantosPorEmpleado.AllowUserToDeleteRows = false;
             this.DgvAdelantosPorEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvAdelantosPorEmpleado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.Column5,
-            this.Column6,
-            this.Column7});
             this.DgvAdelantosPorEmpleado.Location = new System.Drawing.Point(6, 19);
             this.DgvAdelantosPorEmpleado.MultiSelect = false;
             this.DgvAdelantosPorEmpleado.Name = "DgvAdelantosPorEmpleado";
             this.DgvAdelantosPorEmpleado.ReadOnly = true;
-            this.DgvAdelantosPorEmpleado.Size = new System.Drawing.Size(744, 179);
+            this.DgvAdelantosPorEmpleado.Size = new System.Drawing.Size(744, 150);
             this.DgvAdelantosPorEmpleado.TabIndex = 21;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Column2";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Column3";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Column4";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Column5";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Column6";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Column7";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
             // 
             // GrpG2
             // 
@@ -422,6 +414,7 @@ namespace SAS
             this.CmdG2Agregar.TabIndex = 16;
             this.CmdG2Agregar.Text = "Agregar";
             this.CmdG2Agregar.UseVisualStyleBackColor = true;
+            this.CmdG2Agregar.Click += new System.EventHandler(this.CmdG2Agregar_Click);
             // 
             // CmdG2Eliminar
             // 
@@ -432,6 +425,7 @@ namespace SAS
             this.CmdG2Eliminar.TabIndex = 15;
             this.CmdG2Eliminar.Text = "Eliminar";
             this.CmdG2Eliminar.UseVisualStyleBackColor = true;
+            this.CmdG2Eliminar.Click += new System.EventHandler(this.CmdG2Eliminar_Click);
             // 
             // CmdG2Modificar
             // 
@@ -442,20 +436,13 @@ namespace SAS
             this.CmdG2Modificar.TabIndex = 14;
             this.CmdG2Modificar.Text = "Modificar";
             this.CmdG2Modificar.UseVisualStyleBackColor = true;
+            this.CmdG2Modificar.Click += new System.EventHandler(this.CmdG2Modificar_Click);
             // 
             // DgvTodosLosAdelantos
             // 
             this.DgvTodosLosAdelantos.AllowUserToAddRows = false;
             this.DgvTodosLosAdelantos.AllowUserToDeleteRows = false;
             this.DgvTodosLosAdelantos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvTodosLosAdelantos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11});
             this.DgvTodosLosAdelantos.Location = new System.Drawing.Point(551, 19);
             this.DgvTodosLosAdelantos.MultiSelect = false;
             this.DgvTodosLosAdelantos.Name = "DgvTodosLosAdelantos";
@@ -464,48 +451,6 @@ namespace SAS
             this.DgvTodosLosAdelantos.TabIndex = 8;
             this.DgvTodosLosAdelantos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvTodosLosAdelantos_CellClick);
             this.DgvTodosLosAdelantos.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvTodosLosAdelantos_RowHeaderMouseClick);
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Column1";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Column2";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Column3";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Column4";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Column5";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.HeaderText = "Column6";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.HeaderText = "Column7";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
             // 
             // TimerReloj
             // 
@@ -541,6 +486,7 @@ namespace SAS
             this.GrpG1.ResumeLayout(false);
             this.GrpG1.PerformLayout();
             this.GrpG3.ResumeLayout(false);
+            this.GrpG3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAdelantosPorEmpleado)).EndInit();
             this.GrpG2.ResumeLayout(false);
             this.GrpG2.PerformLayout();
@@ -553,10 +499,6 @@ namespace SAS
 
         private System.Windows.Forms.ErrorProvider ErrorProvider;
         private System.Windows.Forms.DataGridView DgvTodosLosEmpleados;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.Button CmdG2Asignar;
         private System.Windows.Forms.GroupBox GrpG1;
         private System.Windows.Forms.TextBox TboxG1Sueldo;
@@ -570,21 +512,7 @@ namespace SAS
         private System.Windows.Forms.GroupBox GrpG2;
         private System.Windows.Forms.GroupBox GrpG3;
         private System.Windows.Forms.DataGridView DgvAdelantosPorEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridView DgvTodosLosAdelantos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.Button CmdG2Agregar;
         private System.Windows.Forms.Button CmdG2Eliminar;
         private System.Windows.Forms.Button CmdG2Modificar;
@@ -598,6 +526,13 @@ namespace SAS
         private System.Windows.Forms.MonthCalendar CalFechaCancelacion;
         private System.Windows.Forms.Timer TimerReloj;
         private System.Windows.Forms.Label LabelSesion;
+        private System.Windows.Forms.Label LabelImportesAdeudados;
+        private System.Windows.Forms.Label LabelImportesOtorgados;
+        private System.Windows.Forms.TextBox TboxImportesAdeudados;
+        private System.Windows.Forms.TextBox TboxImportesOtorgados;
+        private System.Windows.Forms.RadioButton RadioOperario;
+        private System.Windows.Forms.RadioButton RadioDirectivo;
+        private System.Windows.Forms.RadioButton RadioAdministrativo;
     }
 }
 

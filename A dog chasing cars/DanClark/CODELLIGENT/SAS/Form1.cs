@@ -39,6 +39,8 @@ namespace SAS
 
         // Variables globales
         string Usuario = String.Empty;
+        List<CEmpleado> TodosLosEmpleados = new List<CEmpleado>();
+        List<CAdelanto> TodosLosAdelantos = new List<CAdelanto>();
 
         // UI (Interfaz de Usuario) Eventos
         private void TimerReloj_Tick(object sender, EventArgs e)
@@ -130,61 +132,9 @@ namespace SAS
             {
                 IniciaFormulario();
                 SimulaPlaceholder();
-                TEMPORAL();
             }
             catch (Exception error)
             { InformaExcepcion(LabelInformacion, error.Message); }
-        }
-        private void TEMPORAL()
-        {
-            DgvAdelantosPorEmpleado.Rows.Add(new object[] {
-                    "Dato 1",
-                    "Dato 2",
-                    "Dato 3",
-                    "Dato 4",
-                    "Dato 5",
-                    "Dato 6",
-                    "Dato 7"
-                });
-            DgvAdelantosPorEmpleado.Rows.Add(new object[] {
-                    "Dato 11",
-                    "Dato 12",
-                    "Dato 13",
-                    "Dato 14",
-                    "Dato 15",
-                    "Dato 16",
-                    "Dato 17"
-                });
-            DgvTodosLosAdelantos.Rows.Add(new object[] {
-                    "Dato 1",
-                    "Dato 2",
-                    "Dato 3",
-                    "Dato 4",
-                    "Dato 5",
-                    "Dato 6",
-                    "Dato 7"
-                });
-            DgvTodosLosAdelantos.Rows.Add(new object[] {
-                    "Dato 11",
-                    "Dato 12",
-                    "Dato 13",
-                    "Dato 14",
-                    "Dato 15",
-                    "Dato 16",
-                    "Dato 17"
-                });
-            DgvTodosLosEmpleados.Rows.Add(new object[] {
-                    "Dato 1",
-                    "Dato 2",
-                    "Dato 3",
-                    "Dato 4"
-                });
-            DgvTodosLosEmpleados.Rows.Add(new object[] {
-                    "Dato 11",
-                    "Dato 12",
-                    "Dato 13",
-                    "Dato 14"
-                });
         }
 
         // Descarga
@@ -253,5 +203,192 @@ namespace SAS
              */
         }
         #endregion
+
+        #region // *------------------------------------------------=> Comandos
+        private void CmdG1Agregar_Click(object sender, EventArgs e)
+        {
+            // Verificaciones
+            // Operaciones
+            try
+            {
+
+            }
+            catch (Exception error)
+            { InformaExcepcion(LabelInformacion, error.Message); }
+            // Adendas
+        }
+
+        private void CmdG1Eliminar_Click(object sender, EventArgs e)
+        {
+            // Verificaciones
+            // Operaciones
+            try
+            {
+
+            }
+            catch (Exception error)
+            { InformaExcepcion(LabelInformacion, error.Message); }
+            // Adendas
+        }
+
+        private void CmdG1Modificar_Click(object sender, EventArgs e)
+        {
+            // Verificaciones
+            // Operaciones
+            try
+            {
+
+            }
+            catch (Exception error)
+            { InformaExcepcion(LabelInformacion, error.Message); }
+            // Adendas
+        }
+
+        private void CmdG2Agregar_Click(object sender, EventArgs e)
+        {
+            // Verificaciones
+            // Operaciones
+            try
+            {
+
+            }
+            catch (Exception error)
+            { InformaExcepcion(LabelInformacion, error.Message); }
+            // Adendas
+        }
+
+        private void CmdG2Eliminar_Click(object sender, EventArgs e)
+        {
+            // Verificaciones
+            // Operaciones
+            try
+            {
+
+            }
+            catch (Exception error)
+            { InformaExcepcion(LabelInformacion, error.Message); }
+            // Adendas
+        }
+
+        private void CmdG2Modificar_Click(object sender, EventArgs e)
+        {
+            // Verificaciones
+            // Operaciones
+            try
+            {
+
+            }
+            catch (Exception error)
+            { InformaExcepcion(LabelInformacion, error.Message); }
+            // Adendas
+        }
+
+        private void CmdG2Asignar_Click(object sender, EventArgs e)
+        {
+            // Verificaciones
+            // Operaciones
+            try
+            {
+
+            }
+            catch (Exception error)
+            { InformaExcepcion(LabelInformacion, error.Message); }
+            // Adendas
+        }
+
+        private void CmdG2Pagar_Click(object sender, EventArgs e)
+        {
+            // Verificaciones
+            // Operaciones
+            try
+            {
+
+            }
+            catch (Exception error)
+            { InformaExcepcion(LabelInformacion, error.Message); }
+            // Adendas
+        }
+        #endregion
     }
+
+    #region CLASES
+    public abstract class CEmpleado
+    {
+        // Atributos
+        private int     legajo;
+        private string  nombre;
+        private string  apellido;
+        private decimal sueldo;
+        private List<CAdelanto> Adelantos = new List<CAdelanto>();
+        // Propiedades
+        // Constructores
+
+        // Métodos
+        public abstract decimal AplicaBeneficio(decimal pImporteOtorgado);
+        public List<CAdelanto> VerOtorgados() { return Adelantos; }
+        //public List<CAdelanto> VerAdeudados()
+        //{
+        //    var filtrada = new List<CAdelanto>(Adelantos);
+        //    filtrada.Where(x => x.FechaCancelacion != null).ToList();
+        //    return filtrada;
+        //}
+    }
+
+    public class COperario : CEmpleado
+    {
+        // Atributos
+        // Propiedades
+        // Constructores
+
+        // Métodos
+        public override decimal AplicaBeneficio(decimal pImporteOtorgado)
+        { return pImporteOtorgado * (decimal)0.1; }
+    }
+
+    public class CAdministrativo : CEmpleado
+    {
+        // Atributos
+        // Propiedades
+        // Constructores
+
+        // Métodos
+        public override decimal AplicaBeneficio(decimal pImporteOtorgado)
+        { return pImporteOtorgado * (decimal)0.05; }
+    }
+
+    public class CDirectivo : CEmpleado
+    {
+        // Atributos
+        // Propiedades
+        // Constructores
+
+        // Métodos
+        public override decimal AplicaBeneficio(decimal pImporteOtorgado)
+        { return pImporteOtorgado * (decimal)0.01; }
+    }
+
+    public class CAdelanto
+    {
+        // Atributos
+        private string   codigo;
+        private DateTime fechaOtorgamiento;
+        private decimal  importeOtorgado;
+        private decimal  beneficio;
+        private decimal  saldoAdeudado;
+        private DateTime fechaCancelacion;
+        private decimal  importePagado;
+
+        // Propiedades
+        public string Codigo { get => codigo; set => codigo = value; }
+        public DateTime FechaOtorgamiento { get => fechaOtorgamiento; set => fechaOtorgamiento = value; }
+        public decimal ImporteOtorgado { get => importeOtorgado; set => importeOtorgado = value; }
+        public decimal Beneficio { get => beneficio; set => beneficio = value; }
+        public decimal SaldoAdeudado { get => saldoAdeudado; set => saldoAdeudado = value; }
+        public DateTime FechaCancelacion { get => fechaCancelacion; set => fechaCancelacion = value; }
+        public decimal ImportePagado { get => importePagado; set => importePagado = value; }
+        
+        // Constructores
+        // Métodos
+    }
+    #endregion
 }
