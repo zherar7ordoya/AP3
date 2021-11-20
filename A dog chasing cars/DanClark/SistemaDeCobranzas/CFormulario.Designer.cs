@@ -56,7 +56,8 @@ namespace SistemaDeCobranzas
             this.GrpGrilla5 = new System.Windows.Forms.GroupBox();
             this.DgvListaCanceladosG5 = new System.Windows.Forms.DataGridView();
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label1 = new System.Windows.Forms.Label();
+            this.LabelSesion = new System.Windows.Forms.Label();
+            this.TimerReloj = new System.Windows.Forms.Timer(this.components);
             this.GrpGrilla1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaClientes)).BeginInit();
             this.GrpGrilla2.SuspendLayout();
@@ -90,7 +91,7 @@ namespace SistemaDeCobranzas
             this.CmdModificaCliente.Enabled = false;
             this.CmdModificaCliente.Location = new System.Drawing.Point(255, 19);
             this.CmdModificaCliente.Name = "CmdModificaCliente";
-            this.CmdModificaCliente.Size = new System.Drawing.Size(75, 22);
+            this.CmdModificaCliente.Size = new System.Drawing.Size(75, 21);
             this.CmdModificaCliente.TabIndex = 4;
             this.CmdModificaCliente.Text = "Modificación";
             this.CmdModificaCliente.UseVisualStyleBackColor = true;
@@ -101,7 +102,7 @@ namespace SistemaDeCobranzas
             this.CmdBajaCliente.Enabled = false;
             this.CmdBajaCliente.Location = new System.Drawing.Point(255, 48);
             this.CmdBajaCliente.Name = "CmdBajaCliente";
-            this.CmdBajaCliente.Size = new System.Drawing.Size(75, 22);
+            this.CmdBajaCliente.Size = new System.Drawing.Size(75, 21);
             this.CmdBajaCliente.TabIndex = 5;
             this.CmdBajaCliente.Text = "Baja";
             this.CmdBajaCliente.UseVisualStyleBackColor = true;
@@ -109,9 +110,9 @@ namespace SistemaDeCobranzas
             // 
             // CmdAltaCliente
             // 
-            this.CmdAltaCliente.Location = new System.Drawing.Point(255, 325);
+            this.CmdAltaCliente.Location = new System.Drawing.Point(255, 324);
             this.CmdAltaCliente.Name = "CmdAltaCliente";
-            this.CmdAltaCliente.Size = new System.Drawing.Size(75, 22);
+            this.CmdAltaCliente.Size = new System.Drawing.Size(75, 21);
             this.CmdAltaCliente.TabIndex = 3;
             this.CmdAltaCliente.Text = "Alta";
             this.CmdAltaCliente.UseVisualStyleBackColor = true;
@@ -171,7 +172,7 @@ namespace SistemaDeCobranzas
             // CheckTipoEspecial
             // 
             this.CheckTipoEspecial.AutoSize = true;
-            this.CheckTipoEspecial.Location = new System.Drawing.Point(136, 100);
+            this.CheckTipoEspecial.Location = new System.Drawing.Point(136, 102);
             this.CheckTipoEspecial.Name = "CheckTipoEspecial";
             this.CheckTipoEspecial.Size = new System.Drawing.Size(89, 17);
             this.CheckTipoEspecial.TabIndex = 7;
@@ -183,7 +184,7 @@ namespace SistemaDeCobranzas
             this.CmdPagar.Enabled = false;
             this.CmdPagar.Location = new System.Drawing.Point(655, 19);
             this.CmdPagar.Name = "CmdPagar";
-            this.CmdPagar.Size = new System.Drawing.Size(75, 22);
+            this.CmdPagar.Size = new System.Drawing.Size(75, 21);
             this.CmdPagar.TabIndex = 13;
             this.CmdPagar.Text = "Pagar";
             this.CmdPagar.UseVisualStyleBackColor = true;
@@ -191,9 +192,9 @@ namespace SistemaDeCobranzas
             // 
             // CmdAltaCobro
             // 
-            this.CmdAltaCobro.Location = new System.Drawing.Point(655, 99);
+            this.CmdAltaCobro.Location = new System.Drawing.Point(655, 100);
             this.CmdAltaCobro.Name = "CmdAltaCobro";
-            this.CmdAltaCobro.Size = new System.Drawing.Size(75, 22);
+            this.CmdAltaCobro.Size = new System.Drawing.Size(75, 21);
             this.CmdAltaCobro.TabIndex = 12;
             this.CmdAltaCobro.Text = "Alta";
             this.CmdAltaCobro.UseVisualStyleBackColor = true;
@@ -295,7 +296,7 @@ namespace SistemaDeCobranzas
             this.GrpGrilla4.Size = new System.Drawing.Size(961, 203);
             this.GrpGrilla4.TabIndex = 3;
             this.GrpGrilla4.TabStop = false;
-            this.GrpGrilla4.Text = "Grilla 4: Cobros cancelados del cliente (ordenados por total)";
+            this.GrpGrilla4.Text = "Grilla 4: Cobros cancelados del cliente (ordenados por Total)";
             // 
             // RadioDescendente
             // 
@@ -359,21 +360,28 @@ namespace SistemaDeCobranzas
             // 
             this.ErrorProvider.ContainerControl = this;
             // 
-            // label1
+            // LabelSesion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1150, 615);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 13);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Sesión";
+            this.LabelSesion.Enabled = false;
+            this.LabelSesion.Location = new System.Drawing.Point(379, 602);
+            this.LabelSesion.Name = "LabelSesion";
+            this.LabelSesion.Size = new System.Drawing.Size(961, 13);
+            this.LabelSesion.TabIndex = 15;
+            this.LabelSesion.Text = "Sesión";
+            this.LabelSesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TimerReloj
+            // 
+            this.TimerReloj.Enabled = true;
+            this.TimerReloj.Interval = 1000;
+            this.TimerReloj.Tick += new System.EventHandler(this.TimerReloj_Tick);
             // 
             // CFormulario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1357, 628);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(1354, 621);
+            this.Controls.Add(this.LabelSesion);
             this.Controls.Add(this.GrpGrilla5);
             this.Controls.Add(this.GrpGrilla3);
             this.Controls.Add(this.LabelInformacion);
@@ -399,7 +407,6 @@ namespace SistemaDeCobranzas
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaCanceladosG5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -431,7 +438,8 @@ namespace SistemaDeCobranzas
         private System.Windows.Forms.DataGridView DgvListaCanceladosG5;
         private System.Windows.Forms.CheckBox CheckTipoEspecial;
         private System.Windows.Forms.ErrorProvider ErrorProvider;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LabelSesion;
+        private System.Windows.Forms.Timer TimerReloj;
     }
 }
 

@@ -10,7 +10,68 @@ namespace SistemaDeCobranzas
 {
     public partial class CFormulario : Form
     {
+
+
+
+
+        #region // *----------------------------------------------=> Formulario
         public CFormulario() { InitializeComponent(); }
+        // CARGA
+
+
+        private void IniciaFormulario()
+        {
+            while (true)
+            {
+                if (!String.IsNullOrWhiteSpace(Usuario)) { break; }
+                Usuario = Interaction.InputBox
+                    (
+                    "Ingrese su nombre:",
+                    "Usuario",
+                    "Gerardo Tordoya"
+                    );
+                if (String.IsNullOrWhiteSpace(Usuario)) { this.Close(); }
+            }
+            this.CenterToScreen();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.Text += $" ({Usuario})";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+        }
+        private void SimulaPlaceholder()
+        {
+            foreach (Control x in this.Controls)
+            {
+                if (x is GroupBox)
+                {
+                    foreach (Control box in x.Controls)
+                    {
+                        if (box is TextBox)
+                        {
+                            box.GotFocus += new EventHandler(TboxAdquiereFoco);
+                            box.LostFocus += new EventHandler(TboxPierdeFoco);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CFormulario_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                IniciaFormulario();
+                SimulaPlaceholder();
+            }
+            catch (Exception error)
+            { InformaExcepcion(LabelInformacion, error.Message); }
+        }
+
+        // DESCARGA
+
+        #endregion
+
+
 
         public void TboxAdquiereFoco(object sender, EventArgs e)
         {
@@ -26,52 +87,6 @@ namespace SistemaDeCobranzas
         }
 
 
-        private void IniciaFormulario()
-        {
-            try
-            {
-                while (true)
-                {
-                    if (!String.IsNullOrWhiteSpace(Usuario)) { break; }
-                    Usuario = Interaction.InputBox
-                        (
-                        "Ingrese su nombre:",
-                        "Usuario",
-                        "Gerardo Tordoya"
-                        );
-                    if (String.IsNullOrWhiteSpace(Usuario)) { this.Close(); }
-                }
-                this.CenterToScreen();
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
-                this.Text += $" ({Usuario})";
-                this.MaximizeBox = false;
-                this.MinimizeBox = false;
-            }
-            catch (Exception error)
-            { InformaExcepcion(LabelInformacion, error.Message); }
-        }
-        private void SimulaPlaceholder()
-        {
-            try
-            {
-                foreach (Control x in this.Controls)
-                {
-                    if (x is GroupBox)
-                    {
-                        foreach (Control box in x.Controls)
-                        {
-                            if (box is TextBox)
-                            {
-                                box.GotFocus += new EventHandler(TboxAdquiereFoco);
-                                box.LostFocus += new EventHandler(TboxPierdeFoco);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception error)
-            { InformaExcepcion(LabelInformacion, error.Message); }
-        }
 
 
         List<CCliente> clientes = new List<CCliente>();
@@ -86,17 +101,7 @@ namespace SistemaDeCobranzas
         string Usuario = string.Empty;
 
         #region APERTURA DEL FORMULARIO
-        private void CFormulario_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                IniciaFormulario();
-                SimulaPlaceholder();
-                //this.TextboxLegajoCliente.Focus();
-            }
-            catch (Exception error)
-            { InformaExcepcion(LabelInformacion, error.Message); }
-        }
+
         #endregion
 
         #region CIERRE DEL FORMULARIO
@@ -553,46 +558,22 @@ namespace SistemaDeCobranzas
         #endregion
 
         #region AYUDANTES
-        //private void IniciaFormulario()
-        //{
-        //    try
-        //    {
-        //        usuario = Interaction.InputBox
-        //            (
-        //            "Ingrese su nombre:",
-        //            "Usuario",
-        //            "Gerardo Tordoya"
-        //            );
-        //        this.CenterToScreen();
-        //        this.FormBorderStyle = FormBorderStyle.FixedSingle;
-        //        this.Text += $" ({usuario})";
-        //        this.MaximizeBox = false;
-        //        this.MinimizeBox = false;
-        //    }
-        //    catch (Exception error)
-        //    { InformaExcepcion(EtiquetaClientes, error.Message); }
-        //}
         private void InformaExcepcion(Control pControl, string pMensaje)
         {
-            try
-            {
-                ErrorProvider.SetError
-                    (
-                    pControl,
-                    pMensaje
-                    );
-
-                MessageBox.Show
-                    (
-                    pMensaje,
-                    "Algo ha fallado...",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                    );
-            }
-            catch (Exception error)
-            { InformaExcepcion(LabelInformacion, error.Message); }
+            ErrorProvider.SetError
+                (
+                pControl,
+                pMensaje
+                );
+            MessageBox.Show
+                (
+                pMensaje,
+                "Algo ha fallado...",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
         }
+
         private void Pago_OnTotalChanged(object sender, decimal e)
         {
             try
@@ -605,6 +586,9 @@ namespace SistemaDeCobranzas
             { InformaExcepcion(LabelInformacion, error.Message); }
         }
         #endregion
+
+        private void TimerReloj_Tick(object sender, EventArgs e)
+        { this.LabelSesion.Text = DateTime.Now.ToString(); }
     }
 
 
