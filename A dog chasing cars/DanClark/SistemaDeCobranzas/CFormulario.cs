@@ -10,33 +10,59 @@ namespace SistemaDeCobranzas
 {
     public partial class CFormulario : Form
     {
+        string          usuario   = String.Empty;
 
+        List<CCliente>  clientes  = new List<CCliente>();
+        List<CPago>     ordenable = new List<CPago>();
+        List<CReducida> reducida  = new List<CReducida>();
 
-
+        CCliente        cliente   = null;
+        CCobro          cobro     = null;
+        CPago           pago      = null;
 
         #region // *----------------------------------------------=> Formulario
         public CFormulario() { InitializeComponent(); }
-        // CARGA
 
-
-        private void IniciaFormulario()
+        // *-----------------------------------------------------------=> CARGA
+        private void DefineUsuario()
         {
             while (true)
             {
-                if (!String.IsNullOrWhiteSpace(Usuario)) { break; }
-                Usuario = Interaction.InputBox
+                if (!String.IsNullOrWhiteSpace(usuario)) { break; }
+                usuario = Interaction.InputBox
                     (
                     "Ingrese su nombre:",
                     "Usuario",
                     "Gerardo Tordoya"
                     );
-                if (String.IsNullOrWhiteSpace(Usuario)) { this.Close(); }
+                if (String.IsNullOrWhiteSpace(usuario)) { this.Close(); }
             }
+        }
+        private void PersonalizaFormulario()
+        {
             this.CenterToScreen();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.Text += $" ({Usuario})";
+            this.Text += $" ({usuario})";
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+        }
+        private void IniciaFormulario()
+        {
+            DefineUsuario();
+            PersonalizaFormulario();
+        }
+        public void TboxAdquiereFoco(object sender, EventArgs e)
+        {
+            ErrorProvider.Clear();
+            TextBox tbox = (TextBox)sender;
+            if (tbox.Text == tbox.Tag.ToString())
+            { tbox.Text = String.Empty; }
+        }
+        public void TboxPierdeFoco(object sender, EventArgs e)
+        {
+            TextBox tbox = (TextBox)sender;
+            if (String.IsNullOrWhiteSpace(tbox.Text))
+            { tbox.Text = tbox.Tag.ToString(); }
         }
         private void SimulaPlaceholder()
         {
@@ -55,56 +81,61 @@ namespace SistemaDeCobranzas
                 }
             }
         }
-
         private void CFormulario_Load(object sender, EventArgs e)
         {
-            try
+            IniciaFormulario();
+            SimulaPlaceholder();
+            LabelInformacion.Text  = "Para empezar, necesita crear clientes. Luego\n";
+            LabelInformacion.Text += "podrá crear los cobros que se\n";
+            LabelInformacion.Text += "les imputarán.";
+            ErrorProvider.SetError(this.TboxLegajoCliente, "Empiece aquí");
+        }
+
+        // *------------------------------------------------=> BACKGROUND WORLD
+        private void TimerReloj_Tick(object sender, EventArgs e)
+        { this.LabelSesion.Text = $"Sesión de {usuario} || {DateTime.Now}"; }
+        private void InformaExcepcion(Control pControl, string pMensaje)
+        {
+            ErrorProvider.SetError
+                (
+                pControl,
+                pMensaje
+                );
+            MessageBox.Show
+                (
+                pMensaje,
+                "Algo ha fallado...",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
+        }
+        private void Pago_OnTotalChanged(object sender, decimal e)
+        {
+            var x = (CPago)sender;
+            if (x.Total > 10000)
             {
-                IniciaFormulario();
-                SimulaPlaceholder();
+                MessageBox.Show
+                    (
+                    "El cobro a cancelar supera los $10.000",
+                    $"{usuario}",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
             }
-            catch (Exception error)
-            { InformaExcepcion(LabelInformacion, error.Message); }
         }
 
-        // DESCARGA
-
-        #endregion
-
-
-
-        public void TboxAdquiereFoco(object sender, EventArgs e)
+        // *--------------------------------------------------------=> DESCARGA
+        private void CFormulario_FormClosing(object sender, FormClosingEventArgs e)
         {
-            TextBox tbox = (TextBox)sender;
-            if (tbox.Text == tbox.Tag.ToString())
-            { tbox.Text = String.Empty; }
+            if (MessageBox.Show
+                (
+                "¿Desea salir de la aplicación?",
+                $"{usuario}",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+                ) == DialogResult.No)
+            { e.Cancel = true; }
         }
-        public void TboxPierdeFoco(object sender, EventArgs e)
-        {
-            TextBox tbox = (TextBox)sender;
-            if (String.IsNullOrWhiteSpace(tbox.Text))
-            { tbox.Text = tbox.Tag.ToString(); }
-        }
-
-
-
-
-        List<CCliente> clientes = new List<CCliente>();
-
-        CCliente cliente = null;
-        CCobro cobro = null;
-        CPago pago = null;
-        
-        List<CPago> ordenable = new List<CPago>();
-        List<CReducida> reducida = new List<CReducida>();
-
-        string Usuario = string.Empty;
-
-        #region APERTURA DEL FORMULARIO
-
-        #endregion
-
-        #region CIERRE DEL FORMULARIO
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Escape)
@@ -114,25 +145,10 @@ namespace SistemaDeCobranzas
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        private void CFormulario_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                if (MessageBox.Show
-                    (
-                    "¿Desea salir de la aplicación?",
-                    $"{Usuario}",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                    ) == DialogResult.No)
-                { e.Cancel = true; }
-            }
-            catch (Exception error)
-            { InformaExcepcion(LabelInformacion, error.Message); }
-        }
-        #endregion
+    #endregion
 
-        #region EVENTOS GRUPO CLIENTE (GRILLA 1)
+        #region // *--------------------------------------=> GRUPO 1 (Clientes)
+        // EVENTOS
         private void DgvListaClientes_CellClick(
             object sender,
             DataGridViewCellEventArgs e)
@@ -147,14 +163,14 @@ namespace SistemaDeCobranzas
                 }
                 this.DgvListaPendientes.DataSource = null;
 
-                this.TextboxLegajoCliente.Text     = String.Empty;
-                this.TextboxNombreCliente.Text     = String.Empty;
+                this.TboxLegajoCliente.Text     = String.Empty;
+                this.TboxNombreCliente.Text     = String.Empty;
 
                 /*
                  * COORDINACIÓN ENTRE GRUPOS
                  */
                 // *-----------------=> Para G1
-                this.TextboxLegajoCliente.Enabled    = true;
+                this.TboxLegajoCliente.Enabled       = true;
                 this.CmdAltaCliente.Enabled          = true;
                 this.CmdModificaCliente.Enabled      = false;
                 this.CmdBajaCliente.Enabled          = false;
@@ -162,7 +178,7 @@ namespace SistemaDeCobranzas
                 // *-----------------=> Para G2
                 this.LabelInformacion.Text           = String.Empty;
                 this.CmdAltaCobro.Enabled            = true;
-                this.CmdPagar.Enabled                = false;
+                this.CmdPagaCobro.Enabled                = false;
                 this.DgvListaPendientes.DataSource   = null;
 
                 // *-----------------=> Para G3
@@ -187,20 +203,20 @@ namespace SistemaDeCobranzas
                 cliente = (CCliente)
                     (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
 
-                TextboxLegajoCliente.Text = DgvListaClientes
+                TboxLegajoCliente.Text = DgvListaClientes
                     .Rows[e.RowIndex].Cells[0].Value.ToString();
-                TextboxNombreCliente.Text = DgvListaClientes
+                TboxNombreCliente.Text = DgvListaClientes
                     .Rows[e.RowIndex].Cells[1].Value.ToString();
 
                 // Controles propios
-                TextboxLegajoCliente.Enabled  = false;
+                TboxLegajoCliente.Enabled  = false;
                 CmdAltaCliente.Enabled        = false;
                 CmdModificaCliente.Enabled    = true;
                 CmdBajaCliente.Enabled        = true;
 
                 // Controles ajenos
                 CmdAltaCobro.Enabled          = true;
-                CmdPagar.Enabled              = false;
+                CmdPagaCobro.Enabled              = false;
 
                 DgvListaPendientes.DataSource = null;
                 if (cliente.VerPendientes() != null && cliente.VerPendientes().Count > 0)
@@ -218,9 +234,8 @@ namespace SistemaDeCobranzas
             catch (Exception error)
             { InformaExcepcion(LabelInformacion, error.Message); }
         }
-        #endregion
 
-        #region BOTONES GRUPO CLIENTE (GRILLA 1)
+        // CMD
         private void CmdAltaCliente_Click(object sender, EventArgs e)
         {
             try
@@ -229,29 +244,30 @@ namespace SistemaDeCobranzas
                 ErrorProvider.Clear();
 
                 if (
-                    TextboxLegajoCliente.Text == string.Empty ||
-                    TextboxNombreCliente.Text == string.Empty
+                    TboxLegajoCliente.Text == string.Empty ||
+                    TboxNombreCliente.Text == string.Empty
                     ) { throw new Exception("No pueden haber campos vacíos"); }
                 else if (
-                    !Regex.Match(TextboxNombreCliente.Text,
-                    "^[A-Z][a-zA-Z]*$").Success
-                    ) { throw new Exception("Use un nombre propio (Ej.: Fulano)"); }
+                    !Regex.Match(
+                        TboxNombreCliente.Text,
+                        "^[A-Z][A-zÀ-ú ]*$").Success)
+                { throw new Exception("Use un nombre propio que empiece con mayúscula (Ej.: Fulano)"); }
                 else if(clientes.Any
-                    (x => x.Legajo == Int32.Parse(TextboxLegajoCliente.Text)))
+                    (x => x.Legajo == Int32.Parse(TboxLegajoCliente.Text)))
                 { throw new Exception("Los legajos deben ser diferentes."); }
 
                 // Operaciones
                 clientes.Add(new CCliente
                     (
-                    Int32.Parse(TextboxLegajoCliente.Text),
-                    TextboxNombreCliente.Text
+                    Int32.Parse(TboxLegajoCliente.Text),
+                    TboxNombreCliente.Text
                     ));
                 DgvListaClientes.DataSource = null;
                 DgvListaClientes.DataSource = clientes;
 
                 // Adendas
                 DgvListaClientes_CellClick(this, null);
-                this.TextboxLegajoCliente.Focus();
+                this.TboxLegajoCliente.Focus();
             }
             catch (Exception error)
             { InformaExcepcion(LabelInformacion, error.Message); }
@@ -267,7 +283,7 @@ namespace SistemaDeCobranzas
                 if (MessageBox.Show
                     (
                     "¿Confirma baja?",
-                    $"{Usuario}",
+                    $"{usuario}",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
                     ) == DialogResult.Yes)
@@ -279,7 +295,7 @@ namespace SistemaDeCobranzas
 
                 // Adendas
                 DgvListaClientes_CellClick(this, null);
-                this.TextboxLegajoCliente.Focus();
+                this.TboxLegajoCliente.Focus();
             }
             catch (Exception error)
             { InformaExcepcion(LabelInformacion, error.Message); }
@@ -295,12 +311,12 @@ namespace SistemaDeCobranzas
                 if (MessageBox.Show
                     (
                     "¿Confirma modificación?",
-                    $"{Usuario}",
+                    $"{usuario}",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
                     ) == DialogResult.Yes)
                 {
-                    cliente.NombreCliente = TextboxNombreCliente.Text;
+                    cliente.NombreCliente = TboxNombreCliente.Text;
                     DgvListaClientes.DataSource = null;
                     DgvListaClientes.DataSource = clientes;
                 }
@@ -310,23 +326,23 @@ namespace SistemaDeCobranzas
             }
             catch (Exception error)
             { InformaExcepcion(LabelInformacion, error.Message); }
-
         }
         #endregion
 
-        #region EVENTOS GRUPO PENDIENTES (GRILLA 2)
+        #region // *------------------=> GRUPO 2 (Cobros Pendientes de Cliente)
+        // EVENTOS
         private void DgvListaPendientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                this.CheckTipoEspecial.Checked   = false;
-                TextboxCodigoCobro.Text          = String.Empty;
-                TextboxNombreCobro.Text          = String.Empty;
-                DtpFechaVencimiento.Value = DateTime.Today.AddDays(-1);
-                TextboxImporte.Text              = String.Empty;
+                this.CheckTipoCobro.Checked   = false;
+                TboxCodigoCobro.Text          = String.Empty;
+                TboxNombreCobro.Text          = String.Empty;
+                DtpFechaVencimientoCobro.Value = DateTime.Today.AddDays(-1);
+                TboxImporteCobro.Text              = String.Empty;
 
                 CmdAltaCobro.Enabled = true;
-                CmdPagar.Enabled     = false;
+                CmdPagaCobro.Enabled     = false;
 
                 /*
                  * COORDINACIÓN ENTRE GRUPOS
@@ -351,15 +367,15 @@ namespace SistemaDeCobranzas
                 cobro = (CCobro)
                     (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
 
-                if (cobro.Tipo == "Especial") { this.CheckTipoEspecial.Checked = true; }
+                if (cobro.Tipo == "Especial") { this.CheckTipoCobro.Checked = true; }
 
-                TextboxCodigoCobro.Text          = cobro.Codigo.ToString();
-                TextboxNombreCobro.Text          = cobro.NombreCobro;
-                DtpFechaVencimiento.Value = cobro.FechaVencimiento;
-                TextboxImporte.Text              = cobro.Importe.ToString();
+                TboxCodigoCobro.Text          = cobro.Codigo.ToString();
+                TboxNombreCobro.Text          = cobro.NombreCobro;
+                DtpFechaVencimientoCobro.Value = cobro.FechaVencimiento;
+                TboxImporteCobro.Text              = cobro.Importe.ToString();
 
                 CmdAltaCobro.Enabled = false;
-                CmdPagar.Enabled     = true;
+                CmdPagaCobro.Enabled     = true;
 
                 /*
                  * COORDINACIÓN ENTRE GRUPOS
@@ -374,9 +390,8 @@ namespace SistemaDeCobranzas
             catch (Exception error)
             { InformaExcepcion(LabelInformacion, error.Message); }
         }
-        #endregion
 
-        #region BOTONES GRUPO PENDIENTES (GRILLA 2)
+        // CMD
         private void CmdAltaCobro_Click(object sender, EventArgs e)
         {
             try
@@ -387,39 +402,39 @@ namespace SistemaDeCobranzas
                 { throw new Exception("Debe seleccionar un cliente.\n" +
                     "Puede hacerlo con un click en su cabecera de fila."); }
                 else if (
-                    TextboxCodigoCobro.Text == string.Empty ||
-                    TextboxNombreCobro.Text == string.Empty ||
-                    TextboxImporte.Text == string.Empty
+                    TboxCodigoCobro.Text == string.Empty ||
+                    TboxNombreCobro.Text == string.Empty ||
+                    TboxImporteCobro.Text == string.Empty
                     ) { throw new Exception("No pueden haber campos vacíos"); }
 
                 cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem;
 
-                if (cliente.EsDuplicado(Int32.Parse(TextboxCodigoCobro.Text)))
+                if (cliente.EsDuplicado(Int32.Parse(TboxCodigoCobro.Text)))
                 { throw new Exception("Los códigos de cobro no deben repetirse"); }
                 else if(cliente.VerPendientes().Count > 1)
                 { throw new Exception("El cliente no puede tener más de dos pendientes"); }
 
                 // Operaciones
-                if (CheckTipoEspecial.Checked)
+                if (CheckTipoCobro.Checked)
                 {
                     cobro = new CCobroEspecial(
                         "Especial",
-                        Int32.Parse(TextboxCodigoCobro.Text),
-                        TextboxNombreCobro.Text,
-                        DtpFechaVencimiento.Value,
-                        decimal.Parse(TextboxImporte.Text),
-                        TextboxNombreCliente.Text);
+                        Int32.Parse(TboxCodigoCobro.Text),
+                        TboxNombreCobro.Text,
+                        DtpFechaVencimientoCobro.Value,
+                        decimal.Parse(TboxImporteCobro.Text),
+                        TboxNombreCliente.Text);
                     cliente.AltaPendiente(cobro);
                 }
                 else
                 {
                     cobro = new CCobroNormal(
                         "Normal",
-                        Int32.Parse(TextboxCodigoCobro.Text),
-                        TextboxNombreCobro.Text,
-                        DtpFechaVencimiento.Value,
-                        decimal.Parse(TextboxImporte.Text),
-                        TextboxNombreCliente.Text);
+                        Int32.Parse(TboxCodigoCobro.Text),
+                        TboxNombreCobro.Text,
+                        DtpFechaVencimientoCobro.Value,
+                        decimal.Parse(TboxImporteCobro.Text),
+                        TboxNombreCliente.Text);
                     cliente.AltaPendiente(cobro);
                 }
                 this.DgvListaPendientes.DataSource = null;
@@ -427,11 +442,11 @@ namespace SistemaDeCobranzas
                 { this.DgvListaPendientes.DataSource = cliente.VerPendientes(); }
 
                 // Adendas
-                CheckTipoEspecial.Checked        = false;
-                TextboxCodigoCobro.Text          = String.Empty;
-                TextboxNombreCobro.Text          = String.Empty;
-                DtpFechaVencimiento.Value = DateTime.Now;
-                TextboxImporte.Text              = String.Empty;
+                CheckTipoCobro.Checked        = false;
+                TboxCodigoCobro.Text          = String.Empty;
+                TboxNombreCobro.Text          = String.Empty;
+                DtpFechaVencimientoCobro.Value = DateTime.Now;
+                TboxImporteCobro.Text              = String.Empty;
             }
             catch (Exception error)
             { InformaExcepcion(LabelInformacion, error.Message); }
@@ -446,7 +461,7 @@ namespace SistemaDeCobranzas
                 /* --- NADA AÚN --- */
 
                 // Operaciones
-                DateTime desde  = (DateTime)DtpFechaVencimiento.Value;
+                DateTime desde  = (DateTime)DtpFechaVencimientoCobro.Value;
                 DateTime hasta  = DateTime.Now.AddDays(-1);
                 int retraso     = cobro.CalcularRetrasoEnDias(desde, hasta);
                 decimal recargo = cobro.CalcularRecargo(cobro.Importe, retraso);
@@ -493,14 +508,14 @@ namespace SistemaDeCobranzas
                 RadioAscendente.Checked          = false;
                 RadioDescendente.Checked         = false;
 
-                CmdPagar.Enabled                 = false;
+                CmdPagaCobro.Enabled                 = false;
                 CmdAltaCobro.Enabled             = true;
 
-                CheckTipoEspecial.Checked        = false;
-                TextboxCodigoCobro.Text          = String.Empty;
-                TextboxNombreCobro.Text          = String.Empty;
-                DtpFechaVencimiento.Value = DateTime.Now;
-                TextboxImporte.Text              = String.Empty;
+                CheckTipoCobro.Checked        = false;
+                TboxCodigoCobro.Text          = String.Empty;
+                TboxNombreCobro.Text          = String.Empty;
+                DtpFechaVencimientoCobro.Value = DateTime.Now;
+                TboxImporteCobro.Text              = String.Empty;
 
             }
             catch (Exception error)
@@ -508,7 +523,7 @@ namespace SistemaDeCobranzas
         }
         #endregion
 
-        #region EVENTOS RADIO GRUPO G4 CANCELADOS (GRILLA 4)
+        #region // *------------------=> GRUPO 4 (Cobros Cancelados de Cliente)
         private void RadioAscendente_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -558,37 +573,9 @@ namespace SistemaDeCobranzas
         #endregion
 
         #region AYUDANTES
-        private void InformaExcepcion(Control pControl, string pMensaje)
-        {
-            ErrorProvider.SetError
-                (
-                pControl,
-                pMensaje
-                );
-            MessageBox.Show
-                (
-                pMensaje,
-                "Algo ha fallado...",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-                );
-        }
-
-        private void Pago_OnTotalChanged(object sender, decimal e)
-        {
-            try
-            {
-                var x = (CPago)sender;
-                if (x.Total > 10000)
-                { LabelInformacion.Text = "El importe total a pagar supera los $10.000"; }
-            }
-            catch (Exception error)
-            { InformaExcepcion(LabelInformacion, error.Message); }
-        }
         #endregion
 
-        private void TimerReloj_Tick(object sender, EventArgs e)
-        { this.LabelSesion.Text = DateTime.Now.ToString(); }
+
     }
 
 

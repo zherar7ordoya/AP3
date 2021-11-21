@@ -34,17 +34,17 @@ namespace SistemaDeCobranzas
             this.CmdModificaCliente = new System.Windows.Forms.Button();
             this.CmdBajaCliente = new System.Windows.Forms.Button();
             this.CmdAltaCliente = new System.Windows.Forms.Button();
-            this.TextboxNombreCliente = new System.Windows.Forms.TextBox();
-            this.TextboxLegajoCliente = new System.Windows.Forms.TextBox();
+            this.TboxNombreCliente = new System.Windows.Forms.TextBox();
+            this.TboxLegajoCliente = new System.Windows.Forms.TextBox();
             this.DgvListaClientes = new System.Windows.Forms.DataGridView();
             this.GrpGrilla2 = new System.Windows.Forms.GroupBox();
-            this.CheckTipoEspecial = new System.Windows.Forms.CheckBox();
-            this.CmdPagar = new System.Windows.Forms.Button();
+            this.CheckTipoCobro = new System.Windows.Forms.CheckBox();
+            this.CmdPagaCobro = new System.Windows.Forms.Button();
             this.CmdAltaCobro = new System.Windows.Forms.Button();
-            this.TextboxImporte = new System.Windows.Forms.TextBox();
-            this.DtpFechaVencimiento = new System.Windows.Forms.DateTimePicker();
-            this.TextboxNombreCobro = new System.Windows.Forms.TextBox();
-            this.TextboxCodigoCobro = new System.Windows.Forms.TextBox();
+            this.TboxImporteCobro = new System.Windows.Forms.TextBox();
+            this.DtpFechaVencimientoCobro = new System.Windows.Forms.DateTimePicker();
+            this.TboxNombreCobro = new System.Windows.Forms.TextBox();
+            this.TboxCodigoCobro = new System.Windows.Forms.TextBox();
             this.DgvListaPendientes = new System.Windows.Forms.DataGridView();
             this.LabelInformacion = new System.Windows.Forms.Label();
             this.GrpGrilla3 = new System.Windows.Forms.GroupBox();
@@ -76,8 +76,8 @@ namespace SistemaDeCobranzas
             this.GrpGrilla1.Controls.Add(this.CmdModificaCliente);
             this.GrpGrilla1.Controls.Add(this.CmdBajaCliente);
             this.GrpGrilla1.Controls.Add(this.CmdAltaCliente);
-            this.GrpGrilla1.Controls.Add(this.TextboxNombreCliente);
-            this.GrpGrilla1.Controls.Add(this.TextboxLegajoCliente);
+            this.GrpGrilla1.Controls.Add(this.TboxNombreCliente);
+            this.GrpGrilla1.Controls.Add(this.TboxLegajoCliente);
             this.GrpGrilla1.Controls.Add(this.DgvListaClientes);
             this.GrpGrilla1.Location = new System.Drawing.Point(12, 12);
             this.GrpGrilla1.Name = "GrpGrilla1";
@@ -118,25 +118,25 @@ namespace SistemaDeCobranzas
             this.CmdAltaCliente.UseVisualStyleBackColor = true;
             this.CmdAltaCliente.Click += new System.EventHandler(this.CmdAltaCliente_Click);
             // 
-            // TextboxNombreCliente
+            // TboxNombreCliente
             // 
-            this.TextboxNombreCliente.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TextboxNombreCliente.Location = new System.Drawing.Point(149, 325);
-            this.TextboxNombreCliente.Name = "TextboxNombreCliente";
-            this.TextboxNombreCliente.Size = new System.Drawing.Size(100, 20);
-            this.TextboxNombreCliente.TabIndex = 2;
-            this.TextboxNombreCliente.Tag = "Nombre del Cliente";
-            this.TextboxNombreCliente.Text = "Nombre del Cliente";
+            this.TboxNombreCliente.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TboxNombreCliente.Location = new System.Drawing.Point(149, 325);
+            this.TboxNombreCliente.Name = "TboxNombreCliente";
+            this.TboxNombreCliente.Size = new System.Drawing.Size(100, 20);
+            this.TboxNombreCliente.TabIndex = 2;
+            this.TboxNombreCliente.Tag = "Nombre del Cliente";
+            this.TboxNombreCliente.Text = "Nombre del Cliente";
             // 
-            // TextboxLegajoCliente
+            // TboxLegajoCliente
             // 
-            this.TextboxLegajoCliente.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TextboxLegajoCliente.Location = new System.Drawing.Point(43, 325);
-            this.TextboxLegajoCliente.Name = "TextboxLegajoCliente";
-            this.TextboxLegajoCliente.Size = new System.Drawing.Size(100, 20);
-            this.TextboxLegajoCliente.TabIndex = 1;
-            this.TextboxLegajoCliente.Tag = "Legajo";
-            this.TextboxLegajoCliente.Text = "Legajo";
+            this.TboxLegajoCliente.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TboxLegajoCliente.Location = new System.Drawing.Point(43, 325);
+            this.TboxLegajoCliente.Name = "TboxLegajoCliente";
+            this.TboxLegajoCliente.Size = new System.Drawing.Size(100, 20);
+            this.TboxLegajoCliente.TabIndex = 1;
+            this.TboxLegajoCliente.Tag = "Legajo";
+            this.TboxLegajoCliente.Text = "Legajo";
             // 
             // DgvListaClientes
             // 
@@ -154,13 +154,13 @@ namespace SistemaDeCobranzas
             // 
             // GrpGrilla2
             // 
-            this.GrpGrilla2.Controls.Add(this.CheckTipoEspecial);
-            this.GrpGrilla2.Controls.Add(this.CmdPagar);
+            this.GrpGrilla2.Controls.Add(this.CheckTipoCobro);
+            this.GrpGrilla2.Controls.Add(this.CmdPagaCobro);
             this.GrpGrilla2.Controls.Add(this.CmdAltaCobro);
-            this.GrpGrilla2.Controls.Add(this.TextboxImporte);
-            this.GrpGrilla2.Controls.Add(this.DtpFechaVencimiento);
-            this.GrpGrilla2.Controls.Add(this.TextboxNombreCobro);
-            this.GrpGrilla2.Controls.Add(this.TextboxCodigoCobro);
+            this.GrpGrilla2.Controls.Add(this.TboxImporteCobro);
+            this.GrpGrilla2.Controls.Add(this.DtpFechaVencimientoCobro);
+            this.GrpGrilla2.Controls.Add(this.TboxNombreCobro);
+            this.GrpGrilla2.Controls.Add(this.TboxCodigoCobro);
             this.GrpGrilla2.Controls.Add(this.DgvListaPendientes);
             this.GrpGrilla2.Location = new System.Drawing.Point(579, 12);
             this.GrpGrilla2.Name = "GrpGrilla2";
@@ -169,29 +169,31 @@ namespace SistemaDeCobranzas
             this.GrpGrilla2.TabStop = false;
             this.GrpGrilla2.Text = "Grilla 2: Cobros pendientes del cliente";
             // 
-            // CheckTipoEspecial
+            // CheckTipoCobro
             // 
-            this.CheckTipoEspecial.AutoSize = true;
-            this.CheckTipoEspecial.Location = new System.Drawing.Point(136, 102);
-            this.CheckTipoEspecial.Name = "CheckTipoEspecial";
-            this.CheckTipoEspecial.Size = new System.Drawing.Size(89, 17);
-            this.CheckTipoEspecial.TabIndex = 7;
-            this.CheckTipoEspecial.Text = "Tipo especial";
-            this.CheckTipoEspecial.UseVisualStyleBackColor = true;
+            this.CheckTipoCobro.AutoSize = true;
+            this.CheckTipoCobro.Enabled = false;
+            this.CheckTipoCobro.Location = new System.Drawing.Point(136, 102);
+            this.CheckTipoCobro.Name = "CheckTipoCobro";
+            this.CheckTipoCobro.Size = new System.Drawing.Size(89, 17);
+            this.CheckTipoCobro.TabIndex = 7;
+            this.CheckTipoCobro.Text = "Tipo especial";
+            this.CheckTipoCobro.UseVisualStyleBackColor = true;
             // 
-            // CmdPagar
+            // CmdPagaCobro
             // 
-            this.CmdPagar.Enabled = false;
-            this.CmdPagar.Location = new System.Drawing.Point(655, 19);
-            this.CmdPagar.Name = "CmdPagar";
-            this.CmdPagar.Size = new System.Drawing.Size(75, 21);
-            this.CmdPagar.TabIndex = 13;
-            this.CmdPagar.Text = "Pagar";
-            this.CmdPagar.UseVisualStyleBackColor = true;
-            this.CmdPagar.Click += new System.EventHandler(this.CmdPagar_Click);
+            this.CmdPagaCobro.Enabled = false;
+            this.CmdPagaCobro.Location = new System.Drawing.Point(655, 19);
+            this.CmdPagaCobro.Name = "CmdPagaCobro";
+            this.CmdPagaCobro.Size = new System.Drawing.Size(75, 21);
+            this.CmdPagaCobro.TabIndex = 13;
+            this.CmdPagaCobro.Text = "Pagar";
+            this.CmdPagaCobro.UseVisualStyleBackColor = true;
+            this.CmdPagaCobro.Click += new System.EventHandler(this.CmdPagar_Click);
             // 
             // CmdAltaCobro
             // 
+            this.CmdAltaCobro.Enabled = false;
             this.CmdAltaCobro.Location = new System.Drawing.Point(655, 100);
             this.CmdAltaCobro.Name = "CmdAltaCobro";
             this.CmdAltaCobro.Size = new System.Drawing.Size(75, 21);
@@ -200,43 +202,47 @@ namespace SistemaDeCobranzas
             this.CmdAltaCobro.UseVisualStyleBackColor = true;
             this.CmdAltaCobro.Click += new System.EventHandler(this.CmdAltaCobro_Click);
             // 
-            // TextboxImporte
+            // TboxImporteCobro
             // 
-            this.TextboxImporte.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TextboxImporte.Location = new System.Drawing.Point(549, 100);
-            this.TextboxImporte.Name = "TextboxImporte";
-            this.TextboxImporte.Size = new System.Drawing.Size(100, 20);
-            this.TextboxImporte.TabIndex = 11;
-            this.TextboxImporte.Tag = "Importe";
-            this.TextboxImporte.Text = "Importe";
+            this.TboxImporteCobro.Enabled = false;
+            this.TboxImporteCobro.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TboxImporteCobro.Location = new System.Drawing.Point(549, 100);
+            this.TboxImporteCobro.Name = "TboxImporteCobro";
+            this.TboxImporteCobro.Size = new System.Drawing.Size(100, 20);
+            this.TboxImporteCobro.TabIndex = 11;
+            this.TboxImporteCobro.Tag = "Importe";
+            this.TboxImporteCobro.Text = "Importe";
             // 
-            // DtpFechaVencimiento
+            // DtpFechaVencimientoCobro
             // 
-            this.DtpFechaVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFechaVencimiento.Location = new System.Drawing.Point(443, 100);
-            this.DtpFechaVencimiento.Name = "DtpFechaVencimiento";
-            this.DtpFechaVencimiento.Size = new System.Drawing.Size(100, 20);
-            this.DtpFechaVencimiento.TabIndex = 10;
+            this.DtpFechaVencimientoCobro.Enabled = false;
+            this.DtpFechaVencimientoCobro.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpFechaVencimientoCobro.Location = new System.Drawing.Point(443, 100);
+            this.DtpFechaVencimientoCobro.Name = "DtpFechaVencimientoCobro";
+            this.DtpFechaVencimientoCobro.Size = new System.Drawing.Size(100, 20);
+            this.DtpFechaVencimientoCobro.TabIndex = 10;
             // 
-            // TextboxNombreCobro
+            // TboxNombreCobro
             // 
-            this.TextboxNombreCobro.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TextboxNombreCobro.Location = new System.Drawing.Point(337, 100);
-            this.TextboxNombreCobro.Name = "TextboxNombreCobro";
-            this.TextboxNombreCobro.Size = new System.Drawing.Size(100, 20);
-            this.TextboxNombreCobro.TabIndex = 9;
-            this.TextboxNombreCobro.Tag = "Nombre del Cobro";
-            this.TextboxNombreCobro.Text = "Nombre del Cobro";
+            this.TboxNombreCobro.Enabled = false;
+            this.TboxNombreCobro.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TboxNombreCobro.Location = new System.Drawing.Point(337, 100);
+            this.TboxNombreCobro.Name = "TboxNombreCobro";
+            this.TboxNombreCobro.Size = new System.Drawing.Size(100, 20);
+            this.TboxNombreCobro.TabIndex = 9;
+            this.TboxNombreCobro.Tag = "Nombre del Cobro";
+            this.TboxNombreCobro.Text = "Nombre del Cobro";
             // 
-            // TextboxCodigoCobro
+            // TboxCodigoCobro
             // 
-            this.TextboxCodigoCobro.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TextboxCodigoCobro.Location = new System.Drawing.Point(231, 100);
-            this.TextboxCodigoCobro.Name = "TextboxCodigoCobro";
-            this.TextboxCodigoCobro.Size = new System.Drawing.Size(100, 20);
-            this.TextboxCodigoCobro.TabIndex = 8;
-            this.TextboxCodigoCobro.Tag = "Código de Cobro";
-            this.TextboxCodigoCobro.Text = "Código de Cobro";
+            this.TboxCodigoCobro.Enabled = false;
+            this.TboxCodigoCobro.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TboxCodigoCobro.Location = new System.Drawing.Point(231, 100);
+            this.TboxCodigoCobro.Name = "TboxCodigoCobro";
+            this.TboxCodigoCobro.Size = new System.Drawing.Size(100, 20);
+            this.TboxCodigoCobro.TabIndex = 8;
+            this.TboxCodigoCobro.Tag = "Código de Cobro";
+            this.TboxCodigoCobro.Text = "Código de Cobro";
             // 
             // DgvListaPendientes
             // 
@@ -362,7 +368,7 @@ namespace SistemaDeCobranzas
             // 
             // LabelSesion
             // 
-            this.LabelSesion.Enabled = false;
+            this.LabelSesion.ForeColor = System.Drawing.Color.Blue;
             this.LabelSesion.Location = new System.Drawing.Point(379, 602);
             this.LabelSesion.Name = "LabelSesion";
             this.LabelSesion.Size = new System.Drawing.Size(961, 13);
@@ -421,22 +427,22 @@ namespace SistemaDeCobranzas
         private System.Windows.Forms.Button CmdModificaCliente;
         private System.Windows.Forms.Button CmdBajaCliente;
         private System.Windows.Forms.Button CmdAltaCliente;
-        private System.Windows.Forms.TextBox TextboxNombreCliente;
-        private System.Windows.Forms.TextBox TextboxLegajoCliente;
+        private System.Windows.Forms.TextBox TboxNombreCliente;
+        private System.Windows.Forms.TextBox TboxLegajoCliente;
         private System.Windows.Forms.DataGridView DgvListaPendientes;
         private System.Windows.Forms.Label LabelInformacion;
-        private System.Windows.Forms.Button CmdPagar;
+        private System.Windows.Forms.Button CmdPagaCobro;
         private System.Windows.Forms.Button CmdAltaCobro;
-        private System.Windows.Forms.TextBox TextboxImporte;
-        private System.Windows.Forms.DateTimePicker DtpFechaVencimiento;
-        private System.Windows.Forms.TextBox TextboxNombreCobro;
-        private System.Windows.Forms.TextBox TextboxCodigoCobro;
+        private System.Windows.Forms.TextBox TboxImporteCobro;
+        private System.Windows.Forms.DateTimePicker DtpFechaVencimientoCobro;
+        private System.Windows.Forms.TextBox TboxNombreCobro;
+        private System.Windows.Forms.TextBox TboxCodigoCobro;
         private System.Windows.Forms.DataGridView DgvListaCanceladosG3;
         private System.Windows.Forms.RadioButton RadioDescendente;
         private System.Windows.Forms.RadioButton RadioAscendente;
         private System.Windows.Forms.DataGridView DgvListaCanceladosG4;
         private System.Windows.Forms.DataGridView DgvListaCanceladosG5;
-        private System.Windows.Forms.CheckBox CheckTipoEspecial;
+        private System.Windows.Forms.CheckBox CheckTipoCobro;
         private System.Windows.Forms.ErrorProvider ErrorProvider;
         private System.Windows.Forms.Label LabelSesion;
         private System.Windows.Forms.Timer TimerReloj;
