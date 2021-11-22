@@ -92,8 +92,8 @@ namespace SistemaDeCobranzas
         }
 
         // *------------------------------------------------=> BACKGROUND WORLD
-        private void TimerReloj_Tick(object sender, EventArgs e)
-        { this.LabelSesion.Text = $"Sesión de {usuario} || {DateTime.Now}"; }
+        //private void TimerReloj_Tick(object sender, EventArgs e)
+        //{ this.LabelSesion.Text = $"Sesión de {usuario} || {DateTime.Now}"; }
         private void InformaExcepcion(Control pControl, string pMensaje)
         {
             ErrorProvider.SetError
@@ -109,6 +109,97 @@ namespace SistemaDeCobranzas
                 MessageBoxIcon.Error
                 );
         }
+        private bool ConfirmaOperacion(string pMensaje)
+        {
+            if (MessageBox.Show
+                    (
+                    pMensaje,
+                    $"{usuario}",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                    ) == DialogResult.Yes)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        private void SeleccionaFila()
+        {
+            // Caso 1: G1 sí, G2 no
+            if (
+                DgvListaClientes.SelectedRows.Count > 0 &&
+                DgvListaPendientes.SelectedRows.Count == 0
+                )
+            {
+                MessageBox.Show("Caso 1: G1 sí, G2 no");
+                SeleccionaCliente();
+                // En G1
+                TboxLegajoCliente.Enabled = false;
+                TboxNombreCliente.Enabled = true;
+                CmdAltaCliente.Enabled = false;
+                CmdModificaCliente.Enabled = true;
+                CmdBajaCliente.Enabled = true;
+
+                // En G2
+                CheckTipoCobro.Enabled = true;
+                TboxCodigoCobro.Enabled = true;
+                TboxNombreCobro.Enabled = true;
+                DtpFechaVencimientoCobro.Enabled = true;
+                TboxImporteCobro.Enabled = true;
+                CmdAltaCobro.Enabled = true;
+                CmdPagaCobro.Enabled = false;
+            }
+            // Caso 1: G1 sí, G2 sí
+            else
+            {
+                MessageBox.Show("Caso 2: G1 sí, G2 sí");
+            }
+        }
+
+        private void SeleccionaCliente()
+        {
+            try
+            {
+                cliente = (CCliente)
+                    (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
+                ordenable = cliente.VerCancelados();
+                reducida = cliente.VerCancelados().Select(x => new CReducida()
+                {
+                    Nombre = x.Cliente,
+                    Total = x.Total
+                }).ToList();
+
+                // En G1
+                //DgvListaClientes.DataSource = null;
+                //DgvListaClientes.DataSource = clientes;
+
+                // En G2
+                DgvListaPendientes.DataSource = null;
+                DgvListaPendientes.DataSource = cliente.VerPendientes();
+
+                // En G3
+                DgvListaCanceladosG3.DataSource = null;
+                DgvListaCanceladosG3.DataSource = cliente.VerCancelados();
+
+                // En G4
+                DgvListaCanceladosG4.DataSource = null;
+                DgvListaCanceladosG4.DataSource = ordenable;
+                RadioAscendente.Checked = false;
+                RadioDescendente.Checked = false;
+                RadioAscendente.Enabled = true;
+                RadioDescendente.Enabled = true;
+
+                // En G5
+                DgvListaCanceladosG5.DataSource = null;
+                DgvListaCanceladosG5.DataSource = reducida;
+            }
+            catch (Exception error)
+            { InformaExcepcion(LabelInformacion, error.Message); }
+        }
+
+
         private void Pago_OnTotalChanged(object sender, decimal e)
         {
             var x = (CPago)sender;
@@ -147,47 +238,40 @@ namespace SistemaDeCobranzas
         }
     #endregion
 
-        #region // *--------------------------------------=> GRUPO 1 (Clientes)
-        // EVENTOS
+        #region // *---------------------------------------=> GRUPO 1 (Eventos)
         private void DgvListaClientes_CellClick(
             object sender,
             DataGridViewCellEventArgs e)
         {
             try
             {
-                if (DgvListaClientes.SelectedRows.Count > 0)
-                {
-                    cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem;
-                    if (cliente.VerPendientes().Count > 0)
-                    { this.DgvListaPendientes.DataSource = cliente.VerPendientes(); }
-                }
-                this.DgvListaPendientes.DataSource = null;
+                //if (DgvListaClientes.SelectedRows.Count > 0)
+                //{
+                //    cliente = (CCliente)DgvListaClientes.SelectedRows[0].DataBoundItem; 
+                //    if (cliente.VerPendientes().Count > 0)
+                //    { this.DgvListaPendientes.DataSource = cliente.VerPendientes(); }
+                //}
 
-                this.TboxLegajoCliente.Text     = String.Empty;
-                this.TboxNombreCliente.Text     = String.Empty;
-
-                /*
-                 * COORDINACIÓN ENTRE GRUPOS
-                 */
-                // *-----------------=> Para G1
+                // En G1
+                this.TboxLegajoCliente.Text          = this.TboxLegajoCliente.Tag.ToString();
+                this.TboxNombreCliente.Text          = this.TboxNombreCliente.Tag.ToString();
                 this.TboxLegajoCliente.Enabled       = true;
                 this.CmdAltaCliente.Enabled          = true;
                 this.CmdModificaCliente.Enabled      = false;
                 this.CmdBajaCliente.Enabled          = false;
 
-                // *-----------------=> Para G2
-                this.LabelInformacion.Text           = String.Empty;
-                this.CmdAltaCobro.Enabled            = true;
-                this.CmdPagaCobro.Enabled                = false;
+                // En G2
                 this.DgvListaPendientes.DataSource   = null;
+                //this.CmdAltaCobro.Enabled            = false;
+                //this.CmdPagaCobro.Enabled            = false;
 
-                // *-----------------=> Para G3
+                // En G3
                 this.DgvListaCanceladosG3.DataSource = null;
 
-                // *-----------------=> Para G4
+                // En G4
                 this.DgvListaCanceladosG4.DataSource = null;
 
-                // *-----------------=> Para G5
+                // En G5
                 this.DgvListaCanceladosG5.DataSource = null;
             }
             catch (Exception error)
@@ -198,44 +282,48 @@ namespace SistemaDeCobranzas
             object sender,
             DataGridViewCellMouseEventArgs e)
         {
-            try
-            {
-                cliente = (CCliente)
-                    (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
+            SeleccionaFila();
+            //try
+            //{
+            //    cliente = (CCliente)
+            //        (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
 
-                TboxLegajoCliente.Text = DgvListaClientes
-                    .Rows[e.RowIndex].Cells[0].Value.ToString();
-                TboxNombreCliente.Text = DgvListaClientes
-                    .Rows[e.RowIndex].Cells[1].Value.ToString();
+            //    TboxLegajoCliente.Text = DgvListaClientes
+            //        .Rows[e.RowIndex]
+            //        .Cells[0]
+            //        .Value
+            //        .ToString();
+            //    TboxNombreCliente.Text = DgvListaClientes
+            //        .Rows[e.RowIndex]
+            //        .Cells[1]
+            //        .Value
+            //        .ToString();
 
-                // Controles propios
-                TboxLegajoCliente.Enabled  = false;
-                CmdAltaCliente.Enabled        = false;
-                CmdModificaCliente.Enabled    = true;
-                CmdBajaCliente.Enabled        = true;
+            //    // En G1
+            //    TboxLegajoCliente.Enabled = false;
+            //    CmdAltaCliente.Enabled = false;
+            //    CmdModificaCliente.Enabled = true;
+            //    CmdBajaCliente.Enabled = true;
 
-                // Controles ajenos
-                CmdAltaCobro.Enabled          = true;
-                CmdPagaCobro.Enabled              = false;
+            //    // En G2
+            //    CmdAltaCobro.Enabled = true;
+            //    CmdPagaCobro.Enabled = false;
 
-                DgvListaPendientes.DataSource = null;
-                if (cliente.VerPendientes() != null && cliente.VerPendientes().Count > 0)
-                { DgvListaPendientes.DataSource = cliente.VerPendientes(); }
+            //    DgvListaPendientes.DataSource = null;
 
-                /*
-                 * COORDINACIÓN ENTRE GRUPOS
-                 */
-                // *-----------------=> Para G1
-                // *-----------------=> Para G2
-                this.LabelInformacion.Text = String.Empty;
+            //    if (cliente.VerPendientes() != null && cliente.VerPendientes().Count > 0)
+            //    { DgvListaPendientes.DataSource = cliente.VerPendientes(); }
 
-                // *-----------------=> Para G4
-            }
-            catch (Exception error)
-            { InformaExcepcion(LabelInformacion, error.Message); }
+            //    // En G3
+            //    // En G4
+            //    // En G5
+            //}
+            //catch (Exception error)
+            //{ InformaExcepcion(LabelInformacion, error.Message); }
         }
-
-        // CMD
+        #endregion
+        
+        #region // *-----------------------------------=> GRUPO 1 (Operaciones)
         private void CmdAltaCliente_Click(object sender, EventArgs e)
         {
             try
@@ -246,26 +334,35 @@ namespace SistemaDeCobranzas
                 if (
                     TboxLegajoCliente.Text == string.Empty ||
                     TboxNombreCliente.Text == string.Empty
-                    ) { throw new Exception("No pueden haber campos vacíos"); }
-                else if (
-                    !Regex.Match(
-                        TboxNombreCliente.Text,
-                        "^[A-Z][A-zÀ-ú ]*$").Success)
+                    )
+                { throw new Exception("No pueden haber campos vacíos"); }
+
+                else if (!Regex.Match(
+                    TboxNombreCliente.Text,
+                    "^[A-Z][A-zÀ-ú ]*$").Success)
                 { throw new Exception("Use un nombre propio que empiece con mayúscula (Ej.: Fulano)"); }
-                else if(clientes.Any
-                    (x => x.Legajo == Int32.Parse(TboxLegajoCliente.Text)))
+
+                else if(clientes.Any(
+                    x => x.Legajo == Int32.Parse(TboxLegajoCliente.Text)
+                    ))
                 { throw new Exception("Los legajos deben ser diferentes."); }
 
                 // Operaciones
-                clientes.Add(new CCliente
-                    (
-                    Int32.Parse(TboxLegajoCliente.Text),
-                    TboxNombreCliente.Text
-                    ));
-                DgvListaClientes.DataSource = null;
-                DgvListaClientes.DataSource = clientes;
-
+                if (ConfirmaOperacion("¿Confirma Alta del Cliente?"))
+                {
+                    clientes.Add(new CCliente
+                        (
+                        Int32.Parse(TboxLegajoCliente.Text),
+                        TboxNombreCliente.Text
+                        ));
+                    DgvListaClientes.DataSource = null;
+                    DgvListaClientes.DataSource = clientes;
+                }
                 // Adendas
+                this.LabelInformacion.Text  = "Alta exitosa.\n";
+                this.LabelInformacion.Text += "Si lo desea, puede proceder a un alta de cobro.\n";
+                this.LabelInformacion.Text += "Para ello, debe seleccionar al cliente ";
+                this.LabelInformacion.Text += "haciendo click en la cabecera de fila.";
                 DgvListaClientes_CellClick(this, null);
                 this.TboxLegajoCliente.Focus();
             }
@@ -280,13 +377,7 @@ namespace SistemaDeCobranzas
                 /* --- NADA AÚN --- */
 
                 // Operaciones
-                if (MessageBox.Show
-                    (
-                    "¿Confirma baja?",
-                    $"{usuario}",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                    ) == DialogResult.Yes)
+                if (ConfirmaOperacion("¿Confirma Baja del Cliente?"))
                 {
                     this.clientes.Remove(cliente);
                     DgvListaClientes.DataSource = null;
@@ -308,13 +399,7 @@ namespace SistemaDeCobranzas
                 /* --- NADA AÚN --- */
 
                 // Operaciones
-                if (MessageBox.Show
-                    (
-                    "¿Confirma modificación?",
-                    $"{usuario}",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                    ) == DialogResult.Yes)
+                if (ConfirmaOperacion("¿Confirma Modificación del Cliente"))
                 {
                     cliente.NombreCliente = TboxNombreCliente.Text;
                     DgvListaClientes.DataSource = null;
@@ -329,8 +414,7 @@ namespace SistemaDeCobranzas
         }
         #endregion
 
-        #region // *------------------=> GRUPO 2 (Cobros Pendientes de Cliente)
-        // EVENTOS
+        #region // *---------------------------------------=> GRUPO 2 (Eventos)
         private void DgvListaPendientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -360,37 +444,40 @@ namespace SistemaDeCobranzas
 
         private void DgvListaPendientes_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            try
-            {
-                cliente = (CCliente)
-                    (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
-                cobro = (CCobro)
-                    (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
+            SeleccionaFila();
+            //try
+            //{
+            //    cliente = (CCliente)
+            //        (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
+            //    cobro = (CCobro)
+            //        (this.DgvListaPendientes.SelectedRows[0].DataBoundItem);
 
-                if (cobro.Tipo == "Especial") { this.CheckTipoCobro.Checked = true; }
+            //    if (cobro.Tipo == "Especial") { this.CheckTipoCobro.Checked = true; }
 
-                TboxCodigoCobro.Text          = cobro.Codigo.ToString();
-                TboxNombreCobro.Text          = cobro.NombreCobro;
-                DtpFechaVencimientoCobro.Value = cobro.FechaVencimiento;
-                TboxImporteCobro.Text              = cobro.Importe.ToString();
+            //    TboxCodigoCobro.Text          = cobro.Codigo.ToString();
+            //    TboxNombreCobro.Text          = cobro.NombreCobro;
+            //    DtpFechaVencimientoCobro.Value = cobro.FechaVencimiento;
+            //    TboxImporteCobro.Text              = cobro.Importe.ToString();
 
-                CmdAltaCobro.Enabled = false;
-                CmdPagaCobro.Enabled     = true;
+            //    CmdAltaCobro.Enabled = false;
+            //    CmdPagaCobro.Enabled     = true;
 
-                /*
-                 * COORDINACIÓN ENTRE GRUPOS
-                 */
-                // *-----------------=> Para G1
-                // *-----------------=> Para G2
-                this.LabelInformacion.Text = String.Empty;
+            //    /*
+            //     * COORDINACIÓN ENTRE GRUPOS
+            //     */
+            //    // *-----------------=> Para G1
+            //    // *-----------------=> Para G2
+            //    this.LabelInformacion.Text = String.Empty;
 
-                // *-----------------=> Para G4
+            //    // *-----------------=> Para G4
 
-            }
-            catch (Exception error)
-            { InformaExcepcion(LabelInformacion, error.Message); }
+            //}
+            //catch (Exception error)
+            //{ InformaExcepcion(LabelInformacion, error.Message); }
         }
+        #endregion
 
+        #region // *-----------------------------------=> GRUPO 2 (Operaciones)
         // CMD
         private void CmdAltaCobro_Click(object sender, EventArgs e)
         {
@@ -415,31 +502,38 @@ namespace SistemaDeCobranzas
                 { throw new Exception("El cliente no puede tener más de dos pendientes"); }
 
                 // Operaciones
-                if (CheckTipoCobro.Checked)
+                if (ConfirmaOperacion("¿Confirma Alta del Cobro?"))
                 {
-                    cobro = new CCobroEspecial(
-                        "Especial",
-                        Int32.Parse(TboxCodigoCobro.Text),
-                        TboxNombreCobro.Text,
-                        DtpFechaVencimientoCobro.Value,
-                        decimal.Parse(TboxImporteCobro.Text),
-                        TboxNombreCliente.Text);
-                    cliente.AltaPendiente(cobro);
+                    if (CheckTipoCobro.Checked)
+                    {
+                        cobro = new CCobroEspecial
+                            (
+                            "Especial",
+                            Int32.Parse(TboxCodigoCobro.Text),
+                            TboxNombreCobro.Text,
+                            DtpFechaVencimientoCobro.Value,
+                            decimal.Parse(TboxImporteCobro.Text),
+                            TboxNombreCliente.Text
+                            );
+                        cliente.AltaPendiente(cobro);
+                    }
+                    else
+                    {
+                        cobro = new CCobroNormal
+                            (
+                            "Normal",
+                            Int32.Parse(TboxCodigoCobro.Text),
+                            TboxNombreCobro.Text,
+                            DtpFechaVencimientoCobro.Value,
+                            decimal.Parse(TboxImporteCobro.Text),
+                            TboxNombreCliente.Text
+                            );
+                        cliente.AltaPendiente(cobro);
+                    }
+                    this.DgvListaPendientes.DataSource = null;
+                    if (cliente.VerPendientes() != null && cliente.VerPendientes().Count > 0)
+                    { this.DgvListaPendientes.DataSource = cliente.VerPendientes(); }
                 }
-                else
-                {
-                    cobro = new CCobroNormal(
-                        "Normal",
-                        Int32.Parse(TboxCodigoCobro.Text),
-                        TboxNombreCobro.Text,
-                        DtpFechaVencimientoCobro.Value,
-                        decimal.Parse(TboxImporteCobro.Text),
-                        TboxNombreCliente.Text);
-                    cliente.AltaPendiente(cobro);
-                }
-                this.DgvListaPendientes.DataSource = null;
-                if (cliente.VerPendientes() != null && cliente.VerPendientes().Count > 0)
-                { this.DgvListaPendientes.DataSource = cliente.VerPendientes(); }
 
                 // Adendas
                 CheckTipoCobro.Checked        = false;
@@ -458,72 +552,77 @@ namespace SistemaDeCobranzas
             {
                 ErrorProvider.Clear();
                 // Verificaciones
-                /* --- NADA AÚN --- */
+                cliente = (CCliente)
+                    (this.DgvListaClientes.SelectedRows[0].DataBoundItem);
 
                 // Operaciones
-                DateTime desde  = (DateTime)DtpFechaVencimientoCobro.Value;
-                DateTime hasta  = DateTime.Now.AddDays(-1);
-                int retraso     = cobro.CalcularRetrasoEnDias(desde, hasta);
-                decimal recargo = cobro.CalcularRecargo(cobro.Importe, retraso);
-
-                pago = new CPago
-                    (
-                    cobro.Tipo,
-                    cobro.Codigo,
-                    cobro.NombreCobro,
-                    cobro.FechaVencimiento,
-                    cobro.Importe,
-                    cobro.Cliente,
-                    recargo,
-                    0
-                    );
-
-                pago.OnTotalChanged += Pago_OnTotalChanged;
-                pago.Total = cobro.Importe + recargo;
-
-                cliente.AltaCancelado(pago);
-                cliente.BajaPendiente(cobro);
-
-                ordenable = cliente.VerCancelados();
-                reducida = cliente.VerCancelados().Select(x => new CReducida()
+                if (ConfirmaOperacion("¿Confirma Pago del Cobro?"))
                 {
-                    Nombre = x.Cliente,
-                    Total = x.Total
-                }).ToList();
+                    DateTime desde = (DateTime)DtpFechaVencimientoCobro.Value;
+                    DateTime hasta = DateTime.Now.AddDays(-1);
+                    int retraso = cobro.CalcularRetrasoEnDias(desde, hasta);
+                    decimal recargo = cobro.CalcularRecargo(cobro.Importe, retraso);
 
-                DgvListaPendientes.DataSource   = null;
-                DgvListaCanceladosG3.DataSource = null;
-                DgvListaCanceladosG4.DataSource = null;
-                DgvListaCanceladosG5.DataSource = null;
+                    pago = new CPago
+                        (
+                        cobro.Tipo,
+                        cobro.Codigo,
+                        cobro.NombreCobro,
+                        cobro.FechaVencimiento,
+                        cobro.Importe,
+                        cobro.Cliente,
+                        recargo,
+                        0
+                        );
 
-                DgvListaPendientes.DataSource   = cliente.VerPendientes();
-                DgvListaCanceladosG3.DataSource = cliente.VerCancelados();
-                DgvListaCanceladosG4.DataSource = ordenable;
-                DgvListaCanceladosG5.DataSource = reducida;
+                    pago.OnTotalChanged += Pago_OnTotalChanged;
+                    pago.Total = cobro.Importe + recargo;
+
+                    SeleccionaCliente();
+
+                    //cliente.AltaCancelado(pago);
+                    //cliente.BajaPendiente(cobro);
+
+                    //ordenable = cliente.VerCancelados();
+                    //reducida = cliente.VerCancelados().Select(x => new CReducida()
+                    //{
+                    //    Nombre = x.Cliente,
+                    //    Total  = x.Total
+                    //}).ToList();
+
+                    //DgvListaPendientes.DataSource   = null;
+                    //DgvListaCanceladosG3.DataSource = null;
+                    //DgvListaCanceladosG4.DataSource = null;
+                    //DgvListaCanceladosG5.DataSource = null;
+
+                    //DgvListaPendientes.DataSource   = cliente.VerPendientes();
+                    //DgvListaCanceladosG3.DataSource = cliente.VerCancelados();
+                    //DgvListaCanceladosG4.DataSource = ordenable;
+                    //DgvListaCanceladosG5.DataSource = reducida;
+                }
 
                 // Adendas
-                RadioAscendente.Enabled          = true;
-                RadioDescendente.Enabled         = true;
+                //RadioAscendente.Enabled        = true;
+                //RadioDescendente.Enabled       = true;
 
-                RadioAscendente.Checked          = false;
-                RadioDescendente.Checked         = false;
+                //RadioAscendente.Checked        = false;
+                //RadioDescendente.Checked       = false;
 
-                CmdPagaCobro.Enabled                 = false;
-                CmdAltaCobro.Enabled             = true;
+                //CmdPagaCobro.Enabled           = false;
+                //CmdAltaCobro.Enabled           = true;
 
-                CheckTipoCobro.Checked        = false;
-                TboxCodigoCobro.Text          = String.Empty;
-                TboxNombreCobro.Text          = String.Empty;
-                DtpFechaVencimientoCobro.Value = DateTime.Now;
-                TboxImporteCobro.Text              = String.Empty;
-
+                //CheckTipoCobro.Checked         = false;
+                //TboxCodigoCobro.Text           = String.Empty;
+                //TboxNombreCobro.Text           = String.Empty;
+                //DtpFechaVencimientoCobro.Value = DateTime.Now;
+                //TboxImporteCobro.Text          = String.Empty;
             }
             catch (Exception error)
             { InformaExcepcion(LabelInformacion, error.Message); }
         }
         #endregion
 
-        #region // *------------------=> GRUPO 4 (Cobros Cancelados de Cliente)
+        #region // *---------------------------------------=> GRUPO 4 (Eventos)
         private void RadioAscendente_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -571,11 +670,6 @@ namespace SistemaDeCobranzas
             { InformaExcepcion(LabelInformacion, error.Message); }
         }
         #endregion
-
-        #region AYUDANTES
-        #endregion
-
-
     }
 
 

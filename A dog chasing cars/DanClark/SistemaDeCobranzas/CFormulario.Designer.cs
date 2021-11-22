@@ -380,7 +380,7 @@ namespace SistemaDeCobranzas
             // 
             this.TimerReloj.Enabled = true;
             this.TimerReloj.Interval = 1000;
-            this.TimerReloj.Tick += new System.EventHandler(this.TimerReloj_Tick);
+            //this.TimerReloj.Tick += new System.EventHandler(this.TimerReloj_Tick);
             // 
             // CFormulario
             // 
