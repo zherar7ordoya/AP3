@@ -11,14 +11,14 @@ namespace SistemaDeCobros
     public partial class CFormulario : Form
     {
         /////////////////////////////////////////////////////////////// SPUTNIK
-        List<CCliente> clientes  = new List<CCliente>();                    ///
-        CCliente cliente         = null;                                    ///
-        CCobro cobro             = null;                                    ///
-        CPago pago               = null;                                    ///
-        List<CPago> clonada      = new List<CPago>();                       ///
-        List<CPago> ordenable    = new List<CPago>();                       ///
-        List<CReducida> reducida = new List<CReducida>();                   ///
-        string usuario           = string.Empty;                            ///
+        List<CCliente> clientes  = new List<CCliente>();                   /**/
+        CCliente cliente         = null;                                   /**/
+        CCobro cobro             = null;                                   /**/
+        CPago pago               = null;                                   /**/
+        List<CPago> clonada      = new List<CPago>();                      /**/
+        List<CPago> ordenable    = new List<CPago>();                      /**/
+        List<CReducida> reducida = new List<CReducida>();                  /**/
+        string usuario           = string.Empty;                           /**/
         ///////////////////////////////////////////////////////////////////////
 
         #region FORMULARIO
@@ -91,6 +91,8 @@ namespace SistemaDeCobros
                 RadioDescendente.Enabled          = true;
 
                 LabelInformacion.Text = "Modo Demo.\n\nExplore, pero le sugerimos que primero se familiarice con la carga.";
+                EtiquetaClientes.Text = "Haga click en cualquier celda para habilitar Altas";
+                ErrorProvider.SetError(EtiquetaClientes, EtiquetaClientes.Text);
             }
         }
         private void IniciaFormulario()
@@ -116,6 +118,8 @@ namespace SistemaDeCobros
         {
             ErrorProvider.Clear();
             TextBox tbox = (TextBox)sender;
+            if (tbox.Text == tbox.Tag.ToString())
+            { tbox.Text = String.Empty; }
         }
 
         public void TboxPierdeFoco(object sender, EventArgs e)
@@ -590,6 +594,7 @@ namespace SistemaDeCobros
                     ) == DialogResult.Yes)
                 {
                     cliente.NombreCliente = TextboxNombreCliente.Text;
+                    cliente.ActualizaNombre(TextboxNombreCliente.Text);
                     DgvListaClientes.DataSource = null;
                     DgvListaClientes.DataSource = clientes;
                 }
@@ -646,7 +651,7 @@ namespace SistemaDeCobros
                     {
                         cobro = new CCobroEspecial
                             (
-                            TextboxNombreCliente.Text,
+                            cliente.NombreCliente,
                             "Especial",
                             Int32.Parse(TextboxCodigoCobro.Text),
                             TextboxNombreCobro.Text,
@@ -659,7 +664,7 @@ namespace SistemaDeCobros
                     {
                         cobro = new CCobroNormal
                             (
-                            TextboxNombreCliente.Text,
+                            cliente.NombreCliente,
                             "Normal",
                             Int32.Parse(TextboxCodigoCobro.Text),
                             TextboxNombreCobro.Text,

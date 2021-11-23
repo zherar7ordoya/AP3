@@ -13,12 +13,12 @@ namespace SistemaDeCobros
         private decimal  importe;
 
         // Propiedades
-        public string   Cliente { get => cliente; }
-        public string   Tipo { get => tipo; }
-        public int      Codigo { get => codigo; }
-        public string   NombreCobro { get => nombreCobro; }
-        public DateTime FechaVencimiento { get => fechaVencimiento; }
-        public decimal  Importe { get => importe; }
+        public string   Cliente             { get => cliente; set => this.cliente = value; }
+        public string   Tipo                { get => tipo; }
+        public int      Codigo              { get => codigo; }
+        public string   NombreCobro         { get => nombreCobro; }
+        public DateTime FechaVencimiento    { get => fechaVencimiento; }
+        public decimal  Importe             { get => importe; }
 
         // Constructores
         public CCobro

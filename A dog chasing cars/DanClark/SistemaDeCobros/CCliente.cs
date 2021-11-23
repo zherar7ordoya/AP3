@@ -59,5 +59,24 @@ namespace SistemaDeCobros
 
         public void AltaCancelado(CPago pPago)
         { this.CobrosCancelados.Add(pPago); }
+
+        public void ActualizaNombre(string pNombre)
+        {
+            if (CobrosPendientes.Count > 0)
+            {
+                foreach (var x in CobrosPendientes)
+                {
+                    x.Cliente = pNombre;
+                }
+            }
+
+            if (CobrosCancelados.Count > 0)
+            {
+                foreach (var x in CobrosCancelados)
+                {
+                    x.Cliente = pNombre;
+                }
+            }
+        }
     }
 }
