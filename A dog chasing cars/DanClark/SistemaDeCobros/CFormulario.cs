@@ -11,19 +11,20 @@ namespace SistemaDeCobros
     public partial class CFormulario : Form
     {
         /////////////////////////////////////////////////////////////// SPUTNIK
-        List<CCliente> clientes  = new List<CCliente>();                   /**/
-        CCliente cliente         = null;                                   /**/
-        CCobro cobro             = null;                                   /**/
-        CPago pago               = null;                                   /**/
-        List<CPago> clonada      = new List<CPago>();                      /**/
-        List<CPago> ordenable    = new List<CPago>();                      /**/
-        List<CReducida> reducida = new List<CReducida>();                  /**/
-        string usuario           = string.Empty;                           /**/
+        List<CCliente> clientes  = new List<CCliente>();                     //
+        CCliente cliente         = null;                                     //
+        CCobro cobro             = null;                                     //
+        CPago pago               = null;                                     //
+        List<CPago> clonada      = new List<CPago>();                        //
+        List<CPago> ordenable    = new List<CPago>();                        //
+        List<CReducida> reducida = new List<CReducida>();                    //
+        string usuario           = string.Empty;                             //
         ///////////////////////////////////////////////////////////////////////
 
         #region FORMULARIO
         // *--------------------------------------------------------=> Apertura
         public CFormulario() { InitializeComponent(); }
+
         private void DefineUsuario()
         {
             while (true)
@@ -38,14 +39,16 @@ namespace SistemaDeCobros
                 if (String.IsNullOrWhiteSpace(usuario)) { this.Close(); }
             }
         }
+
         private void PersonalizaFormulario()
         {
             this.CenterToScreen();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.Text += $" ({usuario})";
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.Text           += $" ({usuario})";
+            this.MaximizeBox     = false;
+            this.MinimizeBox     = false;
         }
+
         private void CargaDemo()
         {
             if (MessageBox.Show
@@ -95,12 +98,14 @@ namespace SistemaDeCobros
                 ErrorProvider.SetError(EtiquetaClientes, EtiquetaClientes.Text);
             }
         }
+
         private void IniciaFormulario()
         {
             DefineUsuario();
             PersonalizaFormulario();
             CargaDemo();
         }
+
         private void CFormulario_Load(object sender, EventArgs e)
         {
             IniciaFormulario();
@@ -113,16 +118,16 @@ namespace SistemaDeCobros
             SimulaPlaceholder();
             this.TextboxLegajoCliente.Focus();
         }
+
         // *--------------------------------------------------------=> Vigencia
-        public void TboxAdquiereFoco(object sender, EventArgs e)
+        public void TboxHolaFoco(object sender, EventArgs e)
         {
-            ErrorProvider.Clear();
             TextBox tbox = (TextBox)sender;
             if (tbox.Text == tbox.Tag.ToString())
             { tbox.Text = String.Empty; }
         }
 
-        public void TboxPierdeFoco(object sender, EventArgs e)
+        public void TboxChauFoco(object sender, EventArgs e)
         {
             TextBox tbox = (TextBox)sender;
             if (String.IsNullOrWhiteSpace(tbox.Text))
@@ -131,16 +136,16 @@ namespace SistemaDeCobros
 
         private void SimulaPlaceholder()
         {
-            foreach (Control x in this.Controls)
+            foreach (Control gbox in this.Controls)
             {
-                if (x is GroupBox)
+                if (gbox is GroupBox)
                 {
-                    foreach (Control box in x.Controls)
+                    foreach (Control tbox in gbox.Controls)
                     {
-                        if (box is TextBox)
+                        if (tbox is TextBox)
                         {
-                            box.GotFocus += new EventHandler(TboxAdquiereFoco);
-                            box.LostFocus += new EventHandler(TboxPierdeFoco);
+                            tbox.GotFocus  += new EventHandler(TboxHolaFoco);
+                            tbox.LostFocus += new EventHandler(TboxChauFoco);
                         }
                     }
                 }
@@ -148,7 +153,9 @@ namespace SistemaDeCobros
         }
 
         // *--------------------------------------------------------=> Descarga
-        private void CFormulario_FormClosing(object sender, FormClosingEventArgs e)
+        private void CFormulario_FormClosing(
+            object sender,
+            FormClosingEventArgs e)
         {
             try
             {
@@ -164,7 +171,10 @@ namespace SistemaDeCobros
             catch (Exception error)
             { InformaExcepcion(EtiquetaClientes, error.Message); }
         }
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+
+        protected override bool ProcessCmdKey(
+            ref Message msg,
+            Keys keyData)
         {
             if (keyData == Keys.Escape)
             {
@@ -192,25 +202,21 @@ namespace SistemaDeCobros
                 MessageBoxIcon.Error
                 );
         }
+
         private void Pago_OnTotalChanged(object sender, decimal e)
         {
-            try
+            var x = (CPago)sender;
+            if (x.Total > 10000)
             {
-                var x = (CPago)sender;
-                if (x.Total > 10000)
-                {
-                    MessageBox.Show
+                MessageBox.Show
                     (
                     "El importe total a pagar supera los $10.000",
                     "Advertencia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                     );
-                    LabelInformacion.Text = "El importe pagado superó los $10.000";
-                }
+                LabelInformacion.Text = "El importe pagado superó los $10.000";
             }
-            catch (Exception error)
-            { InformaExcepcion(EtiquetaClientes, error.Message); }
         }
         #endregion
 
