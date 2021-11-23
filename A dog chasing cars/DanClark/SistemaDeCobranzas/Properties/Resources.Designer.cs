@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SistemaDeCobranzas.Properties {
+namespace SistemaDeCobros.Properties {
     using System;
     
     

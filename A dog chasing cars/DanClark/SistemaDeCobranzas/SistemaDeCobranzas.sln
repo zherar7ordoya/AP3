@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeCobros", "SistemaDeCobros.csproj", "{B4DD832E-C40C-48C0-A16D-5ADD1E39247E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConError", "ConError.csproj", "{B4DD832E-C40C-48C0-A16D-5ADD1E39247E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaAdelantoSueldos", "SAS\SistemaAdelantoSueldos.csproj", "{166621B7-D371-43EF-9F2D-DA98A2713E17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeCobranzas", "SDC\SistemaDeCobranzas.csproj", "{9882CB17-AA4A-4B7D-9E87-368533122EDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parcial2Cumplimentado", "SDC\Parcial2Cumplimentado.csproj", "{9882CB17-AA4A-4B7D-9E87-368533122EDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeCobros", "SistemaDeCobros\SistemaDeCobros.csproj", "{09F4AAB5-04D2-4162-BF87-B3B6D667D945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{9882CB17-AA4A-4B7D-9E87-368533122EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9882CB17-AA4A-4B7D-9E87-368533122EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9882CB17-AA4A-4B7D-9E87-368533122EDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09F4AAB5-04D2-4162-BF87-B3B6D667D945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09F4AAB5-04D2-4162-BF87-B3B6D667D945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09F4AAB5-04D2-4162-BF87-B3B6D667D945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09F4AAB5-04D2-4162-BF87-B3B6D667D945}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

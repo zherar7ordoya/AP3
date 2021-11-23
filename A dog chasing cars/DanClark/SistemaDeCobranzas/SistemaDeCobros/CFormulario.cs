@@ -1,11 +1,10 @@
-﻿using Microsoft.VisualBasic;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text.RegularExpressions;
+using Microsoft.VisualBasic;
 using System.Windows.Forms;
-using System;		
-
+using System.Text.RegularExpressions;
 
 namespace SistemaDeCobros
 {

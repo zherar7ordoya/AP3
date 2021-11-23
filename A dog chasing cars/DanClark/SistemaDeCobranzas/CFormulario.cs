@@ -6,7 +6,7 @@ using Microsoft.VisualBasic;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
-namespace SistemaDeCobranzas
+namespace SistemaDeCobros
 {
     public partial class CFormulario : Form
     {
