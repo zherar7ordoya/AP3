@@ -39,7 +39,6 @@ namespace SistemaDeCobros
             this.DgvClientes = new System.Windows.Forms.DataGridView();
             this.GrpGrilla2 = new System.Windows.Forms.GroupBox();
             this.CboxTipoCobro = new System.Windows.Forms.CheckBox();
-            this.LabelInformacion = new System.Windows.Forms.Label();
             this.CmdPagoCobro = new System.Windows.Forms.Button();
             this.CmdAltaCobro = new System.Windows.Forms.Button();
             this.TboxImporteCobro = new System.Windows.Forms.TextBox();
@@ -47,6 +46,7 @@ namespace SistemaDeCobros
             this.TboxNombreCobro = new System.Windows.Forms.TextBox();
             this.TboxCodigoCobro = new System.Windows.Forms.TextBox();
             this.DgvPendientes = new System.Windows.Forms.DataGridView();
+            this.LabelInformacion = new System.Windows.Forms.Label();
             this.GrpGrilla3 = new System.Windows.Forms.GroupBox();
             this.DgvCanceladosG3 = new System.Windows.Forms.DataGridView();
             this.GrpGrilla4 = new System.Windows.Forms.GroupBox();
@@ -150,6 +150,7 @@ namespace SistemaDeCobros
             this.DgvClientes.TabIndex = 0;
             this.DgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvListaClientes_CellClick);
             this.DgvClientes.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvListaClientes_RowHeaderMouseClick);
+            this.DgvClientes.MouseEnter += new System.EventHandler(this.DgvClientes_MouseEnter);
             // 
             // GrpGrilla2
             // 
@@ -178,17 +179,6 @@ namespace SistemaDeCobros
             this.CboxTipoCobro.TabIndex = 17;
             this.CboxTipoCobro.Text = "Tipo especial";
             this.CboxTipoCobro.UseVisualStyleBackColor = true;
-            // 
-            // LabelInformacion
-            // 
-            this.LabelInformacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.LabelInformacion.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelInformacion.ForeColor = System.Drawing.Color.Red;
-            this.LabelInformacion.Location = new System.Drawing.Point(358, 12);
-            this.LabelInformacion.Name = "LabelInformacion";
-            this.LabelInformacion.Size = new System.Drawing.Size(112, 169);
-            this.LabelInformacion.TabIndex = 14;
-            this.LabelInformacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CmdPagoCobro
             // 
@@ -267,6 +257,18 @@ namespace SistemaDeCobros
             this.DgvPendientes.TabIndex = 1;
             this.DgvPendientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvListaPendientes_CellClick);
             this.DgvPendientes.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvListaPendientes_RowHeaderMouseClick);
+            this.DgvPendientes.MouseEnter += new System.EventHandler(this.DgvPendientes_MouseEnter);
+            // 
+            // LabelInformacion
+            // 
+            this.LabelInformacion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.LabelInformacion.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelInformacion.ForeColor = System.Drawing.Color.Red;
+            this.LabelInformacion.Location = new System.Drawing.Point(358, 12);
+            this.LabelInformacion.Name = "LabelInformacion";
+            this.LabelInformacion.Size = new System.Drawing.Size(112, 169);
+            this.LabelInformacion.TabIndex = 14;
+            this.LabelInformacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GrpGrilla3
             // 
