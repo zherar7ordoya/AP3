@@ -13,7 +13,7 @@ namespace SistemaDeCobros
         private decimal  importe;
 
         // Propiedades
-        public string   Cliente             { get => cliente; set => this.cliente = value; }
+        public string   Cliente             { get => cliente; set => cliente = value; }
         public string   Tipo                { get => tipo; }
         public int      Codigo              { get => codigo; }
         public string   NombreCobro         { get => nombreCobro; }
@@ -31,12 +31,12 @@ namespace SistemaDeCobros
             decimal  pImporte
             )
         {
-            this.cliente          = pCliente;
-            this.tipo             = pTipo;
-            this.codigo           = pCodigo;
-            this.nombreCobro      = pNombreCobro;
-            this.fechaVencimiento = pFechaVencimiento;
-            this.importe          = pImporte;
+            cliente          = pCliente;
+            tipo             = pTipo;
+            codigo           = pCodigo;
+            nombreCobro      = pNombreCobro;
+            fechaVencimiento = pFechaVencimiento;
+            importe          = pImporte;
         }
 
         // Métodos
