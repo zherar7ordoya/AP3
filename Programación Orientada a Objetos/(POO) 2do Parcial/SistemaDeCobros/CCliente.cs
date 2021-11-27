@@ -5,12 +5,14 @@ namespace SistemaDeCobros
     public class CCliente
     {
         // Atributos
+
         private int legajo;
         private string nombreCliente;
         private List<CCobro> CobrosPendientes = new List<CCobro>();
         private List<CPago> CobrosCancelados  = new List<CPago>();
 
         // Propiedades
+
         public int Legajo
         {
             get => legajo;
@@ -25,6 +27,7 @@ namespace SistemaDeCobros
         public List<CPago> VerCancelados() { return CobrosCancelados; }
 
         // Constructores
+
         public CCliente(int pLegajo, string pNombreCliente)
         {
             legajo        = pLegajo;
@@ -32,6 +35,16 @@ namespace SistemaDeCobros
         }
 
         // Métodos
+
+        public void AltaPendiente(CCobro pCobro)
+        { CobrosPendientes.Add(pCobro); }
+
+        public void BajaPendiente(CCobro pCobro)
+        { CobrosPendientes.Remove(pCobro); }
+
+        public void AltaCancelado(CPago pPago)
+        { CobrosCancelados.Add(pPago); }
+
         public bool EsDuplicado(int pCodigo)
         {
             if (CobrosPendientes.Count > 0)
@@ -41,24 +54,15 @@ namespace SistemaDeCobros
                     if (x.Codigo == pCodigo) { return true; }
                 }
             }
-
             if (CobrosCancelados.Count > 0)
             {
-                foreach(var x in CobrosCancelados)
+                foreach (var x in CobrosCancelados)
                 {
-                    if(x.Codigo == pCodigo) { return true; }
+                    if (x.Codigo == pCodigo) { return true; }
                 }
             }
             return false;
         }
-        public void AltaPendiente(CCobro pCobro)
-        { CobrosPendientes.Add(pCobro); }
-
-        public void BajaPendiente(CCobro pCobro)
-        { CobrosPendientes.Remove(pCobro); }
-
-        public void AltaCancelado(CPago pPago)
-        { CobrosCancelados.Add(pPago); }
 
         public void ActualizaNombre(string pNombre)
         {
@@ -69,7 +73,6 @@ namespace SistemaDeCobros
                     x.Cliente = pNombre;
                 }
             }
-
             if (CobrosCancelados.Count > 0)
             {
                 foreach (var x in CobrosCancelados)

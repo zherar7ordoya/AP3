@@ -7,6 +7,7 @@ namespace SistemaDeCobros
         // Atributos
         // Propiedades
         // Constructores
+
         public CCobroNormal
             (
             string   pCliente,

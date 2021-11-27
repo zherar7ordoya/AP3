@@ -7,6 +7,7 @@ namespace SistemaDeCobros
         // Atributos
         // Propiedades
         // Constructores
+
         public CCobroEspecial
             (
             string   pCliente,
@@ -28,6 +29,7 @@ namespace SistemaDeCobros
         { }
 
         // Métodos
+
         public override decimal CalcularRecargo(decimal pImporte, double pDias)
         { 
             if (pDias > 0)

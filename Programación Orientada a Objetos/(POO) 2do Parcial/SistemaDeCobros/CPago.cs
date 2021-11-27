@@ -60,7 +60,7 @@ namespace SistemaDeCobros
         public int CompareTo(object obj)
         {
             CPago x = (CPago)obj;
-            if(Total > x.Total) { return 1; }
+            if(Total > x.Total) { return 1;  }
             if(Total < x.Total) { return -1; }
             return 0;
         }
