@@ -14,7 +14,7 @@ namespace Calculadora
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CForm());
+            Application.Run(new CFormulario());
         }
     }
 }

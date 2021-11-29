@@ -1,8 +1,10 @@
-﻿namespace Test
+﻿using App.Core;
+
+namespace Test
 {
-    public class StubView : ICalculatorView
+    public class StubView : IVista
     {
-        public string ScreenDisplay { get; set; }
+        public string TextoPantalla { get; set; }
     }
 
 }
