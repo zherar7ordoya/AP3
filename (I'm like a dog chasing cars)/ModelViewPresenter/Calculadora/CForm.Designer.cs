@@ -1,7 +1,7 @@
 ﻿
 namespace Calculadora
 {
-    partial class Form1
+    partial class CForm
     {
         /// <summary>
         ///  Required designer variable.
