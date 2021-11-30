@@ -2,7 +2,7 @@
 
 namespace Test
 {
-    public class StubView : IVista
+    public class CEmulador : IVista
     {
         public string TextoPantalla { get; set; }
     }
