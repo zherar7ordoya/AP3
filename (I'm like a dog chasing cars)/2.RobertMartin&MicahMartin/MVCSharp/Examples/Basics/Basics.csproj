@@ -1,6 +1,11 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
   <PropertyGroup>
     <SolutionNameWithPath>Basics</SolutionNameWithPath>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -54,14 +59,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="CleanUp">
-    <RemoveDir Directories="bin;obj;PrecompiledWeb;Presentation\Web\bin;
-		Presentation\Silverlight\ClientBin;Presentation\Silverlight\obj;
-		Presentation\Silverlight\ApplicationLogic;Presentation\Silverlight\Model;
-		Presentation\Silverlight\Basics_Web\ClientBin;
-		Presentation\Mobile\bin;Presentation\Mobile\obj;
-		Presentation\Mobile\ApplicationLogic;Presentation\Mobile\Model" />
-    <Delete Files="$(SolutionNameWithPath).suo;
-		Presentation\Silverlight\$(SolutionNameWithPath).suo;
-		Presentation\Mobile\$(SolutionNameWithPath).suo" />
+    <RemoveDir Directories="bin;obj;PrecompiledWeb;Presentation\Web\bin;&#xD;&#xA;		Presentation\Silverlight\ClientBin;Presentation\Silverlight\obj;&#xD;&#xA;		Presentation\Silverlight\ApplicationLogic;Presentation\Silverlight\Model;&#xD;&#xA;		Presentation\Silverlight\Basics_Web\ClientBin;&#xD;&#xA;		Presentation\Mobile\bin;Presentation\Mobile\obj;&#xD;&#xA;		Presentation\Mobile\ApplicationLogic;Presentation\Mobile\Model" />
+    <Delete Files="$(SolutionNameWithPath).suo;&#xD;&#xA;		Presentation\Silverlight\$(SolutionNameWithPath).suo;&#xD;&#xA;		Presentation\Mobile\$(SolutionNameWithPath).suo" />
   </Target>
 </Project>
