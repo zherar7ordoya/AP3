@@ -35,10 +35,10 @@ namespace MvpSample.WinForms.Views
             System.Windows.Forms.Label contactNameLabel;
             System.Windows.Forms.Label dateOfBirthLabel;
             this.companyNameTextBox = new System.Windows.Forms.TextBox();
-            this.cusomerViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contactNameTextBox = new System.Windows.Forms.TextBox();
             this.m_btnSave = new System.Windows.Forms.Button();
             this.m_btnCancel = new System.Windows.Forms.Button();
+            this.cusomerViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dateOfBirthDateTimePicker = new System.Windows.Forms.DateTimePicker();
             companyNameLabel = new System.Windows.Forms.Label();
             contactNameLabel = new System.Windows.Forms.Label();
@@ -64,26 +64,13 @@ namespace MvpSample.WinForms.Views
             contactNameLabel.TabIndex = 5;
             contactNameLabel.Text = "Name:";
             // 
-            // dateOfBirthLabel
-            // 
-            dateOfBirthLabel.AutoSize = true;
-            dateOfBirthLabel.Location = new System.Drawing.Point(23, 89);
-            dateOfBirthLabel.Name = "dateOfBirthLabel";
-            dateOfBirthLabel.Size = new System.Drawing.Size(71, 13);
-            dateOfBirthLabel.TabIndex = 8;
-            dateOfBirthLabel.Text = "Date Of Birth:";
-            // 
             // companyNameTextBox
             // 
             this.companyNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cusomerViewModelBindingSource, "CompanyName", true));
             this.companyNameTextBox.Location = new System.Drawing.Point(92, 46);
             this.companyNameTextBox.Name = "companyNameTextBox";
             this.companyNameTextBox.Size = new System.Drawing.Size(208, 20);
-            this.companyNameTextBox.TabIndex = 1;
-            // 
-            // cusomerViewModelBindingSource
-            // 
-            this.cusomerViewModelBindingSource.DataSource = typeof(MvpSample.Common.ViewModels.CustomerViewModel);
+            this.companyNameTextBox.TabIndex = 4;
             // 
             // contactNameTextBox
             // 
@@ -91,14 +78,14 @@ namespace MvpSample.WinForms.Views
             this.contactNameTextBox.Location = new System.Drawing.Point(92, 12);
             this.contactNameTextBox.Name = "contactNameTextBox";
             this.contactNameTextBox.Size = new System.Drawing.Size(208, 20);
-            this.contactNameTextBox.TabIndex = 0;
+            this.contactNameTextBox.TabIndex = 6;
             // 
             // m_btnSave
             // 
             this.m_btnSave.Location = new System.Drawing.Point(28, 126);
             this.m_btnSave.Name = "m_btnSave";
             this.m_btnSave.Size = new System.Drawing.Size(75, 23);
-            this.m_btnSave.TabIndex = 3;
+            this.m_btnSave.TabIndex = 7;
             this.m_btnSave.Text = "&Save";
             this.m_btnSave.UseVisualStyleBackColor = true;
             this.m_btnSave.Click += new System.EventHandler(this.m_btnSave_Click);
@@ -108,10 +95,23 @@ namespace MvpSample.WinForms.Views
             this.m_btnCancel.Location = new System.Drawing.Point(109, 126);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.m_btnCancel.TabIndex = 4;
+            this.m_btnCancel.TabIndex = 8;
             this.m_btnCancel.Text = "&Cancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
             this.m_btnCancel.Click += new System.EventHandler(this.m_btnCancel_Click);
+            // 
+            // cusomerViewModelBindingSource
+            // 
+            this.cusomerViewModelBindingSource.DataSource = typeof(MvpSample.Common.ViewModels.CustomerViewModel);
+            // 
+            // dateOfBirthLabel
+            // 
+            dateOfBirthLabel.AutoSize = true;
+            dateOfBirthLabel.Location = new System.Drawing.Point(23, 89);
+            dateOfBirthLabel.Name = "dateOfBirthLabel";
+            dateOfBirthLabel.Size = new System.Drawing.Size(71, 13);
+            dateOfBirthLabel.TabIndex = 8;
+            dateOfBirthLabel.Text = "Date Of Birth:";
             // 
             // dateOfBirthDateTimePicker
             // 
@@ -119,7 +119,7 @@ namespace MvpSample.WinForms.Views
             this.dateOfBirthDateTimePicker.Location = new System.Drawing.Point(100, 85);
             this.dateOfBirthDateTimePicker.Name = "dateOfBirthDateTimePicker";
             this.dateOfBirthDateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.dateOfBirthDateTimePicker.TabIndex = 2;
+            this.dateOfBirthDateTimePicker.TabIndex = 9;
             // 
             // AddCustomerView
             // 
