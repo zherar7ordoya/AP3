@@ -1,4 +1,5 @@
-﻿namespace MvpSample.Common {
+﻿namespace MvpSample.Common
+{
 
 
     partial class CustomersDataSet
