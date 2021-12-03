@@ -33,7 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +52,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatosMSAccess2016DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DatosMSAccess2016DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatosMSAccess2016DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -81,6 +88,17 @@
     </None>
     <None Include="DatosMSAccess2016DataSet.xss">
       <DependentUpon>DatosMSAccess2016DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DatosMSAccess2016DataSet1.xsc">
+      <DependentUpon>DatosMSAccess2016DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DatosMSAccess2016DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatosMSAccess2016DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DatosMSAccess2016DataSet1.xss">
+      <DependentUpon>DatosMSAccess2016DataSet1.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
