@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatronEstrategia", "PatronEstrategia\PatronEstrategia.csproj", "{40085FE7-B743-4D6D-AF95-B9130E598546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatronEstrategia", "PatronEstrategia\PatronEstrategia.csproj", "{40085FE7-B743-4D6D-AF95-B9130E598546}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatronDecorador", "PatronDecorador\PatronDecorador.csproj", "{8BA9B702-2D21-4825-B483-E73B92A299CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{40085FE7-B743-4D6D-AF95-B9130E598546}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40085FE7-B743-4D6D-AF95-B9130E598546}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40085FE7-B743-4D6D-AF95-B9130E598546}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BA9B702-2D21-4825-B483-E73B92A299CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA9B702-2D21-4825-B483-E73B92A299CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA9B702-2D21-4825-B483-E73B92A299CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA9B702-2D21-4825-B483-E73B92A299CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
