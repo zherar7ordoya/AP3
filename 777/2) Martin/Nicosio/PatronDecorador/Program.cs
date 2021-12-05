@@ -2,46 +2,44 @@
 
 IComponente miAuto = new CAuto("2018", "4 puertas", 1000);
 
-WriteLine(miAuto.Costo());
+WriteLine($"Costo: {miAuto.Costo()}");
 WriteLine(miAuto.Funciona());
 WriteLine(miAuto);
 
-WriteLine("-----------------------------");
+WriteLine("\n----------------------\n");
 
 // Necesitamos typecast para usar un método de CAuto
 ((CAuto)miAuto).Puertas(true);
 
-WriteLine("-----------------------------");
+WriteLine("\n----------------------\n");
 
 miAuto = new CSistemaSonido(miAuto);
 
 // Comprobamos adicciones.
-WriteLine(miAuto.Costo());
+WriteLine($"Costo: {miAuto.Costo()}");
 WriteLine(miAuto.Funciona());
 WriteLine(miAuto);
 
-WriteLine("-----------------------------");
+WriteLine("\n----------------------\n");
 
 miAuto = new CNitrogeno(miAuto);
 
 // Comprobamos adicciones.
-WriteLine(miAuto.Costo());
+WriteLine($"Costo: {miAuto.Costo()}");
 WriteLine(miAuto.Funciona());
 WriteLine(miAuto);
 
 // Necesitamos typecast para usar un método de CNitrogeno
 ((CNitrogeno)miAuto).UsaN();
 
-WriteLine("-----------------------------");
+WriteLine("\n----------------------\n");
 
 miAuto = new CSuspension(miAuto);
 
 // Comprobamos adicciones.
-WriteLine(miAuto.Costo());
+WriteLine($"Costo: {miAuto.Costo()}");
 WriteLine(miAuto.Funciona());
 WriteLine(miAuto);
-
-WriteLine("-----------------------------");
 
 
 public interface IComponente
@@ -74,13 +72,13 @@ public class CAuto : IComponente
     }
 
     public override string ToString()
-    { return String.Format($"Modelo {modelo}, {caracteristicas}\n"); }
+    { return String.Format($"\nModelo {modelo}, {caracteristicas}"); }
 
     public double Costo()
     { return costo; }
 
     public string Funciona()
-    { return "Encendí el motor.\n"; }
+    { return "\nMotor operativo"; }
 }
 
 
@@ -95,7 +93,7 @@ public class CNitrogeno : IComponente
 
     public override string ToString()
     {
-        return "Sistema de Nitrógeno " + decoramosA.ToString();
+        return "\nSistema de Nitrógeno" + decoramosA.ToString();
     }
 
     public double Costo()
@@ -105,12 +103,12 @@ public class CNitrogeno : IComponente
 
     public string Funciona()
     {
-        return decoramosA.Funciona() + ", Nitrógeno listo\n";
+        return decoramosA.Funciona() + "\nNitrógeno operativo";
     }
 
     public void UsaN()
     {
-        WriteLine("Nitrógeno en uso\n");
+        WriteLine("\nNitrógeno en uso");
     }
 }
 
@@ -126,7 +124,7 @@ class CSistemaSonido : IComponente
 
     public override string ToString()
     {
-        return "Radio 350XZ+ " + decoramosA.ToString();
+        return "\nRadio 350XZ+" + decoramosA.ToString();
     }
 
     public double Costo()
@@ -136,7 +134,7 @@ class CSistemaSonido : IComponente
 
     public string Funciona()
     {
-        return decoramosA.Funciona() + ", Enciendo el radio\n";
+        return decoramosA.Funciona() + "\nRadio operativa";
     }
 }
 
@@ -151,7 +149,7 @@ class CSuspension : IComponente
 
     public override string? ToString()
     {
-        return "Suspensión de alto desempeño " + decoramosA.ToString();
+        return "\nSuspensión de alto desempeño" + decoramosA.ToString();
     }
     public double Costo()
     {
@@ -160,7 +158,7 @@ class CSuspension : IComponente
 
     public string Funciona()
     {
-        return decoramosA.Funciona() + ", Suspensión elevada\n";
+        return decoramosA.Funciona() + "\nSuspensión operativa";
     }
 }
 
