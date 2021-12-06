@@ -33,7 +33,7 @@ public class CProxy
 
     public class ProxySencillo : ISujeto
     {
-        private CCocina cocina;
+        private CCocina? cocina;
 
         public void Peticion(int pOpcion)
         {
@@ -49,11 +49,11 @@ public class CProxy
 
     public class ProxySeguro : ISujeto
     {
-        private CCocina cocina;
+        private CCocina? cocina;
 
         public void Peticion(int pOpcion)
         {
-            string password;
+            string? password;
 
             WriteLine("Contraseña:");
             password = ReadLine();
