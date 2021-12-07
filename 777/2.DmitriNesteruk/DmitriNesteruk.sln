@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositePattern1", "CompositePattern1\CompositePattern1.csproj", "{0E14BC71-C87D-4651-803C-407B45F7D5F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositePattern2", "CompositePattern2\CompositePattern2.csproj", "{1D7A8218-650F-4D81-A48E-999D270CFBD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E14BC71-C87D-4651-803C-407B45F7D5F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E14BC71-C87D-4651-803C-407B45F7D5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E14BC71-C87D-4651-803C-407B45F7D5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E14BC71-C87D-4651-803C-407B45F7D5F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D7A8218-650F-4D81-A48E-999D270CFBD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7A8218-650F-4D81-A48E-999D270CFBD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7A8218-650F-4D81-A48E-999D270CFBD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7A8218-650F-4D81-A48E-999D270CFBD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E0AB638-59D8-4527-89DB-F50F764E379F}
+	EndGlobalSection
+EndGlobal
