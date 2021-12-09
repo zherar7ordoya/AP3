@@ -1,3 +1,0 @@
-Trace says: TRACE!
-Trace error
-Trace warning
