@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatronProxy", "PatronProxy\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatronBridge", "PatronBridge\PatronBridge.csproj", "{C8F97AA3-9569-4AD8-BA97-E2BFDCA9A096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatronComposite", "PatronComposite\PatronComposite.csproj", "{F93B1F3B-807E-4024-B2D0-2B6BCFCB4DBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatronComposite", "PatronComposite\PatronComposite.csproj", "{F93B1F3B-807E-4024-B2D0-2B6BCFCB4DBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Composite1", "Composite1\Composite1.csproj", "{173A3418-39EB-4ADF-B881-D5E54AF8C76A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F93B1F3B-807E-4024-B2D0-2B6BCFCB4DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F93B1F3B-807E-4024-B2D0-2B6BCFCB4DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F93B1F3B-807E-4024-B2D0-2B6BCFCB4DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173A3418-39EB-4ADF-B881-D5E54AF8C76A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173A3418-39EB-4ADF-B881-D5E54AF8C76A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173A3418-39EB-4ADF-B881-D5E54AF8C76A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173A3418-39EB-4ADF-B881-D5E54AF8C76A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
