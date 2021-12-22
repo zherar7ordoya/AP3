@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatronBridge", "PatronBridg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatronComposite", "PatronComposite\PatronComposite.csproj", "{F93B1F3B-807E-4024-B2D0-2B6BCFCB4DBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Composite1", "Composite1\Composite1.csproj", "{173A3418-39EB-4ADF-B881-D5E54AF8C76A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositePattern", "CompositePattern\CompositePattern.csproj", "{4F4E39E1-23FE-4B28-B135-8A8EE7DDA5EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{F93B1F3B-807E-4024-B2D0-2B6BCFCB4DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F93B1F3B-807E-4024-B2D0-2B6BCFCB4DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F93B1F3B-807E-4024-B2D0-2B6BCFCB4DBB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{173A3418-39EB-4ADF-B881-D5E54AF8C76A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{173A3418-39EB-4ADF-B881-D5E54AF8C76A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{173A3418-39EB-4ADF-B881-D5E54AF8C76A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{173A3418-39EB-4ADF-B881-D5E54AF8C76A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F4E39E1-23FE-4B28-B135-8A8EE7DDA5EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F4E39E1-23FE-4B28-B135-8A8EE7DDA5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F4E39E1-23FE-4B28-B135-8A8EE7DDA5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F4E39E1-23FE-4B28-B135-8A8EE7DDA5EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
