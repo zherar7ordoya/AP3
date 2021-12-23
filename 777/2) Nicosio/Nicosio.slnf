@@ -1,0 +1,8 @@
+{
+  "solution": {
+    "path": "Nicosio.sln",
+    "projects": [
+      "CompositePattern\\CompositePattern.csproj"
+    ]
+  }
+}

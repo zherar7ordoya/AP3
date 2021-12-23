@@ -2,7 +2,65 @@
 
 
 
-// The Interface
+//*----------------------------------> * <----------------------------------*\\
+
+
+
+#region THE CLIENT
+
+class PatronComposición
+{
+    static void Main()
+    {
+        IComponent<string> album = new Composite<string>("Album");
+        IComponent<string> point = album;
+        string[] s;
+        string command, parameter;
+
+        // Create and manipulate a structure
+        StreamReader instream = new StreamReader("Composite.dat");
+        do
+        {
+            string? t = instream.ReadLine();
+
+            if (t == null) { break; }
+
+            Console.WriteLine("\t\n" + t);
+            s = t.Split(' ');
+            command = s[0];
+            if (s.Length > 1) parameter = s[1]; else parameter = null;
+            switch (command)
+            {
+                case "AddSet":
+                    IComponent<string> c = new Composite<string>(parameter);
+                    point.Add(c);
+                    point = c;
+                    break;
+                case "AddPhoto":
+                    point.Add(new Component<string>(parameter));
+                    break;
+                case "Remove":
+                    point = point.Remove(parameter);
+                    break;
+                case "Find":
+                    point = album.Find(parameter);
+                    break;
+                case "Display":
+                    Console.WriteLine(album.Display(0));
+                    break;
+                case "Quit":
+                    break;
+            }
+        } while (!command.Equals("Quit"));
+    }
+}
+
+#endregion
+
+
+
+#region THE INTERFACE
+
 public interface IComponent<T>
 {
     void Add(IComponent<T> c);
@@ -12,9 +70,12 @@ public interface IComponent<T>
     T Name { get; set; }
 }
 
+#endregion
 
 
-// The Component
+
+#region THE COMPONENT
+
 public class Component<T> : IComponent<T>
 {
     public T Name { get; set; }
@@ -47,10 +108,12 @@ public class Component<T> : IComponent<T>
     }
 }
 
+#endregion
 
 
 
-// The Composite
+#region THE COMPOSITE
+
 public class Composite<T> : IComponent<T>
 {
     List<IComponent<T>> list;
@@ -116,4 +179,4 @@ public class Composite<T> : IComponent<T>
     }
 }
 
-
+#endregion
