@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using static System.Console;
 
 
 
@@ -12,8 +13,8 @@ class PatronComposición
 {
     static void Main()
     {
-        IComponent<string> album = new Composite<string>("Album");
-        IComponent<string> point = album;
+        IComponente<string> album = new Contenedor<string>("Album");
+        IComponente<string> point = album;
         string[] s;
         string command, parameter;
 
@@ -25,28 +26,28 @@ class PatronComposición
 
             if (t == null) { break; }
 
-            Console.WriteLine("\t\n" + t);
+            WriteLine("\t\n" + t);
             s = t.Split(' ');
             command = s[0];
             if (s.Length > 1) parameter = s[1]; else parameter = null;
             switch (command)
             {
                 case "AddSet":
-                    IComponent<string> c = new Composite<string>(parameter);
-                    point.Add(c);
+                    IComponente<string> c = new Contenedor<string>(parameter);
+                    point.Agrega(c);
                     point = c;
                     break;
                 case "AddPhoto":
-                    point.Add(new Component<string>(parameter));
+                    point.Agrega(new Componente<string>(parameter));
                     break;
                 case "Remove":
-                    point = point.Remove(parameter);
+                    point = point.Borra(parameter);
                     break;
                 case "Find":
-                    point = album.Find(parameter);
+                    point = album.Encuentra(parameter);
                     break;
                 case "Display":
-                    Console.WriteLine(album.Display(0));
+                    WriteLine(album.Muestra(0));
                     break;
                 case "Quit":
                     break;
@@ -61,13 +62,16 @@ class PatronComposición
 
 #region THE INTERFACE
 
-public interface IComponent<T>
+public interface IComponente<T>
 {
-    void Add(IComponent<T> c);
-    IComponent<T> Remove(T s);
-    string Display(int depth);
-    IComponent<T> Find(T s);
-    T Name { get; set; }
+    // Métodos
+    void Agrega(IComponente<T> componente);
+    IComponente<T> Borra(T cadena);
+    string Muestra(int cantidad);
+    IComponente<T>? Encuentra(T cadena);
+
+    // Propiedades
+    T Nombre { get; set; }
 }
 
 #endregion
@@ -76,34 +80,37 @@ public interface IComponent<T>
 
 #region THE COMPONENT
 
-public class Component<T> : IComponent<T>
+public class Componente<T> : IComponente<T>
 {
-    public T Name { get; set; }
+    public T Nombre { get; set; }
 
-    public Component(T name)
+    public Componente(T nombre)
     {
-        Name = name;
+        this.Nombre = nombre;
     }
 
-    public void Add(IComponent<T> c)
+    // Solo válido para el Contenedor
+    public void Agrega(IComponente<T> componente)
     {
-        Console.WriteLine("Cannot add to an item");
+        WriteLine("Cannot add to an item");
     }
 
-    public IComponent<T> Remove(T s)
+    // Solo válido para el Contenedor
+    public IComponente<T> Borra(T cadena)
     {
-        Console.WriteLine("Cannot remove directly");
+        WriteLine("Cannot remove directly");
         return this;
     }
 
-    public string Display(int depth)
+    public string Muestra(int cantidad)
     {
-        return new String('-', depth) + Name + "\n";
+        return new string('-', cantidad) + Nombre + "\n";
     }
 
-    public IComponent<T> Find(T s)
+    public IComponente<T>? Encuentra(T cadena)
     {
-        if (s.Equals(Name)) { return this; }
+        if (cadena == null) { return null; }
+        if (cadena.Equals(Nombre)) { return this; }
         else { return null; }
     }
 }
@@ -114,34 +121,34 @@ public class Component<T> : IComponent<T>
 
 #region THE COMPOSITE
 
-public class Composite<T> : IComponent<T>
+public class Contenedor<T> : IComponente<T>
 {
-    List<IComponent<T>> list;
-    public T Name { get; set; }
+    readonly List<IComponente<T>> listado;
+    public T Nombre { get; set; }
 
-    public Composite(T name)
+    public Contenedor(T nombre)
     {
-        Name = name;
-        list = new List<IComponent<T>>();
+        Nombre = nombre;
+        listado = new List<IComponente<T>>();
     }
 
-    public void Add(IComponent<T> c)
+    public void Agrega(IComponente<T> c)
     {
-        list.Add(c);
+        listado.Add(c);
     }
 
-    IComponent<T> holder = null;
+    IComponente<T> holder = null;
 
     // Finds the item from a particular point in the structure
     // and returns the composite from which it was removed
     // If not found, return the point as given
-    public IComponent<T> Remove(T s)
+    public IComponente<T> Borra(T s)
     {
         holder = this;
-        IComponent<T> p = holder.Find(s);
+        IComponente<T> p = holder.Encuentra(s);
         if (holder != null)
         {
-            (holder as Composite<T>).list.Remove(p);
+            (holder as Contenedor<T>).listado.Remove(p);
             return holder;
         }
         else { return this; }
@@ -149,17 +156,17 @@ public class Composite<T> : IComponent<T>
 
     // Recursively looks for an item
     // Returns its reference or else null
-    public IComponent<T> Find(T s)
+    public IComponente<T> Encuentra(T s)
     {
         holder = this;
 
-        if (Name.Equals(s)) { return this; }
+        if (Nombre.Equals(s)) { return this; }
 
-        IComponent<T> found = null;
+        IComponente<T> found = null;
 
-        foreach (IComponent<T> c in list)
+        foreach (IComponente<T> c in listado)
         {
-            found = c.Find(s);
+            found = c.Encuentra(s);
             if (found != null) { break; }
         }
 
@@ -167,13 +174,13 @@ public class Composite<T> : IComponent<T>
     }
 
     // Displays items in a format indicating their level in the composite structure
-    public string Display(int depth)
+    public string Muestra(int depth)
     {
         StringBuilder s = new StringBuilder(new String('-', depth));
-        s.Append("Set " + Name + " length :" + list.Count + "\n");
-        foreach (IComponent<T> component in list)
+        s.Append("Set " + Nombre + " length :" + listado.Count + "\n");
+        foreach (IComponente<T> component in listado)
         {
-            s.Append(component.Display(depth + 2));
+            s.Append(component.Muestra(depth + 2));
         }
         return s.ToString();
     }
