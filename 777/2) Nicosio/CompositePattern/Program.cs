@@ -132,57 +132,57 @@ public class Contenedor<T> : IComponente<T>
         listado = new List<IComponente<T>>();
     }
 
-    public void Agrega(IComponente<T> c)
+    public void Agrega(IComponente<T> componente)
     {
-        listado.Add(c);
+        listado.Add(componente);
     }
 
-    IComponente<T> holder = null;
+    IComponente<T> portador = null;
 
     // Finds the item from a particular point in the structure
-    // and returns the composite from which it was removed
-    // If not found, return the point as given
-    public IComponente<T> Borra(T s)
+    // and returns the composite from which it was removed.
+    // If not found, return the point as given.
+    public IComponente<T> Borra(T cadena)
     {
-        holder = this;
-        IComponente<T> p = holder.Encuentra(s);
-        if (holder != null)
+        portador = this;
+        IComponente<T> item = portador.Encuentra(cadena);
+        if (portador != null)
         {
-            (holder as Contenedor<T>).listado.Remove(p);
-            return holder;
+            (portador as Contenedor<T>).listado.Remove(item);
+            return portador;
         }
         else { return this; }
     }
 
-    // Recursively looks for an item
-    // Returns its reference or else null
+    // Recursively looks for an item.
+    // Returns its reference (or else null).
     public IComponente<T> Encuentra(T s)
     {
-        holder = this;
+        portador = this;
 
         if (Nombre.Equals(s)) { return this; }
 
-        IComponente<T> found = null;
+        IComponente<T> encontrado = null;
 
-        foreach (IComponente<T> c in listado)
+        foreach (IComponente<T> componente in listado)
         {
-            found = c.Encuentra(s);
-            if (found != null) { break; }
+            encontrado = componente.Encuentra(s);
+            if (encontrado != null) { break; }
         }
 
-        return found;
+        return encontrado;
     }
 
     // Displays items in a format indicating their level in the composite structure
-    public string Muestra(int depth)
+    public string Muestra(int cantidad)
     {
-        StringBuilder s = new StringBuilder(new String('-', depth));
-        s.Append("Set " + Nombre + " length :" + listado.Count + "\n");
-        foreach (IComponente<T> component in listado)
+        StringBuilder cadena = new(new String('-', cantidad));
+        cadena.Append("Set " + Nombre + " length :" + listado.Count + "\n");
+        foreach (IComponente<T> componente in listado)
         {
-            s.Append(component.Muestra(depth + 2));
+            cadena.Append(componente.Muestra(cantidad + 2));
         }
-        return s.ToString();
+        return cadena.ToString();
     }
 }
 
