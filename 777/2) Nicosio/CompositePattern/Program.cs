@@ -14,37 +14,40 @@ class PatronComposición
     static void Main()
     {
         IComponente<string> album = new Contenedor<string>("Album");
-        IComponente<string> point = album;
-        string[] s;
-        string command, parameter;
+        IComponente<string> nodo = album;
+        string[] cadena;
+        string instrucción, parámetro;
 
         // Create and manipulate a structure
-        StreamReader instream = new StreamReader("Composite.dat");
+        StreamReader archivo = new StreamReader("Composite.dat");
         do
         {
-            string? t = instream.ReadLine();
+            string? línea = archivo.ReadLine();
 
-            if (t == null) { break; }
+            if (línea == null) { break; }
 
-            WriteLine("\t\n" + t);
-            s = t.Split(' ');
-            command = s[0];
-            if (s.Length > 1) parameter = s[1]; else parameter = null;
-            switch (command)
+            WriteLine("\t\n" + línea);
+            cadena = línea.Split(' ');
+            instrucción = cadena[0];
+
+            if (cadena.Length > 1) { parámetro = cadena[1]; }
+            else { parámetro = null; }
+
+            switch (instrucción)
             {
                 case "AddSet":
-                    IComponente<string> c = new Contenedor<string>(parameter);
-                    point.Agrega(c);
-                    point = c;
+                    IComponente<string> componente = new Contenedor<string>(parámetro);
+                    nodo.Agrega(componente);
+                    nodo = componente;
                     break;
                 case "AddPhoto":
-                    point.Agrega(new Componente<string>(parameter));
+                    nodo.Agrega(new Componente<string>(parámetro));
                     break;
                 case "Remove":
-                    point = point.Borra(parameter);
+                    nodo = nodo.Borra(parámetro);
                     break;
                 case "Find":
-                    point = album.Encuentra(parameter);
+                    nodo = album.Encuentra(parámetro);
                     break;
                 case "Display":
                     WriteLine(album.Muestra(0));
@@ -52,7 +55,7 @@ class PatronComposición
                 case "Quit":
                     break;
             }
-        } while (!command.Equals("Quit"));
+        } while (!instrucción.Equals("Quit"));
     }
 }
 
@@ -156,17 +159,17 @@ public class Contenedor<T> : IComponente<T>
 
     // Recursively looks for an item.
     // Returns its reference (or else null).
-    public IComponente<T> Encuentra(T s)
+    public IComponente<T> Encuentra(T cadena)
     {
         portador = this;
 
-        if (Nombre.Equals(s)) { return this; }
+        if (Nombre.Equals(cadena)) { return this; }
 
-        IComponente<T> encontrado = null;
+        IComponente<T>? encontrado = null;
 
         foreach (IComponente<T> componente in listado)
         {
-            encontrado = componente.Encuentra(s);
+            encontrado = componente.Encuentra(cadena);
             if (encontrado != null) { break; }
         }
 

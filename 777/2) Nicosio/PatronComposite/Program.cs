@@ -91,7 +91,7 @@ class Componente<T> : IComponente<T>
         return this;
     }
 
-    public IComponente<T>? Busca(T pElemento)
+    public IComponente<T> Busca(T pElemento)
     {
         if (pElemento.Equals(Nombre)) { return this; }
         else { return null; }
@@ -106,7 +106,7 @@ class Componente<T> : IComponente<T>
 
 class Compuesto<T> : IComponente<T>
 {
-    readonly List<IComponente<T>>? elementos;
+    readonly List<IComponente<T>> elementos;
     public T Nombre { get; set; }
     public Compuesto(T pNombre)
     {
