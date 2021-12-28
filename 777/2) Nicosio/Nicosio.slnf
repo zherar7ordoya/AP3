@@ -2,7 +2,7 @@
   "solution": {
     "path": "Nicosio.sln",
     "projects": [
-      "CompositePattern\\CompositePattern.csproj"
+      "PatronFachada\\PatronFachada.csproj"
     ]
   }
 }
