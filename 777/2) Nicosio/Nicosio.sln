@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatronFlyweight", "PatronFl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatronAdaptador", "PatronAdaptador\PatronAdaptador.csproj", "{639C5321-AF5E-4494-91BF-316174B3B7F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatronFachada", "PatronFachada\PatronFachada.csproj", "{5332222D-2617-4826-A707-95D34BD291D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatronFachada", "PatronFachada\PatronFachada.csproj", "{2B5DAB7C-D39C-43B1-B250-78C4387664CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +59,10 @@ Global
 		{639C5321-AF5E-4494-91BF-316174B3B7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{639C5321-AF5E-4494-91BF-316174B3B7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{639C5321-AF5E-4494-91BF-316174B3B7F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5332222D-2617-4826-A707-95D34BD291D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5332222D-2617-4826-A707-95D34BD291D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5332222D-2617-4826-A707-95D34BD291D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5332222D-2617-4826-A707-95D34BD291D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B5DAB7C-D39C-43B1-B250-78C4387664CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B5DAB7C-D39C-43B1-B250-78C4387664CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B5DAB7C-D39C-43B1-B250-78C4387664CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B5DAB7C-D39C-43B1-B250-78C4387664CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
