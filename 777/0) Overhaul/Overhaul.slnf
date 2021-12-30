@@ -1,8 +1,0 @@
-{
-  "solution": {
-    "path": "Overhaul.sln",
-    "projects": [
-      "Indexer1\\Indexer1.csproj"
-    ]
-  }
-}
