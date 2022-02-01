@@ -2,7 +2,7 @@
   "solution": {
     "path": "Nicosio.sln",
     "projects": [
-      "FabricaAbstracta\\FabricaAbstracta.csproj"
+      "PatronBuilder\\PatronBuilder.csproj"
     ]
   }
 }
