@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DomainLayer.Models.Department
 {
-    internal class DepartmentModel : IDepartmentModel
+    public class DepartmentModel : IDepartmentModel
     {
         public int DepartmentID { get; set; }
 
