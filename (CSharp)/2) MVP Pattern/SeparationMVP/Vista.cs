@@ -3,76 +3,109 @@ using System.Windows.Forms;
 
 namespace SeparationMVP
 {
-    public partial class frmTasks : Form, ITaskLayer
+    public partial class Vista : Form, IIntegrador
     {
-        private TaskPresenter presenter;
+        private Presentador presenter;
 
-        public string TaskName
+        public string Nombre
         {
             get { return txtTask.Text; }
             set { txtTask.Text = value; }
         }
-        public string Priority
+
+
+        public string Prioridad
         {
             get { return cboPriority.Text; }
             set { cboPriority.Text = value; }
         }
-        public DateTime? StartDate
+
+
+        public DateTime? Desde
         {
             get
             {
                 if (string.IsNullOrWhiteSpace(txtStartDate.Text))
+                {
                     return null;
+                }
                 else
+                {
                     return DateTime.Parse(txtStartDate.Text);
+                }
             }
             set
             {
-                if (value == null)
+                if (value == null) 
+                {
                     txtStartDate.Text = String.Empty;
+                }
                 else
+                {
                     txtStartDate.Text = value.Value.ToShortDateString();
+                }
             }
         }
-        public DateTime? DueDate
+
+
+        public DateTime? Hasta
         {
             get
             {
                 if (string.IsNullOrWhiteSpace(txtDueDate.Text))
+                {
                     return null;
+                }
                 else
+                {
                     return DateTime.Parse(txtDueDate.Text);
+                }
             }
             set
             {
                 if (value == null)
+                {
                     txtDueDate.Text = String.Empty;
+                }
                 else
+                {
                     txtDueDate.Text = value.Value.ToShortDateString();
+                }
             }
         }
-        public bool Completed
+
+
+        public bool Completado
         {
             get { return ckbCompleted.Checked; }
             set { ckbCompleted.Checked = value; }
         }
-        public DateTime? CompletionDate
+        public DateTime? Finalizado
         {
             get
             {
                 if (string.IsNullOrWhiteSpace(txtCompletionDate.Text))
+                {
                     return null;
+                }
                 else
+                {
                     return DateTime.Parse(txtCompletionDate.Text);
+                }
             }
             set
             {
                 if (value == null)
+                {
                     txtCompletionDate.Text = String.Empty;
+                }
                 else
+                {
                     txtCompletionDate.Text = value.Value.ToShortDateString();
+                }
             }
         }
+
 
         public string StatusChange
         {
@@ -86,15 +119,18 @@ namespace SeparationMVP
         public event EventHandler<EventArgs> PrevTask;
         public event EventHandler<EventArgs> NextTask;
 
-        public frmTasks()
+        public Vista()
         {
             InitializeComponent();
         }
+
+
         private void frmTasks_Load(object sender, EventArgs e)
         {
-            presenter = new TaskPresenter(this);
+            presenter = new Presentador(this);
             this.isDirty = false;
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -106,16 +142,15 @@ namespace SeparationMVP
                 txtTask.Focus();
                 return;
             }
-            if (SaveTask != null)
-            {
-                SaveTask(this, EventArgs.Empty);
-            }
+            SaveTask?.Invoke(this, EventArgs.Empty);
         }
+
+
         private void btnNew_Click(object sender, EventArgs e)
         {
             if (isDirty)
             {
-                if (AbandonEdit() == System.Windows.Forms.DialogResult.Yes)
+                if (AbandonEdit() == DialogResult.Yes)
                 {
                     isDirty = false;
                 }
@@ -124,16 +159,15 @@ namespace SeparationMVP
                     return;
                 }
             }
-            if (NewTask != null)
-            {
-                NewTask(this, EventArgs.Empty);
-            }
+            NewTask?.Invoke(this, EventArgs.Empty);
         }
+
+
         private void btnPrev_Click(object sender, EventArgs e)
         {
             if (isDirty)
             {
-                if (AbandonEdit() == System.Windows.Forms.DialogResult.Yes)
+                if (AbandonEdit() == DialogResult.Yes)
                 {
                     isDirty = false;
                 }
@@ -142,16 +176,15 @@ namespace SeparationMVP
                     return;
                 }
             }
-            if (PrevTask != null)
-            {
-                PrevTask(this, EventArgs.Empty);
-            }
+            PrevTask?.Invoke(this, EventArgs.Empty);
         }
+
+
         private void btnNext_Click(object sender, EventArgs e)
         {
             if (isDirty)
             {
-                if (AbandonEdit() == System.Windows.Forms.DialogResult.Yes)
+                if (AbandonEdit() == DialogResult.Yes)
                 {
                     isDirty = false;
                 }
@@ -160,38 +193,50 @@ namespace SeparationMVP
                     return;
                 }
             }
-            if (NextTask != null)
-            {
-                NextTask(this, EventArgs.Empty);
-            }
+            NextTask?.Invoke(this, EventArgs.Empty);
         }
+
 
         private DialogResult AbandonEdit()
         {
-            return MessageBox.Show("Abandon current editing?", "Abandon",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return MessageBox.Show(
+                "Abandon current editing?",
+                "Abandon",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
         }
+
 
         private void txtTask_TextChanged(object sender, EventArgs e)
         {
             this.isDirty = true;
         }
+
+
         private void cboPriority_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.isDirty = true;
         }
+
+
         private void txtStartDate_TextChanged(object sender, EventArgs e)
         {
             this.isDirty = true;
         }
+
+
         private void txtDueDate_TextChanged(object sender, EventArgs e)
         {
             this.isDirty = true;
         }
+
+
         private void ckbCompleted_CheckedChanged(object sender, EventArgs e)
         {
             this.isDirty = true;
         }
+
+
         private void txtCompletionDate_TextChanged(object sender, EventArgs e)
         {
             this.isDirty = true;

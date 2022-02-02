@@ -1,6 +1,6 @@
 ﻿namespace SeparationMVP
 {
-    partial class frmTasks
+    partial class Vista
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@
             this.cboPriority = new System.Windows.Forms.ComboBox();
             this.ckbCompleted = new System.Windows.Forms.CheckBox();
             this.lblCompletionDate = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblDueDate = new System.Windows.Forms.Label();
             this.lblPriority = new System.Windows.Forms.Label();
             this.lblStartDate = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -119,14 +119,14 @@
             this.lblCompletionDate.TabIndex = 6;
             this.lblCompletionDate.Text = "Completion Date";
             // 
-            // label1
+            // lblDueDate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(283, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Due Date";
+            this.lblDueDate.AutoSize = true;
+            this.lblDueDate.Location = new System.Drawing.Point(283, 66);
+            this.lblDueDate.Name = "lblDueDate";
+            this.lblDueDate.Size = new System.Drawing.Size(53, 13);
+            this.lblDueDate.TabIndex = 7;
+            this.lblDueDate.Text = "Due Date";
             // 
             // lblPriority
             // 
@@ -148,10 +148,10 @@
             // 
             // lblStatus
             // 
-            this.lblStatus.AutoSize = true;
+            this.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblStatus.Location = new System.Drawing.Point(12, 236);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 13);
+            this.lblStatus.Size = new System.Drawing.Size(30, 15);
             this.lblStatus.TabIndex = 10;
             // 
             // txtCompletionDate
@@ -195,7 +195,7 @@
             this.txtTask.TabIndex = 15;
             this.txtTask.TextChanged += new System.EventHandler(this.txtTask_TextChanged);
             // 
-            // frmTasks
+            // Vista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -208,7 +208,7 @@
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblStartDate);
             this.Controls.Add(this.lblPriority);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblDueDate);
             this.Controls.Add(this.lblCompletionDate);
             this.Controls.Add(this.ckbCompleted);
             this.Controls.Add(this.cboPriority);
@@ -216,7 +216,7 @@
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnNew);
-            this.Name = "frmTasks";
+            this.Name = "Vista";
             this.Text = "frmTasks";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -232,7 +232,7 @@
         private System.Windows.Forms.ComboBox cboPriority;
         private System.Windows.Forms.CheckBox ckbCompleted;
         private System.Windows.Forms.Label lblCompletionDate;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDueDate;
         private System.Windows.Forms.Label lblPriority;
         private System.Windows.Forms.Label lblStartDate;
         private System.Windows.Forms.Label lblStatus;
