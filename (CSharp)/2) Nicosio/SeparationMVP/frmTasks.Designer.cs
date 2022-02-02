@@ -48,16 +48,17 @@
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(15, 199);
+            this.btnNew.Location = new System.Drawing.Point(15, 170);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(75, 23);
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(286, 258);
+            this.btnNext.Location = new System.Drawing.Point(286, 198);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 23);
             this.btnNext.TabIndex = 1;
@@ -67,12 +68,13 @@
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(205, 258);
+            this.btnPrev.Location = new System.Drawing.Point(205, 198);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(75, 23);
             this.btnPrev.TabIndex = 2;
             this.btnPrev.Text = "Prev";
             this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // btnSave
             // 
@@ -82,6 +84,7 @@
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // cboPriority
             // 
@@ -94,69 +97,70 @@
             this.cboPriority.Name = "cboPriority";
             this.cboPriority.Size = new System.Drawing.Size(121, 21);
             this.cboPriority.TabIndex = 4;
+            this.cboPriority.SelectedIndexChanged += new System.EventHandler(this.cboPriority_SelectedIndexChanged);
             // 
             // ckbCompleted
             // 
             this.ckbCompleted.AutoSize = true;
-            this.ckbCompleted.Location = new System.Drawing.Point(204, 208);
+            this.ckbCompleted.Location = new System.Drawing.Point(204, 160);
             this.ckbCompleted.Name = "ckbCompleted";
             this.ckbCompleted.Size = new System.Drawing.Size(76, 17);
             this.ckbCompleted.TabIndex = 5;
             this.ckbCompleted.Text = "Completed";
             this.ckbCompleted.UseVisualStyleBackColor = true;
+            this.ckbCompleted.CheckedChanged += new System.EventHandler(this.ckbCompleted_CheckedChanged);
             // 
             // lblCompletionDate
             // 
             this.lblCompletionDate.AutoSize = true;
-            this.lblCompletionDate.Location = new System.Drawing.Point(283, 177);
+            this.lblCompletionDate.Location = new System.Drawing.Point(283, 141);
             this.lblCompletionDate.Name = "lblCompletionDate";
-            this.lblCompletionDate.Size = new System.Drawing.Size(92, 13);
+            this.lblCompletionDate.Size = new System.Drawing.Size(85, 13);
             this.lblCompletionDate.TabIndex = 6;
-            this.lblCompletionDate.Text = "lblCompletionDate";
+            this.lblCompletionDate.Text = "Completion Date";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(283, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "lblDueDate";
+            this.label1.Text = "Due Date";
             // 
             // lblPriority
             // 
             this.lblPriority.AutoSize = true;
             this.lblPriority.Location = new System.Drawing.Point(12, 66);
             this.lblPriority.Name = "lblPriority";
-            this.lblPriority.Size = new System.Drawing.Size(48, 13);
+            this.lblPriority.Size = new System.Drawing.Size(38, 13);
             this.lblPriority.TabIndex = 8;
-            this.lblPriority.Text = "lblPriority";
+            this.lblPriority.Text = "Priority";
             // 
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
             this.lblStartDate.Location = new System.Drawing.Point(283, 9);
             this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(62, 13);
+            this.lblStartDate.Size = new System.Drawing.Size(55, 13);
             this.lblStartDate.TabIndex = 9;
-            this.lblStartDate.Text = "lblStartDate";
+            this.lblStartDate.Text = "Start Date";
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(12, 263);
+            this.lblStatus.Location = new System.Drawing.Point(12, 236);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(47, 13);
+            this.lblStatus.Size = new System.Drawing.Size(0, 13);
             this.lblStatus.TabIndex = 10;
-            this.lblStatus.Text = "lblStatus";
             // 
             // txtCompletionDate
             // 
-            this.txtCompletionDate.Location = new System.Drawing.Point(286, 209);
+            this.txtCompletionDate.Location = new System.Drawing.Point(286, 157);
             this.txtCompletionDate.Name = "txtCompletionDate";
             this.txtCompletionDate.Size = new System.Drawing.Size(100, 20);
             this.txtCompletionDate.TabIndex = 11;
-            this.txtCompletionDate.Text = "txtCompletionDate";
+            this.txtCompletionDate.TextChanged += new System.EventHandler(this.txtCompletionDate_TextChanged);
             // 
             // txtDueDate
             // 
@@ -164,7 +168,7 @@
             this.txtDueDate.Name = "txtDueDate";
             this.txtDueDate.Size = new System.Drawing.Size(100, 20);
             this.txtDueDate.TabIndex = 12;
-            this.txtDueDate.Text = "txtDueDate";
+            this.txtDueDate.TextChanged += new System.EventHandler(this.txtDueDate_TextChanged);
             // 
             // txtStartDate
             // 
@@ -172,16 +176,16 @@
             this.txtStartDate.Name = "txtStartDate";
             this.txtStartDate.Size = new System.Drawing.Size(100, 20);
             this.txtStartDate.TabIndex = 13;
-            this.txtStartDate.Text = "txtStartDate";
+            this.txtStartDate.TextChanged += new System.EventHandler(this.txtStartDate_TextChanged);
             // 
             // lblTask
             // 
             this.lblTask.AutoSize = true;
             this.lblTask.Location = new System.Drawing.Point(12, 9);
             this.lblTask.Name = "lblTask";
-            this.lblTask.Size = new System.Drawing.Size(41, 13);
+            this.lblTask.Size = new System.Drawing.Size(31, 13);
             this.lblTask.TabIndex = 14;
-            this.lblTask.Text = "lblTask";
+            this.lblTask.Text = "Task";
             // 
             // txtTask
             // 
@@ -189,9 +193,9 @@
             this.txtTask.Name = "txtTask";
             this.txtTask.Size = new System.Drawing.Size(100, 20);
             this.txtTask.TabIndex = 15;
-            this.txtTask.Text = "txtTask";
+            this.txtTask.TextChanged += new System.EventHandler(this.txtTask_TextChanged);
             // 
-            // lblDueDate
+            // frmTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -212,8 +216,8 @@
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnNew);
-            this.Name = "lblDueDate";
-            this.Text = "Form1";
+            this.Name = "frmTasks";
+            this.Text = "frmTasks";
             this.ResumeLayout(false);
             this.PerformLayout();
 
