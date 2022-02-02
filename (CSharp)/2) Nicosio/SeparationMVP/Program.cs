@@ -16,7 +16,7 @@ namespace SeparationMVP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new lblDueDate());
+            Application.Run(new frmTasks());
         }
     }
 }
