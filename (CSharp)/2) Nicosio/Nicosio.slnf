@@ -2,7 +2,7 @@
   "solution": {
     "path": "Nicosio.sln",
     "projects": [
-      "PatronBuilder\\PatronBuilder.csproj"
+      "MVC\\MVC.csproj"
     ]
   }
 }

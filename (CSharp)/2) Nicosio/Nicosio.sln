@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatronSingleton", "PatronSi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FabricaAbstracta", "FabricaAbstracta\FabricaAbstracta.csproj", "{F44278BF-F306-4EAC-812B-2BA65AB03382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatronBuilder", "PatronBuilder\PatronBuilder.csproj", "{625EFA7E-A639-466E-A50F-406C166A29EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatronBuilder", "PatronBuilder\PatronBuilder.csproj", "{625EFA7E-A639-466E-A50F-406C166A29EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{C1831CB6-5AA4-4D19-8DC7-5FB5BDB13EDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{625EFA7E-A639-466E-A50F-406C166A29EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{625EFA7E-A639-466E-A50F-406C166A29EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{625EFA7E-A639-466E-A50F-406C166A29EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1831CB6-5AA4-4D19-8DC7-5FB5BDB13EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1831CB6-5AA4-4D19-8DC7-5FB5BDB13EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1831CB6-5AA4-4D19-8DC7-5FB5BDB13EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1831CB6-5AA4-4D19-8DC7-5FB5BDB13EDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
