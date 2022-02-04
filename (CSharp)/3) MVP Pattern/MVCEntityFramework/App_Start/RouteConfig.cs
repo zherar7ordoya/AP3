@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace RazorMVC
+namespace MVCEntityFramework
 {
     public class RouteConfig
     {
@@ -12,7 +12,7 @@ namespace RazorMVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Usuarios", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Empleados", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

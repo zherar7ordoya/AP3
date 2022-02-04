@@ -1,7 +1,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace RazorMVC
+namespace MVCEntityFramework
 {
     public class MvcApplication : System.Web.HttpApplication
     {

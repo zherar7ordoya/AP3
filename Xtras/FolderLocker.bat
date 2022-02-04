@@ -1,45 +1,46 @@
-rem https://www.laptopmag.com/articles/password-protect-folder-windows-10
-
 cls
-@echo off
+@ECHO OFF
 title Folder Locker
 
-    if      exist "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" goto UNLOCK
-    if      not exist Locker goto MDLOCKER
+if EXIST "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" goto UNLOCK
+if NOT EXIST Locker goto MDLOCKER
 
 :CONFIRM
-    echo    Are you sure that you want the lock folder? (Y/N)
-    set/p   "cho=>"
-    if      %cho%==Y goto LOCK
-    if      %cho%==y goto LOCK
-    if      %cho%==N goto END
-    if      %cho%==n goto END
-    echo    Sorry, invalid choice
-    goto    CONFIRM
+    echo Are you sure u want to Lock the folder(Y/N)
+    set/p "cho=>"
+    if %cho%==Y goto LOCK
+    if %cho%==y goto LOCK
+    if %cho%==n goto END
+    if %cho%==N goto END
+
+    echo Invalid choice.
+    goto CONFIRM
 
 :LOCK
-    ren     Locker "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
-    attrib  +h +s "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
-    echo    Folder locked
-    goto    END
+    ren Locker "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
+    attrib +h +s "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
+    echo Folder locked
+    goto End
 
 :UNLOCK
-    echo    Please, enter the password
-    set/p   "pass=>"
-    if      NOT %pass%==secret goto FAIL
-    attrib  -h -s "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
-    ren     "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" Locker
-    echo    Folder unlocked
-    cd      Locker
-    goto    END
+    echo Enter password to Unlock folder
+    set/p "pass=>"
+    if NOT %pass%==CSharp goto FAIL
+    attrib -h -s "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
+    ren "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" Locker
+    echo Folder Unlocked successfully
+    cd Locker
+    Brave
+    Exit
+    goto End
 
 :FAIL
-    echo    Invalid password
-    goto    END
+    echo Invalid password
+    goto end
 
 :MDLOCKER
-    md      Locker
-    echo    Folder «Locker» successfully created.
-    goto    END
+    md   Locker
+    echo Locker created successfully
+    goto End
 
-:END
+:End

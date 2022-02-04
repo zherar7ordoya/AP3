@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace RazorMVC.Controllers
@@ -22,6 +19,17 @@ namespace RazorMVC.Controllers
             listaUsuarios.Add("Raúl");
             listaUsuarios.Add("Martín");
             listaUsuarios.Add("Rodolfo");
+
+            Session["ListaUsuarios"] = listaUsuarios;
+            return View(listaUsuarios);
+        }
+
+        [HttpPost]
+
+        public ActionResult ListaUsuarios(string selUsuarios)
+        {
+            ViewBag.Nombre = selUsuarios;
+            List<string> listaUsuarios = (List<string>) Session["ListaUsuarios"];
             return View(listaUsuarios);
         }
     }

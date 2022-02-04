@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RazorMVC")]
+[assembly: AssemblyTitle("MVCEntityFramework")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RazorMVC")]
+[assembly: AssemblyProduct("MVCEntityFramework")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("47ee504c-79fb-4fb7-8b52-5b700126de74")]
+[assembly: Guid("07904456-1c9c-4b1e-92c0-6f0d447b8387")]
 
 // Version information for an assembly consists of the following four values:
 //
