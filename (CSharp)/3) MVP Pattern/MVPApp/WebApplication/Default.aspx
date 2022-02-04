@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <h2>
-        Suma de dos nmeros en ASP.NET --MVP--
+        Suma de dos números en ASP.NET --MVP--
     </h2>
     <table>
         <tr>

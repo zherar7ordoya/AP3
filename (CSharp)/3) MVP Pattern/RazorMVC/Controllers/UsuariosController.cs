@@ -13,5 +13,16 @@ namespace RazorMVC.Controllers
         {
             return View();
         }
+
+        public ActionResult ListaUsuarios()
+        {
+            List<string> listaUsuarios = new List<string>();
+            listaUsuarios.Add("Fernando");
+            listaUsuarios.Add("Alejandra");
+            listaUsuarios.Add("Raúl");
+            listaUsuarios.Add("Martín");
+            listaUsuarios.Add("Rodolfo");
+            return View(listaUsuarios);
+        }
     }
 }
