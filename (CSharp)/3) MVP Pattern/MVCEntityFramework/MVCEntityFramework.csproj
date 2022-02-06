@@ -97,6 +97,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
+    <Content Include="Empleados.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Empleados.edmx</DependentUpon>
+      <LastGenOutput>Empleados.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Empleados.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Empleados.edmx</DependentUpon>
+      <LastGenOutput>Empleados1.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Models\Empleados.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -113,6 +123,24 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
+    <Compile Include="Empleados.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Empleados.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados.cs">
+      <DependentUpon>Empleados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Empleados.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Empleados.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,6 +171,13 @@
       <LastGenOutput>Empleados.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\Empleados.edmx.diagram">
+      <DependentUpon>Empleados.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Empleados.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Empleados.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Empleados.edmx.diagram">
       <DependentUpon>Empleados.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />

@@ -6,7 +6,7 @@ namespace MVCEntityFramework.Controllers
 {
     public class EmpleadosController : Controller
     {
-        public DeveloperEntities db = new DeveloperEntities();
+        public DeveloperEntitiesLAPTOP db = new DeveloperEntitiesLAPTOP();
 
         // GET: Empleados
         public ActionResult Index()
