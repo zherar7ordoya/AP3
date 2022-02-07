@@ -66,6 +66,7 @@ namespace App_Registros.UI
                 20;
             // *------------------------------------------------------=> GOLLUM
         }
+
         private void VerRegistros(string condicion)
         {
             ClienteDAO DAO = new ClienteDAO();
