@@ -43,25 +43,33 @@ namespace App_Registros.UI
             VerRegistros("");
 
             /** 
+             * Esta porción de código consigue que, al cargar el formulario, el
+             * ancho del DataGridView coincida con el ancho de las columnas. Es
+             * decir, ya no se habilita la barra de desplazamiento horizontal.
+             * ----------------------------------------------------------------
              * What it's doing:
-             * Totals up the widths of all columns (using LINQ)
-             * Sees if the "row header" is visible and adds that width too, if it is
-             * Adds 20 more because without that the horizontal scrollbar kept showing up
-             * (possibly because of margin/padding around the grid, I'm not sure)
+             * Totals up the widths of all columns (using LINQ).
+             * Sees if the "row header" is visible and adds that width too, if 
+             * it is.
+             * Adds 20 more because without that the horizontal scrollbar kept 
+             * showing up (possibly because of margin/padding around the grid, 
+             * I'm not sure).
              */
-            dataGridView1.Width = dataGridView1
+            dgvClientes.Width = 
+                dgvClientes
                 .Columns
                 .Cast<DataGridViewColumn>()
                 .Sum(x => x.Width)
                 +
-                (dataGridView1.RowHeadersVisible ? dataGridView1.RowHeadersWidth : 0)
+                (dgvClientes.RowHeadersVisible ? dgvClientes.RowHeadersWidth : 0)
                 +
                 20;
+            // *------------------------------------------------------=> GOLLUM
         }
         private void VerRegistros(string condicion)
         {
             ClienteDAO DAO = new ClienteDAO();
-            dataGridView1.DataSource = DAO.VerRegistros(condicion);
+            dgvClientes.DataSource = DAO.VerRegistros(condicion);
         }
 
         // Buscar

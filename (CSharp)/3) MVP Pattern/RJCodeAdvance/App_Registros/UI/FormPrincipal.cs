@@ -14,6 +14,12 @@ namespace App_Registros.UI
         {
             FormClientes frm = FormClientes.ObtenerInstancia();
             frm.MdiParent = this;
+
+            // Esta línea está puesta para que el subform cargue
+            // maximizado dentro del MDI.
+            // FormPrincipal necesita ser WindowsState = Normal.
+            frm.WindowState = FormWindowState.Maximized;
+
             frm.Show();
             frm.BringToFront();
         }
@@ -22,6 +28,7 @@ namespace App_Registros.UI
         {
             FormLibros frm = FormLibros.ObtenerInstancia();
             frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
             frm.Show();
             frm.BringToFront();
         }
