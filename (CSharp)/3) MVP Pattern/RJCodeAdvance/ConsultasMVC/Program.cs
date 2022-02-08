@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ConsultasMVC
@@ -16,7 +13,7 @@ namespace ConsultasMVC
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Views.ClienteView());
+            Application.Run(new Views.FormularioView());
         }
     }
 }

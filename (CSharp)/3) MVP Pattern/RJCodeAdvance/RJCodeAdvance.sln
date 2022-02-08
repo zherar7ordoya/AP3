@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsultasMVC", "ConsultasMV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsultaMVCWeb", "ConsultaMVCWeb\ConsultaMVCWeb.csproj", "{08A664CE-08B8-41F0-9042-7CD1BC3E4AC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp", "WinFormsApp\WinFormsApp.csproj", "{97DAE8C9-A793-4AFD-A8C3-78EE233308B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{08A664CE-08B8-41F0-9042-7CD1BC3E4AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08A664CE-08B8-41F0-9042-7CD1BC3E4AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08A664CE-08B8-41F0-9042-7CD1BC3E4AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97DAE8C9-A793-4AFD-A8C3-78EE233308B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97DAE8C9-A793-4AFD-A8C3-78EE233308B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97DAE8C9-A793-4AFD-A8C3-78EE233308B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97DAE8C9-A793-4AFD-A8C3-78EE233308B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

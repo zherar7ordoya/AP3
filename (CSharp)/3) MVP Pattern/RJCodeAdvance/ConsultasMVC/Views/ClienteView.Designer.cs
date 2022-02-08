@@ -1,6 +1,6 @@
 ﻿namespace ConsultasMVC.Views
 {
-    partial class ClienteView
+    partial class FormularioView
     {
         /// <summary>
         /// Required designer variable.

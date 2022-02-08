@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ConsultasMVC.Models.DTO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WinFormsApp.Models.DTO;
 
-namespace ConsultasMVC.Models.DAO
+namespace WinFormsApp.Models.DAO
 {
     internal class ClienteDAO : DBContext
     {
         SqlDataReader LeerFilas;
         readonly SqlCommand Comando = new SqlCommand();
 
-        public List<Cliente> VerRegistros(string Condicion)
+        public List<ClienteDTO> VerRegistros(string Condicion)
         {
             Comando.Connection = Conexion;
             Comando.CommandText = "VerRegistros";
@@ -29,11 +33,11 @@ namespace ConsultasMVC.Models.DAO
              *  Aquí estamos usando una lista genérica.
              */
 
-            List<Cliente> ListaGenerica = new List<Cliente>();
+            List<ClienteDTO> ListaGenerica = new List<ClienteDTO>();
 
             while (LeerFilas.Read())
             {
-                ListaGenerica.Add(new Cliente
+                ListaGenerica.Add(new ClienteDTO
                 {
                     ID = LeerFilas.GetInt32(0),
                     Nombre = LeerFilas.GetString(1),

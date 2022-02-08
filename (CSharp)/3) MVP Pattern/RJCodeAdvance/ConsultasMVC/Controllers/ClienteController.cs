@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ConsultasMVC.Models.DAO;
-using ConsultasMVC.Models.DTO;
 using ConsultasMVC.Views;
 
 namespace ConsultasMVC.Controllers
 {
     internal class ClienteController
     {
-        ClienteView Vista;
+        readonly FormularioView Vista;
 
         // *-----------------------------------------------------=> Constructor
-        public ClienteController(ClienteView view)
+        public ClienteController(FormularioView view)
         {
             Vista = view;
 
