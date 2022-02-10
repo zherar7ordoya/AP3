@@ -10,6 +10,7 @@ using DataAccess.Repositories;
 using Domain.ValueObjects;
 
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
 
 namespace Domain.Models
 {
@@ -52,7 +53,52 @@ namespace Domain.Models
 
         public string SaveChanges()
         {
-            string message;
+            string message = null;
+
+            try
+            {
+                var employeeDataModel = new Employee();
+
+                employeeDataModel.IdPK = idPK;
+                employeeDataModel.IdNumber=IdNumber;
+                employeeDataModel.Name = Name;
+                employeeDataModel.Mail = Mail;
+                employeeDataModel.Birthday = Birthday;
+
+                switch(State)
+                {
+                    case EntityState.Added:
+                        // Ejecutar reglas comerciales / cálculos.
+                        employeeRepository.Add(employeeDataModel);
+                        message = "Successfully added.";
+                        break;
+
+                    case EntityState.Deleted:
+                        // Ejecutar reglas comerciales / cálculos.
+                        employeeRepository.Remove(idPK);
+                        message = "Successfully deleted.";
+                        break;
+
+                    case EntityState.Modified:
+                        // Ejecutar reglas comerciales / cálculos.
+                        employeeRepository.Edit(employeeDataModel);
+                        message = "Successfully modified.";
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                SqlException sqlEx = ex as SqlException;
+
+                if(sqlEx != null && sqlEx.Number == 2627)
+                {
+                    message = "Duplicated record.";
+                }
+                else
+                {
+                    message = ex.ToString();
+                }
+            }
             return message;
         }
     }
