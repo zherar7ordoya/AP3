@@ -33,6 +33,26 @@ namespace DataAccess.Repositories
         }
 
 
-        protected DataTable ExecuteReader(string transactSql) { }
+        protected DataTable ExecuteReader(string transactSql)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = transactSql;
+                    command.CommandType = CommandType.Text;
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    using(var table = new DataTable())
+                    {
+                        table.Load(reader);
+                        reader.Dispose();
+                        return table;
+                    }
+                }
+            }
+        }
     }
 }
