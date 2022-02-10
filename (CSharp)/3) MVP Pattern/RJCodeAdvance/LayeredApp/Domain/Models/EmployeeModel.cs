@@ -25,6 +25,7 @@ namespace Domain.Models
 
         private IEmployeeRepository employeeRepository;
         public EntityState State { private get; set; }
+        private List<EmployeeModel> listEmployees;
 
         //Propiedades / Modelo de Vista / Validar Datos
         public int IdPK { get => idPK; set => idPK = value; }
@@ -90,6 +91,7 @@ namespace Domain.Models
             {
                 SqlException sqlEx = ex as SqlException;
 
+                //SQL Server 2627: registro ya existe (duplicado)
                 if(sqlEx != null && sqlEx.Number == 2627)
                 {
                     message = "Duplicated record.";
@@ -100,6 +102,41 @@ namespace Domain.Models
                 }
             }
             return message;
+        }
+
+        public List<EmployeeModel> GetAll()
+        {
+            var employeeDataModel = employeeRepository.GetAll();
+            listEmployees = new List<EmployeeModel>();
+
+            foreach(Employee item in employeeDataModel)
+            {
+                var birthDate = item.Birthday;
+
+                listEmployees.Add(new EmployeeModel
+                {
+                    idPK=item.IdPK,
+                    idNumber = item.IdNumber,
+                    name = item.Name,
+                    mail = item.Mail,
+                    birthday = item.Birthday,
+                    age = CalculateAge(birthDate)
+                });
+            }
+            return listEmployees;
+        }
+
+        public IEnumerable<EmployeeModel> FindById(string filter)
+        {
+            return listEmployees.FindAll(e => 
+            e.idNumber.Contains(filter) || e.Name.Contains(filter)
+            );
+        }
+
+        private int CalculateAge(DateTime date)
+        {
+            DateTime dateNow = DateTime.Now;
+            return dateNow.Year - date.Year;
         }
     }
 }
