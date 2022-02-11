@@ -64,7 +64,7 @@ namespace Presentation.Forms
 
         private void Restart()
         {
-            pnlPanel.Enabled = true;
+            pnlPanel.Enabled = false;
             tboxIdentification.Clear();
             tboxName.Clear();
             tboxEmail.Clear();
@@ -96,7 +96,18 @@ namespace Presentation.Forms
 
         private void cmdRemove_Click(object sender, EventArgs e)
         {
-
+            if (dgvEmployees.SelectedRows.Count > 0)
+            {
+                employee.State = EntityState.Deleted;
+                employee.IdPK = Convert.ToInt32(dgvEmployees.CurrentRow.Cells[0].Value);
+                string result = employee.SaveChanges();
+                MessageBox.Show(result);
+                ListEmployees();
+            }
+            else
+            {
+                MessageBox.Show("Select a row.");
+            }
         }
     }
 }

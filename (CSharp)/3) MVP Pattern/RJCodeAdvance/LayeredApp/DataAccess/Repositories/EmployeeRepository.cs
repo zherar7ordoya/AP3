@@ -22,7 +22,7 @@ namespace DataAccess.Repositories
         public EmployeeRepository()
         {
             selectAll = "SELECT * FROM Employee";
-            insert = "INSERT INTO Employee VALUES(@idNumber, @name, @mail, @birthday";
+            insert = "INSERT INTO Employee VALUES(@idNumber, @name, @mail, @birthday)";
             update = "UPDATE Employee SET IdNumber=@idNumber, Name=@name, Mail=@mail, Birthday=@birthday WHERE IdPK=@idPk";
             delete = "DELETE FROM Employee WHERE IdPK=@idPk";
         }

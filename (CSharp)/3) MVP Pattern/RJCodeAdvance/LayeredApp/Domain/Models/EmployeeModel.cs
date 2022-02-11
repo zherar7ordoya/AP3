@@ -36,7 +36,7 @@ namespace Domain.Models
         public string IdNumber { get => idNumber; set => idNumber = value; }
 
         [Required]
-        [RegularExpression("^[a-zA-Z+$", ErrorMessage = "The field must be only letters.")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "The field must be only letters.")]
         [StringLength(maximumLength: 100, MinimumLength = 3)]
         public string Name { get => name; set => name = value; }
 
@@ -61,10 +61,10 @@ namespace Domain.Models
                 var employeeDataModel = new Employee();
 
                 employeeDataModel.IdPK = idPK;
-                employeeDataModel.IdNumber=IdNumber;
-                employeeDataModel.Name = Name;
-                employeeDataModel.Mail = Mail;
-                employeeDataModel.Birthday = Birthday;
+                employeeDataModel.IdNumber = idNumber;
+                employeeDataModel.Name = name;
+                employeeDataModel.Mail = mail;
+                employeeDataModel.Birthday = birthday;
 
                 switch(State)
                 {
