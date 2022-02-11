@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WinFormsApp.Models.DTO;
 
 namespace WinFormsApp.Models.DAO
 {
     internal class ClienteDAO : DBContext
     {
-        SqlDataReader LeerFilas;
+        SqlDataReader? LeerFilas;
         readonly SqlCommand Comando = new SqlCommand();
 
         public List<ClienteDTO> VerRegistros(string Condicion)

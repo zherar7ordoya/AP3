@@ -36,7 +36,7 @@ namespace Domain.Models
         public string IdNumber { get => idNumber; set => idNumber = value; }
 
         [Required]
-        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "The field must be only letters.")]
+        [RegularExpression("^[A-Z]+[a-zA-Z]+$", ErrorMessage = "The field must be only letters.")]
         [StringLength(maximumLength: 100, MinimumLength = 3)]
         public string Name { get => name; set => name = value; }
 

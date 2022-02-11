@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using WinFormsApp.Models.DAO;
-using WinFormsApp.Models.DTO;
 using WinFormsApp.Views;
 
 namespace WinFormsApp.Controllers
@@ -22,7 +16,7 @@ namespace WinFormsApp.Controllers
             Vista.tboxFiltrado.TextChanged += new EventHandler(ClientList);
         }
 
-        private void ClientList(object sender, EventArgs e)
+        private void ClientList(object? sender, EventArgs e)
         {
             ClienteDAO db = new ClienteDAO();
             Vista.dgvListado.DataSource = db.VerRegistros(Vista.tboxFiltrado.Text);
