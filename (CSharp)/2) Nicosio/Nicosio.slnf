@@ -1,8 +1,0 @@
-{
-  "solution": {
-    "path": "Nicosio.sln",
-    "projects": [
-      "MVC\\MVC.csproj"
-    ]
-  }
-}
